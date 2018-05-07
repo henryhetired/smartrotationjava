@@ -423,6 +423,7 @@ public class compareresult {
             maskfi.fileName = maskfilename;
             maskfi.directory = maskpath;
             mask = new FileOpener(maskfi).open(false);
+            //test
         }
         entropybackground = maskmeta.entropybackground;
         angle_reso = maskmeta.ang_reso;
