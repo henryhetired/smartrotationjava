@@ -18,7 +18,6 @@ import java.util.stream.IntStream;
 
 
 import ij.plugin.CanvasResizer;
-//import ij.plugin.filter.RankFilters;
 import ij.process.*;
 import ij.ImagePlus;
 
