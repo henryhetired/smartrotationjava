@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" afterDir="false" />
     </list>
@@ -45,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="compareresult.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="compareresult.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="192" column="17" lean-forward="true" selection-start-line="192" selection-start-column="17" selection-end-line="192" selection-end-column="17" />
+            <state relative-caret-position="296">
+              <caret line="175" column="17" lean-forward="true" selection-start-line="175" selection-start-column="17" selection-end-line="175" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#combinationUtil#0;class#compareresult#0" />
@@ -67,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="analysis.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="analysis.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -89,9 +88,13 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>paddata</find>
+      <find>ori_size</find>
+      <find>new_img</find>
     </findStrings>
     <replaceStrings>
       <replace>newmaskFP</replace>
+      <replace>newmaskFPatOriginalSize</replace>
+      <replace>new_mask</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -103,8 +106,8 @@
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/Stitching_2D.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/rawimageopener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" />
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java" />
+        <option value="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" />
       </list>
     </option>
   </component>
@@ -278,8 +281,8 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12830189" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.32991803" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12830189" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.32991803" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -589,10 +592,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="724" column="34" lean-forward="true" selection-start-line="724" selection-start-column="34" selection-end-line="724" selection-end-column="34" />
+          <folding>
+            <element signature="method#binarize#0;class#analysis#0" />
+            <element signature="method#get_ellipse#0;class#analysis#0" />
+            <element signature="method#get_rainbow#0;class#analysis#0" />
+            <element signature="method#update_mask_rainbow#0;class#analysis#0" />
+            <element signature="method#manual_angle_calculation#0;class#analysis#0" />
+            <element signature="method#flexible_angle_optimal#0;class#analysis#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="192" column="17" lean-forward="true" selection-start-line="192" selection-start-column="17" selection-end-line="192" selection-end-column="17" />
+        <state relative-caret-position="296">
+          <caret line="175" column="17" lean-forward="true" selection-start-line="175" selection-start-column="17" selection-end-line="175" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#combinationUtil#0;class#compareresult#0" />
@@ -605,21 +623,6 @@
             <element signature="method#find_dct_img#0;class#compareresult#0" />
             <element signature="method#batch_processing#0;class#compareresult#0" />
             <element signature="method#progressive_processing#0;class#compareresult#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="724" column="34" lean-forward="true" selection-start-line="724" selection-start-column="34" selection-end-line="724" selection-end-column="34" />
-          <folding>
-            <element signature="method#binarize#0;class#analysis#0" />
-            <element signature="method#get_ellipse#0;class#analysis#0" />
-            <element signature="method#get_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-            <element signature="method#manual_angle_calculation#0;class#analysis#0" />
-            <element signature="method#flexible_angle_optimal#0;class#analysis#0" />
           </folding>
         </state>
       </provider>

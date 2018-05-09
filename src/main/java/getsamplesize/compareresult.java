@@ -163,10 +163,10 @@ public class compareresult {
         }
     }
 
-    static void update_mask(ImagePlus old_mask, ImagePlus new_img) {
-        //get a maximum intensity projection between old_mask and new_img to get a updated mask and store it in old_mask
+    static void update_mask(ImagePlus old_mask, ImagePlus new_mask) {
+        //get a maximum intensity projection between old_mask and new_mask to get a updated mask and store it in old_mask
         FloatProcessor old_data = (FloatProcessor) old_mask.getProcessor();
-        FloatProcessor new_data = (FloatProcessor) new_img.getProcessor();
+        FloatProcessor new_data = (FloatProcessor) new_mask.getProcessor();
         new_data.setInterpolationMethod(ImageProcessor.NONE);
         new_data = (FloatProcessor) new_data.resize((int) Math.floor(new_data.getWidth() * blk_size * xypixelsize), (int) Math.floor(new_data.getHeight() * zpixelsize), true);
         if (!is_first) {
@@ -177,9 +177,9 @@ public class compareresult {
             FloatProcessor oldmaskFP = (FloatProcessor) cr.expandImage(old_data, maxwidth, maxheight, (maxwidth - old_data.getWidth()) / 2, (maxheight - old_data.getHeight()) / 2);
             FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
             newmaskFP.setBackgroundValue(entropybackground);
-            FloatProcessor ori_size = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
-            ori_size.rotate(angle); //to avoid interpolation artefacts
-            newmaskFP = (FloatProcessor) ori_size.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
+            FloatProcessor newmaskFPatOriginalSize = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
+            newmaskFPatOriginalSize.rotate(-angle); //to avoid interpolation artefacts
+            newmaskFP = (FloatProcessor) newmaskFPatOriginalSize.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
 
 
             for (int i = 0; i < oldmaskFP.getHeight(); i++) {
@@ -203,9 +203,9 @@ public class compareresult {
             FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
             newmaskFP.setBackgroundValue(entropybackground);
             compareresult.threshold_entropy(newmaskFP, entropybackground);
-            FloatProcessor ori_size = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
-            ori_size.rotate(angle);
-            newmaskFP = (FloatProcessor) ori_size.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
+            FloatProcessor newmaskFPatOriginalSize = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
+            newmaskFPatOriginalSize.rotate(angle);
+            newmaskFP = (FloatProcessor) newmaskFPatOriginalSize.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
             FloatProcessor oldmaskFP = newmaskFP;
 
             for (int i = 0; i < oldmaskFP.getHeight(); i++) {
