@@ -170,52 +170,52 @@ public class compareresult {
         new_data.setInterpolationMethod(ImageProcessor.NONE);
         new_data = (FloatProcessor) new_data.resize((int) Math.floor(new_data.getWidth() * blk_size * xypixelsize), (int) Math.floor(new_data.getHeight() * zpixelsize), true);
         if (!is_first) {
-            //padd mask or not]
+            //if not the first stack, need to pad the image first
             int maxwidth = (int) Math.ceil(Math.max(old_data.getWidth(), new_data.getWidth()) / blk_size) * blk_size;
             int maxheight = (int) Math.ceil(Math.max(old_data.getHeight(), new_data.getHeight()) / blk_size) * blk_size;
             CanvasResizer cr = new CanvasResizer();
-            FloatProcessor padmask = (FloatProcessor) cr.expandImage(old_data, maxwidth, maxheight, (maxwidth - old_data.getWidth()) / 2, (maxheight - old_data.getHeight()) / 2);
-            FloatProcessor paddata = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
-            paddata.setBackgroundValue(entropybackground);
-            FloatProcessor ori_size = (FloatProcessor) paddata.resize(paddata.getWidth() / blk_size, paddata.getHeight() / blk_size);
+            FloatProcessor oldmaskFP = (FloatProcessor) cr.expandImage(old_data, maxwidth, maxheight, (maxwidth - old_data.getWidth()) / 2, (maxheight - old_data.getHeight()) / 2);
+            FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
+            newmaskFP.setBackgroundValue(entropybackground);
+            FloatProcessor ori_size = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
             ori_size.rotate(angle); //to avoid interpolation artefacts
-            paddata = (FloatProcessor) ori_size.resize(paddata.getWidth(), paddata.getHeight());
+            newmaskFP = (FloatProcessor) ori_size.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
 
 
-            for (int i = 0; i < padmask.getHeight(); i++) {
-                for (int j = 0; j < padmask.getWidth(); j++) {
-                    if (padmask.getPixelValue(j, i) > paddata.getPixelValue(j, i)) {
-                        padmask.setf(j, i, paddata.getPixelValue(j, i));
+            for (int i = 0; i < oldmaskFP.getHeight(); i++) {
+                for (int j = 0; j < oldmaskFP.getWidth(); j++) {
+                    if (oldmaskFP.getPixelValue(j, i) > newmaskFP.getPixelValue(j, i)) {
+                        oldmaskFP.setf(j, i, newmaskFP.getPixelValue(j, i));
                     }
-                    if (padmask.getPixelValue(j, i) <= 0.0f) {
-                        padmask.setf(j, i, 20f);
+                    if (oldmaskFP.getPixelValue(j, i) <= 0.0f) {
+                        oldmaskFP.setf(j, i, 20f);
                     }
                 }
 
             }
-            compareresult.threshold_entropy(padmask, entropybackground);
+            compareresult.threshold_entropy(oldmaskFP, entropybackground);
 
-            old_mask.setProcessor(padmask);
+            old_mask.setProcessor(oldmaskFP);
         } else {
             int maxwidth = (int) Math.ceil(Math.max(new_data.getHeight(), new_data.getWidth()) / blk_size) * blk_size;
             int maxheight = (int) Math.ceil(Math.max(new_data.getHeight(), new_data.getWidth()) / blk_size) * blk_size;
             CanvasResizer cr = new CanvasResizer();
-            FloatProcessor paddata = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
-            paddata.setBackgroundValue(entropybackground);
-            compareresult.threshold_entropy(paddata, entropybackground);
-            FloatProcessor ori_size = (FloatProcessor) paddata.resize(paddata.getWidth() / blk_size, paddata.getHeight() / blk_size);
+            FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
+            newmaskFP.setBackgroundValue(entropybackground);
+            compareresult.threshold_entropy(newmaskFP, entropybackground);
+            FloatProcessor ori_size = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
             ori_size.rotate(angle);
-            paddata = (FloatProcessor) ori_size.resize(paddata.getWidth(), paddata.getHeight());
-            FloatProcessor padmask = paddata;
+            newmaskFP = (FloatProcessor) ori_size.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
+            FloatProcessor oldmaskFP = newmaskFP;
 
-            for (int i = 0; i < padmask.getHeight(); i++) {
-                for (int j = 0; j < padmask.getWidth(); j++) {
-                    if (padmask.getPixelValue(j, i) <= 0.0f) {
-                        padmask.setf(j, i, 20f);
+            for (int i = 0; i < oldmaskFP.getHeight(); i++) {
+                for (int j = 0; j < oldmaskFP.getWidth(); j++) {
+                    if (oldmaskFP.getPixelValue(j, i) <= 0.0f) {
+                        oldmaskFP.setf(j, i, 20f);
                     }
                 }
             }
-            old_mask.setProcessor(padmask);
+            old_mask.setProcessor(oldmaskFP);
         }
     }
 
@@ -445,9 +445,9 @@ public class compareresult {
         maskpath = workspace;
         idx = Integer.parseInt(args[2]);
         System.out.println("Starting analysis ");
-        progressive_processing(filepath);
-//        String filepathbase = "Z:\\Henry-SPIM\\11132017\\e2\\t0000\\conf";
-//        batch_processing(filepathbase,24);
+        //progressive_processing(filepath);
+        String filepathbase = "Z:\\Henry-SPIM\\smart_rotation\\04052018_corrected\\t0000\\conf";
+        batch_processing(filepathbase,24);
 
 
     }

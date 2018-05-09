@@ -211,20 +211,20 @@ public class analysis {
         int maxheight = 1200;
         CanvasResizer cr = new CanvasResizer();
 
-        FloatProcessor padmask = (FloatProcessor) cr.expandImage(old_data, maxwidth, maxheight, (maxwidth - old_data.getWidth()) / 2, (maxheight - old_data.getHeight()) / 2);
-        FloatProcessor paddata = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
-        paddata.setBackgroundValue(entropybackground);
-        FloatProcessor ori_size = (FloatProcessor) paddata.resize(paddata.getWidth() / blk_size, paddata.getHeight() / blk_size);
+        FloatProcessor oldmaskFP = (FloatProcessor) cr.expandImage(old_data, maxwidth, maxheight, (maxwidth - old_data.getWidth()) / 2, (maxheight - old_data.getHeight()) / 2);
+        FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
+        newmaskFP.setBackgroundValue(entropybackground);
+        FloatProcessor ori_size = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
         ori_size.rotate(angle);
-        paddata = (FloatProcessor) ori_size.resize(paddata.getWidth(), paddata.getHeight());
+        newmaskFP = (FloatProcessor) ori_size.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
 
 
-        for (int i = 0; i < padmask.getHeight(); i++) {
-            for (int j = 0; j < padmask.getWidth(); j++) {
-                if (padmask.getPixelValue(j, i) > paddata.getPixelValue(j, i)) {
-                    padmask.setf(j, i, paddata.getPixelValue(j, i));
-                    if (padmask.getPixelValue(j, i) < entropybackground && padmask.getPixelValue(j, i) != 0f) {
-//                        System.out.println(padmask.getPixelValue(j,i));
+        for (int i = 0; i < oldmaskFP.getHeight(); i++) {
+            for (int j = 0; j < oldmaskFP.getWidth(); j++) {
+                if (oldmaskFP.getPixelValue(j, i) > newmaskFP.getPixelValue(j, i)) {
+                    oldmaskFP.setf(j, i, newmaskFP.getPixelValue(j, i));
+                    if (oldmaskFP.getPixelValue(j, i) < entropybackground && oldmaskFP.getPixelValue(j, i) != 0f) {
+//                        System.out.println(oldmaskFP.getPixelValue(j,i));
 //                        if (idx == 0) {
 //                            idx_data.setf(j, i, (float) idx + 1);
 //                        } else {
@@ -236,15 +236,15 @@ public class analysis {
                         idx_data.setf(j, i, (float) idx + 1);
                     }
                 }
-                if (padmask.getPixelValue(j, i) <= 0.0f) {
-                    padmask.setf(j, i, 20f);
+                if (oldmaskFP.getPixelValue(j, i) <= 0.0f) {
+                    oldmaskFP.setf(j, i, 20f);
                 }
             }
 
         }
-        compareresult.threshold(padmask, entropybackground);
+        compareresult.threshold(oldmaskFP, entropybackground);
 
-        old_mask.setProcessor(padmask);
+        old_mask.setProcessor(oldmaskFP);
 
 //        new ImageJ();
 //        old_mask.show();
@@ -599,48 +599,48 @@ public class analysis {
                 int maxwidth = (int) Math.ceil(Math.max(old_data.getWidth(), new_data.getWidth()) / blk_size) * blk_size;
                 int maxheight = (int) Math.ceil(Math.max(old_data.getHeight(), new_data.getHeight()) / blk_size) * blk_size;
                 CanvasResizer cr = new CanvasResizer();
-                FloatProcessor padmask = (FloatProcessor) cr.expandImage(old_data, maxwidth, maxheight, (maxwidth - old_data.getWidth()) / 2, (maxheight - old_data.getHeight()) / 2);
-                FloatProcessor paddata = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
-                paddata.setBackgroundValue(entropybackground);
-                FloatProcessor ori_size = (FloatProcessor) paddata.resize(paddata.getWidth() / blk_size, paddata.getHeight() / blk_size);
+                FloatProcessor oldmaskFP = (FloatProcessor) cr.expandImage(old_data, maxwidth, maxheight, (maxwidth - old_data.getWidth()) / 2, (maxheight - old_data.getHeight()) / 2);
+                FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
+                newmaskFP.setBackgroundValue(entropybackground);
+                FloatProcessor ori_size = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
                 ori_size.rotate(angle); //to avoid interpolation artefacts
-                paddata = (FloatProcessor) ori_size.resize(paddata.getWidth(), paddata.getHeight());
+                newmaskFP = (FloatProcessor) ori_size.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
 
 
-                for (int i = 0; i < padmask.getHeight(); i++) {
-                    for (int j = 0; j < padmask.getWidth(); j++) {
-                        if (padmask.getPixelValue(j, i) > paddata.getPixelValue(j, i)) {
-                            padmask.setf(j, i, paddata.getPixelValue(j, i));
+                for (int i = 0; i < oldmaskFP.getHeight(); i++) {
+                    for (int j = 0; j < oldmaskFP.getWidth(); j++) {
+                        if (oldmaskFP.getPixelValue(j, i) > newmaskFP.getPixelValue(j, i)) {
+                            oldmaskFP.setf(j, i, newmaskFP.getPixelValue(j, i));
                         }
-                        if (padmask.getPixelValue(j, i) <= 0.0f) {
-                            padmask.setf(j, i, 20f);
+                        if (oldmaskFP.getPixelValue(j, i) <= 0.0f) {
+                            oldmaskFP.setf(j, i, 20f);
                         }
                     }
 
                 }
-                compareresult.threshold(padmask, entropybackground);
+                compareresult.threshold(oldmaskFP, entropybackground);
 
-                old_mask.setProcessor(padmask);
+                old_mask.setProcessor(oldmaskFP);
             } else {
                 int maxwidth = (int) Math.ceil(Math.max(new_data.getHeight(), new_data.getWidth()) / blk_size) * blk_size;
                 int maxheight = (int) Math.ceil(Math.max(new_data.getHeight(), new_data.getWidth()) / blk_size) * blk_size;
                 CanvasResizer cr = new CanvasResizer();
-                FloatProcessor paddata = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
-                paddata.setBackgroundValue(entropybackground);
-                compareresult.threshold(paddata, entropybackground);
-                FloatProcessor ori_size = (FloatProcessor) paddata.resize(paddata.getWidth() / blk_size, paddata.getHeight() / blk_size);
+                FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
+                newmaskFP.setBackgroundValue(entropybackground);
+                compareresult.threshold(newmaskFP, entropybackground);
+                FloatProcessor ori_size = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
                 ori_size.rotate(angle);
-                paddata = (FloatProcessor) ori_size.resize(paddata.getWidth(), paddata.getHeight());
-                FloatProcessor padmask = paddata;
+                newmaskFP = (FloatProcessor) ori_size.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
+                FloatProcessor oldmaskFP = newmaskFP;
 
-                for (int i = 0; i < padmask.getHeight(); i++) {
-                    for (int j = 0; j < padmask.getWidth(); j++) {
-                        if (padmask.getPixelValue(j, i) <= 0.0f) {
-                            padmask.setf(j, i, 20f);
+                for (int i = 0; i < oldmaskFP.getHeight(); i++) {
+                    for (int j = 0; j < oldmaskFP.getWidth(); j++) {
+                        if (oldmaskFP.getPixelValue(j, i) <= 0.0f) {
+                            oldmaskFP.setf(j, i, 20f);
                         }
                     }
                 }
-                old_mask.setProcessor(padmask);
+                old_mask.setProcessor(oldmaskFP);
             }
         }
 
@@ -669,8 +669,8 @@ public class analysis {
     //        int maxwidth = 1200;
     //        int maxheight = 1200;
     //        CanvasResizer cr = new CanvasResizer();
-    //        FloatProcessor padmask = (FloatProcessor) cr.expandImage(iptemp, maxwidth, maxheight, (maxwidth - iptemp.getWidth()) / 2, (maxheight - iptemp.getHeight()) / 2);
-    //        imp_temp.setProcessor(padmask);
+    //        FloatProcessor oldmaskFP = (FloatProcessor) cr.expandImage(iptemp, maxwidth, maxheight, (maxwidth - iptemp.getWidth()) / 2, (maxheight - iptemp.getHeight()) / 2);
+    //        imp_temp.setProcessor(oldmaskFP);
     //        IJ.saveAs(imp_temp,"raw",maskpath+curr_filename);
             update_mask(mask, imp_out);
             IJ.saveAs(mask, "raw", maskpath + maskfilename);
@@ -718,7 +718,7 @@ public class analysis {
                 String filename = find_raw_img(filepath);
                 curr_filename = filename;
                 String dctname = find_dct_img(filepath);
-                opener.processing(filepath + filename);
+                opener.run(filepath + filename);
                 xmlMetadata meta = new xmlMetadata();
                 meta.read(filepath + "meta.xml");
                 //Information about the sample location from rawiamgeopener.java
@@ -802,7 +802,7 @@ public class analysis {
             String metaname = "meta.xml";
             String filename = find_raw_img(filepath);
             String dctname = find_dct_img(filepath);
-            opener.processing(filepath + filename);
+            opener.run(filepath + filename);
             xmlMetadata meta = new xmlMetadata();
             meta.read(filepath + "meta.xml");
             //Information about the sample location from rawiamgeopener.java
