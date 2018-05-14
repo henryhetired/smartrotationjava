@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mpicbg_mpicbg_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mpicbg_mpicbg__1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/getsamplesize/SIFT_align.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SmartRotationProcessing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SmartRotationProcessing.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,33 +49,60 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="compareresult.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="compareresult.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2898">
-              <caret line="443" column="28" selection-start-line="443" selection-start-column="28" selection-end-line="443" selection-end-column="28" />
+            <state relative-caret-position="121">
+              <caret line="271" column="5" lean-forward="true" selection-start-line="271" selection-start-column="5" selection-end-line="271" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#combinationUtil#0;class#compareresult#0" />
                 <element signature="method#binomi#0;class#compareresult#0" />
                 <element signature="method#threshold_entropy#0;class#compareresult#0" />
+                <element signature="method#sideprojection_entropy#0;class#compareresult#0" />
                 <element signature="method#get_angular_result#0;class#compareresult#0" />
                 <element signature="method#save_angular_result#0;class#compareresult#0" />
+                <element signature="method#update_mask#0;class#compareresult#0" />
                 <element signature="method#count_foreground#0;class#compareresult#0" />
+                <element signature="method#run#0;class#compareresult#0" />
                 <element signature="method#find_raw_img#0;class#compareresult#0" />
                 <element signature="method#find_dct_img#0;class#compareresult#0" />
                 <element signature="method#batch_processing#0;class#compareresult#0" />
-                <element signature="method#progressive_processing#0;class#compareresult#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SIFT_align.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/SIFT_align.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="114" column="20" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2712#2723#0" expanded="true" />
+                <element signature="e#2780#2791#0" expanded="true" />
+                <element signature="class#Param#0;class#SIFT_Align#0" />
+                <element signature="e#10698#10712#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+            <state relative-caret-position="630">
+              <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FloatArray2DSIFT.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/imagefeatures/FloatArray2DSIFT.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6624">
+              <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -80,15 +110,16 @@
       <file leaf-file-name="analysis.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="724" column="34" selection-start-line="724" selection-start-column="34" selection-end-line="724" selection-end-column="34" />
+            <state relative-caret-position="342">
+              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
               <folding>
                 <element signature="method#binarize#0;class#analysis#0" />
                 <element signature="method#get_ellipse#0;class#analysis#0" />
                 <element signature="method#get_rainbow#0;class#analysis#0" />
                 <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-                <element signature="method#manual_angle_calculation#0;class#analysis#0" />
-                <element signature="method#flexible_angle_optimal#0;class#analysis#0" />
+                <element signature="method#update_mask_fixed#0;class#analysis#0" />
+                <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
+                <element signature="method#rainbox_run#0;class#analysis#0" />
               </folding>
             </state>
           </provider>
@@ -96,11 +127,20 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>paddata</find>
       <find>ori_size</find>
       <find>new_img</find>
+      <find>mapping</find>
+      <find>stackAligned</find>
     </findStrings>
     <replaceStrings>
       <replace>newmaskFP</replace>
@@ -117,8 +157,9 @@
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/Stitching_2D.java" />
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/rawimageopener.java" />
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java" />
-        <option value="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/getsamplesize/SIFT_align.java" />
+        <option value="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" />
       </list>
     </option>
   </component>
@@ -141,6 +182,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -180,7 +222,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -285,7 +326,7 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50026953" side_tool="true" visible="true" weight="0.32991803" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50026953" side_tool="true" visible="true" weight="0.12192623" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49919137" weight="0.09118853" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -293,7 +334,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12830189" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.32991803" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49973047" weight="0.12192623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -318,10 +359,79 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+          <folding>
+            <element signature="method#read#0;class#xmlMetadata#0" />
+            <element signature="method#save#0;class#xmlMetadata#0" />
+            <element signature="method#create#0;class#xmlMetadata#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/rawimageopener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#get_bound#0;class#rawimageopener#0" />
+            <element signature="method#threshold#0;class#rawimageopener#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          <folding>
+            <element signature="method#binarize#0;class#analysis#0" />
+            <element signature="method#get_ellipse#0;class#analysis#0" />
+            <element signature="method#get_rainbow#0;class#analysis#0" />
+            <element signature="method#update_mask_rainbow#0;class#analysis#0" />
+            <element signature="method#update_mask_fixed#0;class#analysis#0" />
+            <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
+            <element signature="method#rainbox_run#0;class#analysis#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1332">
+          <caret line="445" column="40" lean-forward="true" selection-start-line="445" selection-start-column="40" selection-end-line="445" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#combinationUtil#0;class#compareresult#0" />
+            <element signature="method#binomi#0;class#compareresult#0" />
+            <element signature="method#threshold_entropy#0;class#compareresult#0" />
+            <element signature="method#sideprojection_entropy#0;class#compareresult#0" />
+            <element signature="method#get_angular_result#0;class#compareresult#0" />
+            <element signature="method#save_angular_result#0;class#compareresult#0" />
+            <element signature="method#update_mask#0;class#compareresult#0" />
+            <element signature="method#count_foreground#0;class#compareresult#0" />
+            <element signature="method#run#0;class#compareresult#0" />
+            <element signature="method#find_raw_img#0;class#compareresult#0" />
+            <element signature="method#find_dct_img#0;class#compareresult#0" />
+            <element signature="method#batch_processing#0;class#compareresult#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -355,13 +465,15 @@
             <element signature="method#combinationUtil#0;class#compareresult#0" />
             <element signature="method#binomi#0;class#compareresult#0" />
             <element signature="method#threshold_entropy#0;class#compareresult#0" />
+            <element signature="method#sideprojection_entropy#0;class#compareresult#0" />
             <element signature="method#get_angular_result#0;class#compareresult#0" />
             <element signature="method#save_angular_result#0;class#compareresult#0" />
+            <element signature="method#update_mask#0;class#compareresult#0" />
             <element signature="method#count_foreground#0;class#compareresult#0" />
+            <element signature="method#run#0;class#compareresult#0" />
             <element signature="method#find_raw_img#0;class#compareresult#0" />
             <element signature="method#find_dct_img#0;class#compareresult#0" />
             <element signature="method#batch_processing#0;class#compareresult#0" />
-            <element signature="method#progressive_processing#0;class#compareresult#0" />
           </folding>
         </state>
       </provider>
@@ -406,13 +518,15 @@
             <element signature="method#combinationUtil#0;class#compareresult#0" />
             <element signature="method#binomi#0;class#compareresult#0" />
             <element signature="method#threshold_entropy#0;class#compareresult#0" />
+            <element signature="method#sideprojection_entropy#0;class#compareresult#0" />
             <element signature="method#get_angular_result#0;class#compareresult#0" />
             <element signature="method#save_angular_result#0;class#compareresult#0" />
+            <element signature="method#update_mask#0;class#compareresult#0" />
             <element signature="method#count_foreground#0;class#compareresult#0" />
+            <element signature="method#run#0;class#compareresult#0" />
             <element signature="method#find_raw_img#0;class#compareresult#0" />
             <element signature="method#find_dct_img#0;class#compareresult#0" />
             <element signature="method#batch_processing#0;class#compareresult#0" />
-            <element signature="method#progressive_processing#0;class#compareresult#0" />
           </folding>
         </state>
       </provider>
@@ -433,13 +547,15 @@
             <element signature="method#combinationUtil#0;class#compareresult#0" />
             <element signature="method#binomi#0;class#compareresult#0" />
             <element signature="method#threshold_entropy#0;class#compareresult#0" />
+            <element signature="method#sideprojection_entropy#0;class#compareresult#0" />
             <element signature="method#get_angular_result#0;class#compareresult#0" />
             <element signature="method#save_angular_result#0;class#compareresult#0" />
+            <element signature="method#update_mask#0;class#compareresult#0" />
             <element signature="method#count_foreground#0;class#compareresult#0" />
+            <element signature="method#run#0;class#compareresult#0" />
             <element signature="method#find_raw_img#0;class#compareresult#0" />
             <element signature="method#find_dct_img#0;class#compareresult#0" />
             <element signature="method#batch_processing#0;class#compareresult#0" />
-            <element signature="method#progressive_processing#0;class#compareresult#0" />
           </folding>
         </state>
       </provider>
@@ -453,8 +569,9 @@
             <element signature="method#get_ellipse#0;class#analysis#0" />
             <element signature="method#get_rainbow#0;class#analysis#0" />
             <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-            <element signature="method#manual_angle_calculation#0;class#analysis#0" />
-            <element signature="method#flexible_angle_optimal#0;class#analysis#0" />
+            <element signature="method#update_mask_fixed#0;class#analysis#0" />
+            <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
+            <element signature="method#rainbox_run#0;class#analysis#0" />
           </folding>
         </state>
       </provider>
@@ -499,13 +616,15 @@
             <element signature="method#combinationUtil#0;class#compareresult#0" />
             <element signature="method#binomi#0;class#compareresult#0" />
             <element signature="method#threshold_entropy#0;class#compareresult#0" />
+            <element signature="method#sideprojection_entropy#0;class#compareresult#0" />
             <element signature="method#get_angular_result#0;class#compareresult#0" />
             <element signature="method#save_angular_result#0;class#compareresult#0" />
+            <element signature="method#update_mask#0;class#compareresult#0" />
             <element signature="method#count_foreground#0;class#compareresult#0" />
+            <element signature="method#run#0;class#compareresult#0" />
             <element signature="method#find_raw_img#0;class#compareresult#0" />
             <element signature="method#find_dct_img#0;class#compareresult#0" />
             <element signature="method#batch_processing#0;class#compareresult#0" />
-            <element signature="method#progressive_processing#0;class#compareresult#0" />
           </folding>
         </state>
       </provider>
@@ -519,8 +638,9 @@
             <element signature="method#get_ellipse#0;class#analysis#0" />
             <element signature="method#get_rainbow#0;class#analysis#0" />
             <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-            <element signature="method#manual_angle_calculation#0;class#analysis#0" />
-            <element signature="method#flexible_angle_optimal#0;class#analysis#0" />
+            <element signature="method#update_mask_fixed#0;class#analysis#0" />
+            <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
+            <element signature="method#rainbox_run#0;class#analysis#0" />
           </folding>
         </state>
       </provider>
@@ -598,43 +718,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="724" column="34" selection-start-line="724" selection-start-column="34" selection-end-line="724" selection-end-column="34" />
+        <state relative-caret-position="342">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
           <folding>
             <element signature="method#binarize#0;class#analysis#0" />
             <element signature="method#get_ellipse#0;class#analysis#0" />
             <element signature="method#get_rainbow#0;class#analysis#0" />
             <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-            <element signature="method#manual_angle_calculation#0;class#analysis#0" />
-            <element signature="method#flexible_angle_optimal#0;class#analysis#0" />
+            <element signature="method#update_mask_fixed#0;class#analysis#0" />
+            <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
+            <element signature="method#rainbox_run#0;class#analysis#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/imagefeatures/FloatArray2DSIFT.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6624">
+          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/mpicbg/mpicbg_/1.1.0/mpicbg_-1.1.0.pom">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/SIFT_align.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="114" column="20" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2712#2723#0" expanded="true" />
+            <element signature="e#2780#2791#0" expanded="true" />
+            <element signature="class#Param#0;class#SIFT_Align#0" />
+            <element signature="e#10698#10712#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2898">
-          <caret line="443" column="28" selection-start-line="443" selection-start-column="28" selection-end-line="443" selection-end-column="28" />
+        <state relative-caret-position="121">
+          <caret line="271" column="5" lean-forward="true" selection-start-line="271" selection-start-column="5" selection-end-line="271" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#combinationUtil#0;class#compareresult#0" />
             <element signature="method#binomi#0;class#compareresult#0" />
             <element signature="method#threshold_entropy#0;class#compareresult#0" />
+            <element signature="method#sideprojection_entropy#0;class#compareresult#0" />
             <element signature="method#get_angular_result#0;class#compareresult#0" />
             <element signature="method#save_angular_result#0;class#compareresult#0" />
+            <element signature="method#update_mask#0;class#compareresult#0" />
             <element signature="method#count_foreground#0;class#compareresult#0" />
+            <element signature="method#run#0;class#compareresult#0" />
             <element signature="method#find_raw_img#0;class#compareresult#0" />
             <element signature="method#find_dct_img#0;class#compareresult#0" />
             <element signature="method#batch_processing#0;class#compareresult#0" />
-            <element signature="method#progressive_processing#0;class#compareresult#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
         </state>
       </provider>
     </entry>

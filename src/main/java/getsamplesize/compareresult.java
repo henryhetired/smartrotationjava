@@ -8,7 +8,6 @@ import ij.gui.PolygonRoi;
 import ij.gui.Roi;
 import ij.io.FileInfo;
 import ij.io.FileOpener;
-
 import java.io.*;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
@@ -16,6 +15,8 @@ import java.nio.file.NoSuchFileException;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import mpicbg.ij.SIFT;
+import mpicbg.imagefeatures.*;
 
 import ij.plugin.CanvasResizer;
 import ij.process.*;
@@ -448,7 +449,6 @@ public class compareresult {
         //progressive_processing(filepath);
         String filepathbase = "Z:\\Henry-SPIM\\smart_rotation\\04052018_corrected\\t0000\\conf";
         batch_processing(filepathbase,24);
-
 
     }
 }
