@@ -431,15 +431,24 @@ public class compareresult {
 
     public static void main(String[] args) {
 //        //filepath is the location of the image file along with meta.xml
-        String filepath = args[0];
-        //workspace is the location where all the mask/temp is located
-        workspace = args[1];
-        maskpath = workspace;
-        idx = Integer.parseInt(args[2]);
-        System.out.println("Starting analysis ");
-        //progressive_processing(filepath);
-        String filepathbase = "Z:\\Henry-SPIM\\smart_rotation\\04052018_corrected\\t0000\\conf";
-        batch_processing(filepathbase,24);
+//        String filepath = args[0];
+//        //workspace is the location where all the mask/temp is located
+//        workspace = args[1];
+//        maskpath = workspace;
+//        idx = Integer.parseInt(args[2]);
+//        System.out.println("Starting analysis ");
+//        //progressive_processing(filepath);
+//        String filepathbase = "Z:\\Henry-SPIM\\smart_rotation\\04052018_corrected\\t0000\\conf";
+//        batch_processing(filepathbase,24);
+        configwriter cw = new configwriter();
+        try{
+            cw.read("/local/data/");
+            System.out.println(cw.xypixelsize);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

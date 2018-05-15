@@ -17,7 +17,7 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 public class xmlMetadata {
-    //this is the xml file class for both the stack meta file and the global config file
+    //this is the xml file class for the stack meta file
     public int ImgWidth = 2048;
     public int ImgHeight = 2048;
     public int nImage = 500;
