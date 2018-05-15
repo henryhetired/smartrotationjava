@@ -17,6 +17,7 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 public class xmlMetadata {
+    //this is the xml file class for both the stack meta file and the global config file
     public int ImgWidth = 2048;
     public int ImgHeight = 2048;
     public int nImage = 500;
@@ -37,8 +38,9 @@ public class xmlMetadata {
     public int gapbetweenimages = 4;
     public int background = 700;
     public float entropybackground = 7.2f;
-    private static Document doc;
     public int ang_reso=10;
+    private static Document doc;
+
 
     public void read(String path) {
         try {
@@ -77,8 +79,8 @@ public class xmlMetadata {
             Node nNode4 = analysislist.item(0);
             Element aElement = (Element) nNode4;
             blk_size = Integer.parseInt(aElement.getElementsByTagName("blk_size").item(0).getTextContent());
-
             entropybackground = (float) Double.parseDouble(aElement.getElementsByTagName("entropybackground").item(0).getTextContent());
+            ang_reso = Integer.parseInt(aElement.getElementsByTagName("angular_resolution").item(0).getTextContent());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -112,6 +114,7 @@ public class xmlMetadata {
                     if (node.getNodeName() == "startZ") node.setTextContent(Integer.toString(samplestartz));
                     if (node.getNodeName() == "endZ") node.setTextContent(Integer.toString(sampleendz));
                     if (node.getNodeName() == "blk_size") node.setTextContent(Integer.toString(blk_size));
+                    if (node.getNodeName() == "angular_resolution") node.setTextContent(Integer.toString(ang_reso));
                 }
             }
 

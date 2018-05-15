@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/getsamplesize/configwriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/getsamplesize/configwriter.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,25 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="xmlMetadata.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="xmlMetadata.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="19" selection-start-line="19" selection-end-line="38" selection-end-column="42" />
+            <state relative-caret-position="414">
+              <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#save#0;class#xmlMetadata#0" />
-                <element signature="method#create#0;class#xmlMetadata#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="configwriter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/configwriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -148,6 +135,7 @@
       <find>mapping</find>
       <find>stackAligned</find>
       <find>doc</find>
+      <find>reso</find>
     </findStrings>
     <replaceStrings>
       <replace>newmaskFP</replace>
@@ -167,8 +155,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/SIFT_align.java" />
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/compareresult.java" />
-        <option value="$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java" />
         <option value="$PROJECT_DIR$/src/main/java/getsamplesize/configwriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java" />
       </list>
     </option>
   </component>
@@ -378,8 +366,6 @@
           <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
           </folding>
         </state>
       </provider>
@@ -447,8 +433,6 @@
           <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
           </folding>
         </state>
       </provider>
@@ -493,8 +477,6 @@
           <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
           </folding>
         </state>
       </provider>
@@ -591,8 +573,6 @@
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
           </folding>
         </state>
       </provider>
@@ -660,8 +640,6 @@
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
           </folding>
         </state>
       </provider>
@@ -766,18 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="19" selection-start-line="19" selection-end-line="38" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/analysis.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -796,8 +762,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/configwriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        <state relative-caret-position="414">
+          <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/xmlMetadata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
