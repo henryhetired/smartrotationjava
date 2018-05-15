@@ -390,10 +390,10 @@ public class compareresult {
         fi.directory = filepath;
         ImagePlus imp = new FileOpener(fi).open(false);
         xmlMetadata maskmeta = new xmlMetadata();
-        File f = new File(maskpath + maskfilename);
+        File fmask = new File(maskpath + maskfilename);
         ImagePlus mask;
-//read or create masks
-        if (!f.exists()) {
+        //read or create masks
+        if (!fmask.exists()) {
             System.out.println("This is the first stack");
             is_first = true;
             float[] data = new float[1024 * 1024];
@@ -425,6 +425,7 @@ public class compareresult {
             mask = new FileOpener(maskfi).open(false);
             //test
         }
+        File fconfig = new File(maskpath+"config.txt");
         entropybackground = maskmeta.entropybackground;
         angle_reso = maskmeta.ang_reso;
         ImageStack cropped = imp.getStack().crop(0, ystart, zstart, imp.getWidth(), yend - ystart, zend - zstart);
