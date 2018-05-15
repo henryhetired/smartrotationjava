@@ -1,19 +1,9 @@
-package getsamplesize;
+package SmartRotationProcessing;
 
 
-import ij.IJ;
 import ij.ImagePlus;
-import ij.ImageStack;
-import ij.WindowManager;
-import ij.gui.GenericDialog;
-import ij.plugin.PlugIn;
-import ij.process.FloatProcessor;
 import ij.process.ImageProcessor;
 
-import java.awt.Color;
-import java.awt.TextField;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -22,10 +12,7 @@ import mpicbg.ij.InverseTransformMapping;
 import mpicbg.ij.Mapping;
 import mpicbg.ij.SIFT;
 import mpicbg.imagefeatures.Feature;
-import mpicbg.imagefeatures.Filter;
-import mpicbg.imagefeatures.FloatArray2D;
 import mpicbg.imagefeatures.FloatArray2DSIFT;
-import mpicbg.imagefeatures.ImageArrayConverter;
 import mpicbg.models.AbstractAffineModel2D;
 import mpicbg.models.AffineModel2D;
 import mpicbg.models.PointMatch;
