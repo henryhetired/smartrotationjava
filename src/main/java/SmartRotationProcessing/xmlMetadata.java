@@ -9,6 +9,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import ij.io.FileInfo;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -211,6 +212,19 @@ public class xmlMetadata {
 
         } catch (ParserConfigurationException pce) {
             pce.printStackTrace();
+        }
+    }
+    public void savetofileinfo(FileInfo fi){
+        fi.width = this.ImgWidth;
+        fi.height = this.ImgHeight;
+        fi.nImages = this.nImage;
+        fi.intelByteOrder = true;
+        fi.gapBetweenImages = this.gapbetweenimages;
+        if (this.bitdepth == 16){
+            fi.fileType = FileInfo.GRAY16_UNSIGNED;
+        }
+        else if (this.bitdepth == 32){
+            fi.fileType = FileInfo.GRAY32_FLOAT;
         }
     }
 

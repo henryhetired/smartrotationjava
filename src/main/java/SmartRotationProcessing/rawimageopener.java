@@ -1,5 +1,6 @@
 package SmartRotationProcessing;
 import ij.IJ;
+import ij.ImageJ;
 import ij.gui.Roi;
 import ij.io.FileInfo;
 import ij.io.FileOpener;
@@ -20,6 +21,9 @@ public class rawimageopener {
     private void openAndCropImage(FileInfo fi, int bkgnd_value) {
         //open image based on fileinfo fi
         ImagePlus imp = new FileOpener(fi).open(false);
+//        new ImageJ();
+//        imp.show();
+        System.out.println("trying to open");
         ImageProcessor ip = new ShortProcessor(imp.getHeight(), imp.getStackSize());
         //project the image from the side (assuming the sample is not aligned with the camera direction
         short[] projectedImageContainer = sideprojection_raw(imp, 0, imp.getWidth(), imp.getWidth(), imp.getStackSize(), imp.getHeight());
@@ -108,18 +112,16 @@ public class rawimageopener {
         meta = new xmlMetadata();
         File datalocation = new File(path);
         String filepath = datalocation.getParent().replace("\\", "\\\\");
-        meta.read(filepath + "\\meta.xml");
+        System.out.println(filepath);
+        meta.read(filepath + "/meta.xml");
+        System.out.println(meta.ImgHeight);
         String filename = datalocation.getName();
         //read raw image
         FileInfo fi = new FileInfo();
-        fi.width = meta.ImgWidth;
-        fi.height = meta.ImgHeight;
-        fi.nImages = meta.nImage;
+        meta.savetofileinfo(fi);
         fi.fileType = FileInfo.GRAY16_UNSIGNED;
-        fi.intelByteOrder = true;
         fi.fileName = filename;
         fi.directory = filepath;
-        fi.gapBetweenImages = meta.gapbetweenimages;
         int background_value = meta.background;
         int blk_size = meta.blk_size;
         openAndCropImage(fi, background_value);
@@ -129,6 +131,6 @@ public class rawimageopener {
         meta.sampleendz = rowEndIndex;
         meta.samplestartx = colStartIndex / blk_size;
         meta.sampleendx = colEndIndex / blk_size;
-        meta.save(filepath + "\\meta.xml");
+        meta.save(filepath + "/meta.xml");
     }
 }

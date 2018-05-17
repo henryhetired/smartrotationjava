@@ -1,6 +1,7 @@
 package SmartRotationProcessing;
 
 import ij.IJ;
+import ij.ImageJ;
 import ij.ImageStack;
 import ij.io.FileInfo;
 import ij.io.FileOpener;
@@ -229,7 +230,7 @@ public class compareresult {
         ip.setPixels(projectedImageContainer);
         ImagePlus imp_out = new ImagePlus("output", ip);
         update_mask(mask, imp_out);
-        IJ.saveAs(mask, "raw", maskpath + maskfilename);
+        IJ.saveAs(mask, "tif", maskpath + maskfilename);
         System.out.println("Mask updated");
         get_angular_result(mask);
         save_angular_result("anglecount" + "_"+String.format("%04d", idx) + ".txt", "angleavg" + String.format("%04d", idx) + ".txt");
@@ -241,6 +242,7 @@ public class compareresult {
         File folder = new File(filepath);
         File[] listoffiles = folder.listFiles();
         int maxat = 0;
+        System.out.println(listoffiles.length);
         for (int i = 0; i < listoffiles.length; i++) {
             if (listoffiles[i].isFile()) {
                 maxat = listoffiles[i].length() > listoffiles[maxat].length() ? i : maxat;
@@ -260,7 +262,6 @@ public class compareresult {
         }
         return listoffiles[idx].getName();
     }
-
     private static void batch_processing(String filepath_base, int num_angles) {
         rawimageopener opener = new rawimageopener();
         String path = filepath_base;
@@ -269,8 +270,8 @@ public class compareresult {
             maskfilename = "mask" + namebase + ".raw";
 
             String metaname = "meta" + namebase + ".xml";
-            String filepath = path + namebase + "\\view0000\\";
-
+            String filepath = path + namebase + "/view0000/";
+            System.out.println(filepath);
             String filename = find_raw_img(filepath);
             curr_filename = filename;
             String dctname = find_dct_img(filepath);
@@ -283,21 +284,21 @@ public class compareresult {
             int zstart = meta.samplestartz;
             int zend = meta.sampleendz;
             angle = meta.anglepos;
-            //Caution: angle needed to rotate the image needs to be adjusted for pixel size
             xypixelsize = meta.xypixelsize;
             zpixelsize = meta.zpixelsize;
             blk_size = meta.blk_size;
+            ///read in the dct image
             FileInfo fi = new FileInfo();
-            fi.width = meta.ImgWidth / blk_size;
-            fi.height = meta.ImgHeight / blk_size;
-            fi.nImages = meta.nImage;
+            meta.savetofileinfo(fi);
+            fi.height = meta.ImgHeight/meta.blk_size;
+            fi.width = meta.ImgWidth/meta.blk_size;
+            fi.gapBetweenImages = 0;
             fi.fileType = FileInfo.GRAY32_FLOAT;
-            fi.intelByteOrder = true;
             fi.fileName = dctname;
             fi.directory = filepath;
-            ImagePlus imp = new FileOpener(fi).open(false);
-//        new ImageJ();
-//        imp.show();
+            ImagePlus impdct = new FileOpener(fi).open(false);
+//            new ImageJ();
+//            imp.show();
             xmlMetadata maskmeta = new xmlMetadata();
 
             File f = new File(maskpath + maskfilename);
@@ -338,7 +339,7 @@ public class compareresult {
 
             entropybackground = maskmeta.entropybackground;
             angle_reso = maskmeta.ang_reso;
-            ImageStack cropped = imp.getStack().crop(0, ystart, zstart, imp.getWidth(), yend - ystart, zend - zstart);
+            ImageStack cropped = impdct.getStack().crop(0, ystart, zstart, impdct.getWidth(), yend - ystart, zend - zstart);
             ImagePlus croppedimp = new ImagePlus("cropped", cropped);
 //        new ImageJ();
 //        croppedimp.show();
@@ -432,22 +433,23 @@ public class compareresult {
     public static void main(String[] args) {
 //        //filepath is the location of the image file along with meta.xml
 //        String filepath = args[0];
-//        //workspace is the location where all the mask/temp is located
+        //workspace is the location where all the mask/temp is located
 //        workspace = args[1];
-//        maskpath = workspace;
+        workspace = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/workspace/";
+        maskpath = workspace;
 //        idx = Integer.parseInt(args[2]);
-//        System.out.println("Starting analysis ");
-//        //progressive_processing(filepath);
-//        String filepathbase = "Z:\\Henry-SPIM\\smart_rotation\\04052018_corrected\\t0000\\conf";
-//        batch_processing(filepathbase,24);
-        configwriter cw = new configwriter();
-        try{
-            cw.read("/local/data/");
-            System.out.println(cw.xypixelsize);
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Starting analysis ");
+        //progressive_processing(filepath);
+        String filepathbase = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/t0000/conf";
+        batch_processing(filepathbase,24);
+//        configwriter cw = new configwriter();
+//        try{
+//            cw.read("/local/data/");
+//            System.out.println(cw.xypixelsize);
+//        }
+//        catch(IOException e) {
+//            e.printStackTrace();
+//        }
 
 
     }

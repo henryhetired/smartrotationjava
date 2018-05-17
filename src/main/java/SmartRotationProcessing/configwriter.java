@@ -25,9 +25,11 @@ public class configwriter {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
         bw.write("This is the configuration file for the Smart Rotation Workflow, Please follow the instructions from the Readme.txt");
         bw.newLine();
-        bw.write(new String(new char[30]).replace("\0","*"));
+        bw.write(new String(new char[30]).replace("\0","-"));
         bw.newLine();
+        bw.write("***");
         bw.write("Image Parameters");
+        bw.write("***");
         bw.newLine();
         bw.write("ImgWidth="+Integer.toString(ImgWidth));
         bw.newLine();
@@ -43,9 +45,11 @@ public class configwriter {
         bw.newLine();
         bw.write("gapbetweenimages="+Integer.toString(gapbetweenimages));
         bw.newLine();
-        bw.write(new String(new char[30]).replace("\0","*"));
+        bw.write(new String(new char[30]).replace("\0","-"));
         bw.newLine();
+        bw.write("***");
         bw.write("Workflow Parameters");
+        bw.write("***");
         bw.newLine();
         bw.write("blk_size="+Integer.toString(blk_size));
         bw.newLine();
@@ -54,6 +58,8 @@ public class configwriter {
         bw.write("entropybackground="+Float.toString(entropybackground));
         bw.newLine();
         bw.write("angular resolution="+Integer.toString(ang_reso));
+        bw.newLine();
+        bw.write(new String(new char[30]).replace("\0","-"));
         bw.close();
         System.out.println("Config File successfully created: "+filepath+"config.txt");
     }
