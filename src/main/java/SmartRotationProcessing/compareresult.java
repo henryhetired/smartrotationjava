@@ -1,7 +1,6 @@
 package SmartRotationProcessing;
 
 import ij.IJ;
-import ij.ImageJ;
 import ij.ImageStack;
 import ij.io.FileInfo;
 import ij.io.FileOpener;
