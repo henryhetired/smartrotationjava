@@ -63,7 +63,7 @@ import mpicbg.models.TranslationModel2D;
 public class SIFT_align {
     final private List<Feature> fs1 = new ArrayList<Feature>();
     final private List<Feature> fs2 = new ArrayList<Feature>();
-    ;
+    public Mapping mapping;
 
     static private class Param {
         final public FloatArray2DSIFT.Param sift = new FloatArray2DSIFT.Param();
@@ -92,6 +92,7 @@ public class SIFT_align {
         public boolean interpolate = true;
 
         public boolean showInfo = false;
+
     }
 
     final static Param p = new Param();
@@ -133,7 +134,7 @@ public class SIFT_align {
             default:
                 model = new RigidModel2D();
         }
-        final Mapping mapping = new InverseTransformMapping<AbstractAffineModel2D<?>>(model);
+        mapping = new InverseTransformMapping<AbstractAffineModel2D<?>>(model);
         fs2.clear();
 
         start_time = System.currentTimeMillis();

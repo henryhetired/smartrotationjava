@@ -40,14 +40,46 @@ public class rawimageopener {
         IJ.saveAs(cropped, "tif", fi.directory+"cropped.tif");
 
     }
+    private void boundingboxcoordinateswithrotation(int[] x,int[] y,int angle){
 
+    }
+    private void openAndCropImagewithRotation(FileInfo fi,int bkgnd_value){
+        //open image based on fileinfo fi
+        ImagePlus imp = new FileOpener(fi).open(false);
+        System.out.println("trying to open");
+        ImageProcessor ip = new ShortProcessor(imp.getHeight(), imp.getStackSize());
+        //project the image from the side (assuming the sample is not aligned with the camera direction
+        short[] projectedImageContainer = sideprojection_raw(imp, 0, imp.getWidth(), imp.getWidth(), imp.getStackSize(), imp.getHeight());
+        ip.setPixels(projectedImageContainer);
+        ImagePlus imp_out = new ImagePlus("output", ip);
+        //resize image to the correct dimension assuming 1um per pixel
+        ip.setInterpolationMethod(ip.BICUBIC);
+        ImageProcessor rescaledip = ip.resize((int)Math.floor(ip.getWidth()*meta.xypixelsize),(int)(ip.getHeight()*meta.zpixelsize));
+        CanvasResizer cr = new CanvasResizer();
+        int xoff = (2000 - rescaledip.getWidth())/2;
+        int yoff = (2000 - rescaledip.getHeight())/2;
+        ImageProcessor ipwithpad = cr.expandImage(rescaledip, 2000, 2000, xoff, yoff);
+        ipwithpad.rotate(-meta.anglepos);
+        get_bound(ipwithpad, bkgnd_value);
+        rowStartIndex = rowStartIndex-xoff;
+        rowEndIndex = rowEndIndex-xoff;
+        colStartIndex = colStartIndex - yoff;
+        colEndIndex = colEndIndex - yoff;
+        Roi sample_only = new Roi(colStartIndex, rowStartIndex, (colEndIndex - colStartIndex), (rowEndIndex - rowStartIndex));
+        ipwithpad.setRoi(sample_only);
+        ImageProcessor croppedip = ipwithpad.crop();
+
+        ImageProcessor paaedip = cr.expandImage(rescaledip, 1200, 1200, (1200 - rescaledip.getWidth()) / 2, (1200 - rescaledip.getHeight()) / 2);
+        ImagePlus cropped = new ImagePlus("cropped", paaedip);
+        IJ.saveAs(cropped, "tif", fi.directory+"cropped.tif");
+    }
     private void get_bound(ImageProcessor ip, int bkgnd_value) {
 //          Background value needs to be set by user (taking blank image and run analysis)
         ImageProcessor ipdup = ip.duplicate();
         threshold(ipdup, bkgnd_value);
         RankFilters rf = new RankFilters();
         //remove outliers
-        rf.rank(ipdup, 20, RankFilters.MEDIAN, RankFilters.BRIGHT_OUTLIERS, 50);
+        rf.rank(ipdup, 50, RankFilters.MEDIAN, RankFilters.BRIGHT_OUTLIERS, 50);
         rowStartIndex = ipdup.getHeight();
         rowEndIndex = 0;
         colStartIndex = ipdup.getWidth();
