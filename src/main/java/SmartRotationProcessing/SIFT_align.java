@@ -87,7 +87,7 @@ public class SIFT_align {
          * Implemeted transformation models for choice
          */
         final static public String[] modelStrings = new String[]{"Translation", "Rigid", "Similarity", "Affine"};
-        public int modelIndex = 1;
+        public int modelIndex = 0;
 
         public boolean interpolate = true;
 

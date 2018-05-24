@@ -86,7 +86,6 @@ public class rawimageopenerwithsift {
         File folder = new File(filepath);
         File[] listoffiles = folder.listFiles();
         int maxat = 0;
-        System.out.println(listoffiles.length);
         for (int i = 0; i < listoffiles.length; i++) {
             if (listoffiles[i].isFile()) {
                 maxat = listoffiles[i].length() > listoffiles[maxat].length() ? i : maxat;
@@ -109,7 +108,6 @@ public class rawimageopenerwithsift {
 
     public void project_raw_image(String filepath, String workspace) {
         meta = new xmlMetadata();
-        System.out.println(filepath);
         meta.read(filepath + "/meta.xml");
         String filename = find_raw_img(filepath);
         String filenamebase = FilenameUtils.removeExtension(filename);
@@ -146,7 +144,6 @@ public class rawimageopenerwithsift {
 
     public void project_dct_image(String filepath, String workspace) {
         meta = new xmlMetadata();
-        System.out.println(filepath);
         meta.read(filepath + "/meta.xml");
         String filename = find_dct_img(filepath);
         String filenamebase = FilenameUtils.removeExtension(filename);
@@ -168,6 +165,8 @@ public class rawimageopenerwithsift {
         FloatProcessor floattopimageresized = (FloatProcessor) floattopimage.resize((int) Math.floor(floattopimage.getWidth() * meta.xypixelsize*blk_size), (int) (floattopimage.getHeight() * meta.zpixelsize));
         CanvasResizer cr = new CanvasResizer();
         ImageProcessor expandedoutput = cr.expandImage(floattopimageresized, 2000, 2000, (2000 - floattopimageresized.getWidth()) / 2, (2000 - floattopimageresized.getHeight()) / 2);
+        expandedoutput.setBackgroundValue(meta.entropybackground);
+        expandedoutput.setInterpolationMethod(0);
         expandedoutput.rotate(-meta.anglepos);
         dctImage.close();
         dctImage = new ImagePlus();
@@ -180,7 +179,6 @@ public class rawimageopenerwithsift {
         //Process image to generate a top down projection on both the raw image and the dct image
         project_raw_image(filepath, workspace);
         project_dct_image(filepath,workspace);
-
     }
 }
 

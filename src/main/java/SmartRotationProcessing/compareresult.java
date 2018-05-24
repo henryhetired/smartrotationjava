@@ -1,11 +1,14 @@
 package SmartRotationProcessing;
 
 import ij.IJ;
+import ij.ImageJ;
 import ij.ImageStack;
 import ij.io.FileInfo;
 import ij.io.FileOpener;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
@@ -35,36 +38,6 @@ public class compareresult {
     private static int idx;
     private static int out[][];
 
-    static void combinationUtil(int arr[], int n, int r, int index, int data[], int i) {
-        // Current combination is ready to be printed, print it
-        if (index == r) {
-            for (int j = 0; j < r; j++) {
-                System.out.print(data[j] + " ");
-                out[idx][j] = data[j];
-            }
-            System.out.println("");
-            idx++;
-            return;
-        }
-        // When no more elements are there to put in data[]
-        if (i >= n)
-            return;
-
-        // current is included, put next at next location
-        data[index] = arr[i];
-        combinationUtil(arr, n, r, index + 1, data, i + 1);
-
-        // current is excluded, replace it with next (Note that
-        // i+1 is passed, but index is not changed)
-        combinationUtil(arr, n, r, index, data, i + 1);
-    }
-
-    static int binomi(int n, int k) {
-        if ((n == k) || (k == 0))
-            return 1;
-        else
-            return binomi(n - 1, k) + binomi(n - 1, k - 1);
-    }
 
     static void threshold_entropy(FloatProcessor ip, float max) {
         //function to threshold the entropy
@@ -73,6 +46,9 @@ public class compareresult {
                 if (ip.getPixelValue(j, i) >= max) {
 
                     ip.setf(j, i, 20f);
+                }
+                if (ip.getPixelValue(j,i) ==0f){
+                    ip.setf(j,i,20f);
                 }
             }
         }
@@ -133,59 +109,22 @@ public class compareresult {
     }
 
     static void update_mask(ImagePlus old_mask, ImagePlus new_mask) {
-        //get a maximum intensity projection between old_mask and new_mask to get a updated mask and store it in old_mask
+        //get a minimum intensity projection between old_mask and new_mask to get a updated mask and store it in mask.tif in workspace
         FloatProcessor old_data = (FloatProcessor) old_mask.getProcessor();
+        threshold_entropy(old_data,entropybackground);
         FloatProcessor new_data = (FloatProcessor) new_mask.getProcessor();
-        new_data.setInterpolationMethod(ImageProcessor.NONE);
-        new_data = (FloatProcessor) new_data.resize((int) Math.floor(new_data.getWidth() * blk_size * xypixelsize), (int) Math.floor(new_data.getHeight() * zpixelsize), true);
-        if (!is_first) {
-            //if not the first stack, need to pad the image first
-            int maxwidth = (int) Math.ceil(Math.max(old_data.getWidth(), new_data.getWidth()) / blk_size) * blk_size;
-            int maxheight = (int) Math.ceil(Math.max(old_data.getHeight(), new_data.getHeight()) / blk_size) * blk_size;
-            CanvasResizer cr = new CanvasResizer();
-            FloatProcessor oldmaskFP = (FloatProcessor) cr.expandImage(old_data, maxwidth, maxheight, (maxwidth - old_data.getWidth()) / 2, (maxheight - old_data.getHeight()) / 2);
-            FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
-            newmaskFP.setBackgroundValue(entropybackground);
-            FloatProcessor newmaskFPatOriginalSize = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
-            newmaskFPatOriginalSize.rotate(-angle); //to avoid interpolation artefacts
-            newmaskFP = (FloatProcessor) newmaskFPatOriginalSize.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
-
-
-            for (int i = 0; i < oldmaskFP.getHeight(); i++) {
-                for (int j = 0; j < oldmaskFP.getWidth(); j++) {
-                    if (oldmaskFP.getPixelValue(j, i) > newmaskFP.getPixelValue(j, i)) {
-                        oldmaskFP.setf(j, i, newmaskFP.getPixelValue(j, i));
-                    }
-                    if (oldmaskFP.getPixelValue(j, i) <= 0.0f) {
-                        oldmaskFP.setf(j, i, 20f);
-                    }
-                }
-
-            }
-            compareresult.threshold_entropy(oldmaskFP, entropybackground);
-
-            old_mask.setProcessor(oldmaskFP);
-        } else {
-            int maxwidth = (int) Math.ceil(Math.max(new_data.getHeight(), new_data.getWidth()) / blk_size) * blk_size;
-            int maxheight = (int) Math.ceil(Math.max(new_data.getHeight(), new_data.getWidth()) / blk_size) * blk_size;
-            CanvasResizer cr = new CanvasResizer();
-            FloatProcessor newmaskFP = (FloatProcessor) cr.expandImage(new_data, maxwidth, maxheight, (maxwidth - new_data.getWidth()) / 2, (maxheight - new_data.getHeight()) / 2);
-            newmaskFP.setBackgroundValue(entropybackground);
-            compareresult.threshold_entropy(newmaskFP, entropybackground);
-            FloatProcessor newmaskFPatOriginalSize = (FloatProcessor) newmaskFP.resize(newmaskFP.getWidth() / blk_size, newmaskFP.getHeight() / blk_size);
-            newmaskFPatOriginalSize.rotate(angle);
-            newmaskFP = (FloatProcessor) newmaskFPatOriginalSize.resize(newmaskFP.getWidth(), newmaskFP.getHeight());
-            FloatProcessor oldmaskFP = newmaskFP;
-
-            for (int i = 0; i < oldmaskFP.getHeight(); i++) {
-                for (int j = 0; j < oldmaskFP.getWidth(); j++) {
-                    if (oldmaskFP.getPixelValue(j, i) <= 0.0f) {
-                        oldmaskFP.setf(j, i, 20f);
-                    }
+        threshold_entropy(new_data,entropybackground);
+        for (int i=0;i<old_data.getHeight();i++){
+            for (int j=0;j<old_data.getWidth();j++){
+                if (new_data.getPixelValue(j,i)<old_data.getPixelValue(j,i)){
+                    old_data.setf(j,i,new_data.getPixelValue(j,i));
                 }
             }
-            old_mask.setProcessor(oldmaskFP);
         }
+        ImagePlus updated_mask = new ImagePlus();
+        updated_mask.setProcessor(old_data);
+        IJ.saveAs(updated_mask,"tif",workspace+"maskdct.tif");
+        IJ.saveAs(updated_mask,"tif",workspace+"maskdct"+String.format("%02d",idx)+".tif");
     }
 
     static int count_foreground(ImagePlus img) {
@@ -200,7 +139,44 @@ public class compareresult {
         }
         return (count);
     }
+    static String get_last_mask(String workspace){
+        File dir = new File(workspace);
+        File[] files = dir.listFiles();
+        if (files == null || files.length ==0){
+            return null;
+        }
 
+        File lastmodifiedmaskFile = files[0];
+        for (int i=1;i<files.length;i++){
+            if (lastmodifiedmaskFile.lastModified() < files[i].lastModified() && files[i].getName().contains("dct")){
+                lastmodifiedmaskFile = files[i];
+            }
+        }
+        return lastmodifiedmaskFile.getName();
+    }
+    static String get_last_raw(String workspace){
+        File dir = new File(workspace);
+        File[] files = dir.listFiles();
+        if (files == null || files.length ==0){
+            return null;
+        }
+
+        File lastmodifiedmaskFile = files[0];
+        for (int i=1;i<files.length;i++){
+            if (lastmodifiedmaskFile.lastModified() < files[i].lastModified() && !files[i].getName().contains("dct")){
+                lastmodifiedmaskFile = files[i];
+            }
+        }
+        return lastmodifiedmaskFile.getName();
+    }
+    static void registerlatestImage(String workspace){
+        String filename = get_last_mask(workspace);
+        if (filename == null){
+            System.out.println("This is no image in workspace");
+            return;
+        }
+
+    }
 //    static void run(ImagePlus imp, ImagePlus mask) {
 //        float[] projectedImageContainer = sideprojection_entropy(imp);
 //        ImageProcessor ip = new FloatProcessor(imp.getHeight(), imp.getStackSize());
@@ -381,11 +357,42 @@ public class compareresult {
 //
 //
 //    }
-
+    static void progressive_run(String filepath,String workspace){
+        rawimageopenerwithsift rows = new rawimageopenerwithsift();
+        rows.run(filepath,workspace);
+        File maskdct = new File(workspace+"maskdct.tif");
+        File maskraw = new File(workspace+"maskraw.tif");
+        String latestmask = get_last_mask(workspace);
+        String latestraw = get_last_raw(workspace);
+        if (!maskdct.exists()&&!maskraw.exists()){
+            System.out.println("This is the first stack");
+            try {
+                Files.copy(Paths.get(workspace + latestmask), Paths.get(workspace + "maskdct.tif"));
+                Files.copy(Paths.get(workspace + latestmask), Paths.get(workspace + "maskdct00.tif"));
+                Files.copy(Paths.get(workspace + latestraw), Paths.get(workspace + "maskraw.tif"));
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            return;
+        }
+        ImagePlus old_mask = new ImagePlus(workspace+"maskdct.tif");
+        ImagePlus new_mask = new ImagePlus(workspace+latestmask);
+        ImagePlus old_raw = new ImagePlus(workspace+"maskraw.tif");
+        ImagePlus new_raw = new ImagePlus(workspace+latestraw);
+        image_registration ir = new image_registration();
+        new_raw = ir.run(old_raw,new_raw);
+        IJ.saveAs(new_raw,"tif",workspace+"maskraw.tif");
+        IJ.saveAs(new_raw,"tif",workspace+latestraw);
+        ImagePlus new_dct_transformed = new ImagePlus();
+        new_dct_transformed.setProcessor(ir.applymapping(new_mask));
+        update_mask(old_mask,new_mask);
+    }
     public static void main(String[] args) {
         //filepath is the location of the image file along with meta.xml
 //        String filepath = args[0];
-        String filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/t0000/conf0000/view0000/";
+//        String filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/t0000/conf0005/view0000/";
+        String filepathbase = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/t0000/";
         //workspace is the location where all the mask/temp is located
 //        workspace = args[1];
         workspace = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/workspace/";
@@ -402,9 +409,16 @@ public class compareresult {
 //        catch(IOException e) {
 //            e.printStackTrace();
 //        }
-        rawimageopenerwithsift ro = new rawimageopenerwithsift();
-        ro.run(filepath,workspace);
-
+//        rawimageopenerwithsift ro = new rawimageopenerwithsift();
+//
+//        ro.run(filepath,workspace);
+//        System.out.println(get_last_mask(workspace));
+//        progressive_run(filepath,workspace);
+        for (int i=0;i<24;i++){
+            idx = i;
+            String filepath = filepathbase + String.format("conf%04d",i)+"/view0000/";
+            progressive_run(filepath,workspace);
+        }
 
     }
 }
