@@ -10,6 +10,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.stream.IntStream;
 
 import ij.plugin.CanvasResizer;
@@ -88,8 +89,8 @@ public class compareresult {
 
     static void save_angular_result(String filenamecount, String filenameavg) {
         try {
-            FileWriter writer = new FileWriter(maskpath + filenamecount);
-            FileWriter writer2 = new FileWriter(maskpath + filenameavg);
+            FileWriter writer = new FileWriter(workspace + filenamecount);
+            FileWriter writer2 = new FileWriter(workspace + filenameavg);
             for (int i = 0; i < angle_count.length; i++) {
                 writer.append(Integer.toString(angle_count[i]));
                 writer2.append(Float.toString(angle_avg[i]));
@@ -169,194 +170,6 @@ public class compareresult {
         }
         return lastmodifiedmaskFile.getName();
     }
-    static void registerlatestImage(String workspace){
-        String filename = get_last_mask(workspace);
-        if (filename == null){
-            System.out.println("This is no image in workspace");
-            return;
-        }
-
-    }
-//    static void run(ImagePlus imp, ImagePlus mask) {
-//        float[] projectedImageContainer = sideprojection_entropy(imp);
-//        ImageProcessor ip = new FloatProcessor(imp.getHeight(), imp.getStackSize());
-//        ip.setPixels(projectedImageContainer);
-//        ImagePlus imp_out = new ImagePlus("output", ip);
-//        update_mask(mask, imp_out);
-//        IJ.saveAs(mask, "tif", maskpath + maskfilename);
-//        System.out.println("Mask updated");
-//        get_angular_result(mask);
-//        save_angular_result("anglecount" + "_" + String.format("%04d", idx) + ".txt", "angleavg" + String.format("%04d", idx) + ".txt");
-//
-//    }
-
-//    private static void batch_processing(String filepath_base, int num_angles) {
-//        rawimageopener opener = new rawimageopener();
-//        String path = filepath_base;
-//        for (int i = 0; i < num_angles; i++) {
-//            String namebase = String.format("%04d", i);
-//            maskfilename = "mask" + namebase + ".raw";
-//
-//            String metaname = "meta" + namebase + ".xml";
-//            String filepath = path + namebase + "/view0000/";
-//            System.out.println(filepath);
-//            String filename = find_raw_img(filepath);
-//            curr_filename = filename;
-//            String dctname = find_dct_img(filepath);
-//            opener.run(filepath + filename);
-//            xmlMetadata meta = new xmlMetadata();
-//            meta.read(filepath + "meta.xml");
-//            //Information about the sample location from rawiamgeopener.java
-//            int ystart = meta.samplestartx;
-//            int yend = meta.sampleendx;
-//            int zstart = meta.samplestartz;
-//            int zend = meta.sampleendz;
-//            angle = meta.anglepos;
-//            xypixelsize = meta.xypixelsize;
-//            zpixelsize = meta.zpixelsize;
-//            blk_size = meta.blk_size;
-//            ///read in the dct image
-//            FileInfo fi = new FileInfo();
-//            meta.savetofileinfo(fi);
-//            fi.height = meta.ImgHeight / meta.blk_size;
-//            fi.width = meta.ImgWidth / meta.blk_size;
-//            fi.gapBetweenImages = 0;
-//            fi.fileType = FileInfo.GRAY32_FLOAT;
-//            fi.fileName = dctname;
-//            fi.directory = filepath;
-//            ImagePlus impdct = new FileOpener(fi).open(false);
-////            new ImageJ();
-////            imp.show();
-//            xmlMetadata maskmeta = new xmlMetadata();
-//
-//            File f = new File(maskpath + maskfilename);
-//            ImagePlus mask;
-//
-//            if (!f.exists()) {
-//                System.out.println("This is the first stack");
-//                is_first = true;
-//                float[] data = new float[512 * 512];
-//                Arrays.fill(data, 20f);
-//                ImageProcessor maskip = new FloatProcessor(512, 512, data);
-//                mask = new ImagePlus("mask", maskip);
-//                maskmeta.ImgHeight = 512;
-//                maskmeta.ImgWidth = 512;
-//                maskmeta.bitdepth = 32;
-//                maskmeta.nImage = 1;
-//                maskmeta.create();
-//                maskmeta.save(maskpath + metaname);
-//
-//            } else {
-//                System.out.println("Data and mask found");
-//                is_first = false;
-//                maskmeta.read(maskpath + "meta" + metaname);
-//
-//                System.out.println(entropybackground);
-//                FileInfo maskfi = new FileInfo();
-//                mask_width = maskmeta.ImgWidth;
-//                mask_height = maskmeta.ImgHeight;
-//                maskfi.width = mask_width;
-//                maskfi.height = mask_height;
-//                maskfi.nImages = 1;
-//                maskfi.fileType = fi.fileType;
-//                maskfi.intelByteOrder = true;
-//                maskfi.fileName = maskfilename;
-//                maskfi.directory = maskpath;
-//                mask = new FileOpener(maskfi).open(false);
-//            }
-//
-//            entropybackground = maskmeta.entropybackground;
-//            angle_reso = maskmeta.ang_reso;
-//            ImageStack cropped = impdct.getStack().crop(0, ystart, zstart, impdct.getWidth(), yend - ystart, zend - zstart);
-//            ImagePlus croppedimp = new ImagePlus("cropped", cropped);
-////        new ImageJ();
-////        croppedimp.show();
-//
-//            run(croppedimp, mask);
-//            maskmeta.ImgHeight = mask.getHeight();
-//            maskmeta.ImgWidth = mask.getWidth();
-//            maskmeta.save(maskpath + metaname);
-//
-//
-//        }
-//    }
-
-//    private static void progressive_processing(String filepath) {
-//        rawimageopener opener = new rawimageopener();
-//        maskfilename = "mask.raw";
-//        String metaname = "meta.xml";
-//        String filename = find_raw_img(filepath);
-//        String dctname = find_dct_img(filepath);
-//        opener.run(filepath + filename);
-//        xmlMetadata meta = new xmlMetadata();
-//        meta.read(filepath + "meta.xml");
-//        //Information about the sample location from rawiamgeopener.java
-//        int ystart = meta.samplestartx;
-//        int yend = meta.sampleendx;
-//        int zstart = meta.samplestartz;
-//        int zend = meta.sampleendz;
-//        angle = meta.anglepos;
-//        xypixelsize = meta.xypixelsize;
-//        zpixelsize = meta.zpixelsize;
-//        blk_size = meta.blk_size;
-//        FileInfo fi = new FileInfo();
-//        fi.width = meta.ImgWidth / blk_size;
-//        fi.height = meta.ImgHeight / blk_size;
-//        fi.nImages = meta.nImage;
-//        fi.fileType = FileInfo.GRAY32_FLOAT;
-//        fi.intelByteOrder = true;
-//        fi.fileName = dctname;
-//        fi.directory = filepath;
-//        ImagePlus imp = new FileOpener(fi).open(false);
-//        xmlMetadata maskmeta = new xmlMetadata();
-//        File fmask = new File(maskpath + maskfilename);
-//        ImagePlus mask;
-//        //read or create masks
-//        if (!fmask.exists()) {
-//            System.out.println("This is the first stack");
-//            is_first = true;
-//            float[] data = new float[1024 * 1024];
-//            Arrays.fill(data, 20f);
-//            ImageProcessor maskip = new FloatProcessor(1024, 1024, data);
-//            mask = new ImagePlus("mask", maskip);
-//            maskmeta.ImgHeight = 1024;
-//            maskmeta.ImgWidth = 1024;
-//            maskmeta.bitdepth = 32;
-//            maskmeta.nImage = 1;
-//            maskmeta.create();
-//            maskmeta.save(maskpath + metaname);
-//            System.out.println(entropybackground);
-//
-//        } else {
-//            System.out.println("Data and mask found");
-//            is_first = false;
-//            maskmeta.read(maskpath + metaname);
-//            FileInfo maskfi = new FileInfo();
-//            mask_width = maskmeta.ImgWidth;
-//            mask_height = maskmeta.ImgHeight;
-//            maskfi.width = mask_width;
-//            maskfi.height = mask_height;
-//            maskfi.nImages = 1;
-//            maskfi.fileType = fi.fileType;
-//            maskfi.intelByteOrder = true;
-//            maskfi.fileName = maskfilename;
-//            maskfi.directory = maskpath;
-//            mask = new FileOpener(maskfi).open(false);
-//            //test
-//        }
-//        File fconfig = new File(maskpath + "config.txt");
-//        entropybackground = maskmeta.entropybackground;
-//        angle_reso = maskmeta.ang_reso;
-//        ImageStack cropped = imp.getStack().crop(0, ystart, zstart, imp.getWidth(), yend - ystart, zend - zstart);
-//        ImagePlus croppedimp = new ImagePlus("cropped", cropped);
-//
-//        run(croppedimp, mask);
-//        maskmeta.ImgHeight = mask.getHeight();
-//        maskmeta.ImgWidth = mask.getWidth();
-//        maskmeta.save(maskpath + metaname);
-//
-//
-//    }
     static void progressive_run(String filepath,String workspace){
         rawimageopenerwithsift rows = new rawimageopenerwithsift();
         rows.run(filepath,workspace);
@@ -386,6 +199,9 @@ public class compareresult {
         IJ.saveAs(new_raw,"tif",workspace+latestraw);
         ImagePlus new_dct_transformed = new ImagePlus();
         new_dct_transformed.setProcessor(ir.applymapping(new_mask));
+        get_angular_result(new_dct_transformed);
+        save_angular_result(String.format("angularcount%04d.txt",idx),String.format("angularaverage%04d.txt",idx));
+        IJ.saveAs(new_dct_transformed,"tif",workspace+latestmask);
         update_mask(old_mask,new_mask);
     }
     public static void main(String[] args) {
@@ -396,29 +212,14 @@ public class compareresult {
         //workspace is the location where all the mask/temp is located
 //        workspace = args[1];
         workspace = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/workspace/";
-//        idx = Integer.parseInt(args[2]);
         System.out.println("Starting analysis ");
-        //progressive_processing(filepath);
-//        String filepathbase = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/t0000/conf";
-//        batch_processing(filepathbase, 24);
-//        configwriter cw = new configwriter();
-//        try{
-//            cw.read("/local/data/");
-//            System.out.println(cw.xypixelsize);
-//        }
-//        catch(IOException e) {
-//            e.printStackTrace();
-//        }
-//        rawimageopenerwithsift ro = new rawimageopenerwithsift();
-//
-//        ro.run(filepath,workspace);
-//        System.out.println(get_last_mask(workspace));
-//        progressive_run(filepath,workspace);
-        for (int i=0;i<24;i++){
+        for (int i=2;i<24;i++){
             idx = i;
+            long start_time = System.currentTimeMillis();
             String filepath = filepathbase + String.format("conf%04d",i)+"/view0000/";
             progressive_run(filepath,workspace);
-        }
+            System.out.println("Runtime is "+ (System.currentTimeMillis()-start_time)+" ms");
+            }
 
     }
 }

@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.stream.IntStream;
 
 import ij.plugin.CanvasResizer;
+import ij.plugin.ImageCalculator;
 import ij.plugin.filter.RankFilters;
 import ij.process.*;
 import ij.ImagePlus;
@@ -20,7 +21,7 @@ public class rawimageopenerwithsift {
     private xmlMetadata meta;
     public ImagePlus rawImage;
     public ImagePlus dctImage;
-
+    public ImagePlus imageMask;
     private void threshold(ImageProcessor input, int min) {
         for (int i = 0; i < input.getHeight(); i++) {
             for (int j = 0; j < input.getWidth(); j++) {
@@ -105,6 +106,23 @@ public class rawimageopenerwithsift {
         }
         return listoffiles[idx].getName();
     }
+    public ImagePlus process_raw_image(ImagePlus rawimage,int background){
+        //remove outlier for the raw image
+        ImageProcessor ip = rawimage.getProcessor().duplicate();
+        RankFilters rf = new RankFilters();
+        //remove outliers
+        rf.rank(ip, 50, RankFilters.MEDIAN, RankFilters.BRIGHT_OUTLIERS, 50);
+        ip.threshold(background);
+        ip.max(1);
+        ImagePlus imgmask = new ImagePlus();
+        imgmask.setProcessor(ip);
+
+        return(imgmask);
+    }
+    public ImagePlus process_dct_image(ImagePlus dctimage,ImagePlus imgmask,float entropy_background){
+        ImageCalculator ic = new ImageCalculator();
+        return (ic.run("multiply create",dctimage,imgmask));
+    }
 
     public void project_raw_image(String filepath, String workspace) {
         meta = new xmlMetadata();
@@ -120,7 +138,9 @@ public class rawimageopenerwithsift {
             fi.directory = filepath;
             int background_value = meta.background;
             int blk_size = meta.blk_size;
+            long start_time = System.currentTimeMillis();
             rawImage = new FileOpener(fi).open(false);
+            System.out.println("Read time is "+(System.currentTimeMillis() - start_time) +" ms");
         } else if (filename.contains("tif")) {
             ImagePlus rawImage = IJ.openImage(filepath + filename);
         } else {
@@ -138,6 +158,7 @@ public class rawimageopenerwithsift {
         rawImage.close();
         rawImage = new ImagePlus();
         rawImage.setProcessor(expandedoutput);
+        imageMask = process_raw_image(rawImage,meta.background);
         IJ.saveAs(rawImage, "tif", workspace + filenamebase + ".tif");
 
     }
@@ -171,7 +192,7 @@ public class rawimageopenerwithsift {
         dctImage.close();
         dctImage = new ImagePlus();
         dctImage.setProcessor(expandedoutput);
-        IJ.saveAs(dctImage, "tif", workspace + filenamebase + ".tif");
+        IJ.saveAs(process_dct_image(dctImage,imageMask,meta.entropybackground), "tif", workspace + filenamebase + ".tif");
 
     }
 

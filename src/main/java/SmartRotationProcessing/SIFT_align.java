@@ -87,7 +87,7 @@ public class SIFT_align {
          * Implemeted transformation models for choice
          */
         final static public String[] modelStrings = new String[]{"Translation", "Rigid", "Similarity", "Affine"};
-        public int modelIndex = 0;
+        public int modelIndex = 3;
 
         public boolean interpolate = true;
 
@@ -101,9 +101,6 @@ public class SIFT_align {
     final public ImageProcessor run(ImagePlus imgold, ImagePlus imgnew) {
         fs1.clear();
         fs2.clear();
-
-
-
         ImageProcessor ip1 = imgold.getProcessor();
         ImageProcessor ip2 = imgnew.getProcessor();
 
@@ -113,8 +110,6 @@ public class SIFT_align {
         long start_time = System.currentTimeMillis();
         System.out.println("Processing SIFT ...");
         ijSIFT.extractFeatures(ip1, fs1);
-        System.out.println(" took " + (System.currentTimeMillis() - start_time) + "ms.");
-        System.out.println(fs1.size() + " features extracted.");
 
 
         AbstractAffineModel2D model;
@@ -136,21 +131,9 @@ public class SIFT_align {
         }
         mapping = new InverseTransformMapping<AbstractAffineModel2D<?>>(model);
         fs2.clear();
-
-        start_time = System.currentTimeMillis();
-        System.out.println("Processing SIFT ...");
         ijSIFT.extractFeatures(ip2, fs2);
-        System.out.println(" took " + (System.currentTimeMillis() - start_time) + "ms.");
-        System.out.println(fs2.size() + " features extracted.");
-
-        start_time = System.currentTimeMillis();
-        System.out.print("identifying correspondences using brute force ...");
         final Vector<PointMatch> candidates =
                 FloatArray2DSIFT.createMatches(fs2, fs1, 1.5f, null, Float.MAX_VALUE, p.rod);
-        System.out.println(" took " + (System.currentTimeMillis() - start_time) + "ms");
-
-        System.out.println(candidates.size() + " potentially corresponding features identified");
-
         final Vector<PointMatch> inliers = new Vector<PointMatch>();
 
         // TODO Implement other models for choice
@@ -197,6 +180,7 @@ public class SIFT_align {
             mapping.mapInterpolated(originalimg, alignedimg);
         else
             mapping.map(originalimg, alignedimg);
+        System.out.println(" took " + (System.currentTimeMillis() - start_time) + "ms.");
         System.out.println("Done.");
         return(alignedimg);
     }
