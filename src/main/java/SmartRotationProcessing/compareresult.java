@@ -127,7 +127,8 @@ public class compareresult {
         IJ.saveAs(updated_mask,"tif",workspace+"maskdct.tif");
         IJ.saveAs(updated_mask,"tif",workspace+"maskdct"+String.format("%02d",idx)+".tif");
         get_angular_result(updated_mask);
-        save_angular_result(String.format("augularcountcumulative%04d.txt",idx),String.format("augularaveragecumulative%04d.txt",idx));
+        save_angular_result(String.format("angularcountcumulative%04d.txt",idx),String.format("angularavgcumulative%04d.txt",idx));
+
     }
 
     static int count_foreground(ImagePlus img) {
@@ -189,6 +190,9 @@ public class compareresult {
             catch (IOException e){
                 e.printStackTrace();
             }
+            ImagePlus img = new ImagePlus(workspace+"maskdct00.tif");
+            get_angular_result(img);
+            save_angular_result("angularcount0000.txt","angularaverage0000.txt");
             return;
         }
         ImagePlus old_mask = new ImagePlus(workspace+"maskdct.tif");
@@ -204,24 +208,25 @@ public class compareresult {
         get_angular_result(new_dct_transformed);
         save_angular_result(String.format("angularcount%04d.txt",idx),String.format("angularaverage%04d.txt",idx));
         IJ.saveAs(new_dct_transformed,"tif",workspace+latestmask);
-        update_mask(old_mask,new_mask);
+        update_mask(old_mask,new_dct_transformed);
     }
     public static void main(String[] args) {
         //filepath is the location of the image file along with meta.xml
 //        String filepath = args[0];
 //        String filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/t0000/conf0005/view0000/";
-        String filepathbase = "/mnt/isilon/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/t0000/";
+        String filepathbase = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/t0000/";
         //workspace is the location where all the mask/temp is located
 //        workspace = args[1];
-        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/workspace/";
+        workspace = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/workspace/";
         System.out.println("Starting analysis ");
-        for (int i=0;i<24;i++){
+        for (int i=0;i<24;i++) {
             idx = i;
             long start_time = System.currentTimeMillis();
-            String filepath = filepathbase + String.format("conf%04d",i);
-            progressive_run(filepath,workspace);
-            System.out.println("Runtime is "+ (System.currentTimeMillis()-start_time)+" ms");
-            }
+            String filepath = filepathbase + String.format("conf%04d", i) + "/view0000/";
+            progressive_run(filepath, workspace);
+            System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
+
+        }
 
     }
 }
