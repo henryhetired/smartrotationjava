@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java" afterDir="false" />
+    <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="&#10;&quot;First centos commit&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align$Param.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align$Param.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/compareresult.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/compareresult.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/rawimageopenerwithsift.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/rawimageopenerwithsift.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,38 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rawimageopener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopener.java">
+      <file leaf-file-name="analysiswithsift.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="79" selection-start-line="79" selection-end-line="81" selection-end-column="80" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#openAndCropImage#0;class#rawimageopener#0" />
-                <element signature="method#openAndCropImagewithRotation#0;class#rawimageopener#0" />
-                <element signature="method#threshold#0;class#rawimageopener#0" />
-                <element signature="method#sideprojection_raw#0;class#rawimageopener#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rawimageopenerwithsift.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="163" column="5" lean-forward="true" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
-              <folding>
-                <element signature="method#threshold#0;class#rawimageopenerwithsift#0" />
-                <element signature="method#sideprojection_raw#0;class#rawimageopenerwithsift#0" />
-                <element signature="e#986#1028#0" />
-                <element signature="e#1414#1876#0" />
-                <element signature="method#sideprojection_entropy#0;class#rawimageopenerwithsift#0" />
-                <element signature="e#1985#2027#0" />
-                <element signature="e#2504#2956#0" />
-                <element signature="method#find_dct_img#0;class#rawimageopenerwithsift#0" />
-                <element signature="method#run#0;class#rawimageopenerwithsift#0" />
-              </folding>
+            <state relative-caret-position="180">
+              <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -62,49 +29,8 @@
       <file leaf-file-name="compareresult.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="202" column="70" lean-forward="true" selection-start-line="202" selection-start-column="70" selection-end-line="202" selection-end-column="70" />
-              <folding>
-                <element signature="method#threshold_entropy#0;class#compareresult#0" />
-                <element signature="method#get_angular_result#0;class#compareresult#0" />
-                <element signature="method#save_angular_result#0;class#compareresult#0" />
-                <element signature="e#4040#5049#0" />
-                <element signature="e#5055#5462#0" />
-                <element signature="e#5467#6009#0" />
-                <element signature="e#6014#6556#0" />
-                <element signature="e#16267#16331#0" />
-                <element signature="e#16595#16657#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="analysis.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysis.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="analysiswithsift.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" selection-start-line="5" selection-start-column="2" selection-end-line="13" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="image_registration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-547">
+              <caret line="138" column="28" lean-forward="true" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -112,12 +38,8 @@
       <file leaf-file-name="SIFT_align.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;class#SIFT_align#0" />
-              </folding>
+            <state relative-caret-position="565">
+              <caret line="89" column="33" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -149,6 +71,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -166,10 +93,10 @@
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysis.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" />
       </list>
     </option>
   </component>
@@ -192,34 +119,36 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="SmartRotationJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartRotationJava" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartRotationJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartRotationJava" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartRotationJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartRotationJava" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartRotationJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartRotationJava" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SmartRotationJava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SmartRotationJava" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -230,8 +159,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -344,55 +271,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="0" y="-3" width="2560" height="1373" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49811321" weight="0.36065573" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49865228" weight="0.36065573" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5045822" side_tool="true" visible="true" weight="0.2694672" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32991803" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12830189" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4954178" visible="true" weight="0.2694672" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32991803" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="UI Designer" order="4" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" visible="true" weight="0.2694672" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32939324" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Designer" order="3" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.128125" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" visible="true" weight="0.26871553" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49973047" weight="0.12192623" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49865228" weight="0.36065573" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12830189" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -413,11 +320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1044">
           <caret line="60" column="86" selection-start-line="60" selection-start-column="86" selection-end-line="60" selection-end-column="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#create#0;class#configwriter#0" />
-            <element signature="method#read#0;class#configwriter#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -425,13 +327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#openAndCropImage#0;class#rawimageopener#0" />
-            <element signature="method#openAndCropImagewithRotation#0;class#rawimageopener#0" />
-            <element signature="method#threshold#0;class#rawimageopener#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopener#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -439,10 +334,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1512">
           <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#SIFT_align#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -453,26 +344,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/imagefeatures/FloatArray2DSIFT.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/imagefeatures/FloatArray2DSIFT.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysis.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="method#binarize#0;class#analysis#0" />
-            <element signature="method#get_ellipse#0;class#analysis#0" />
-            <element signature="method#get_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_fixed#0;class#analysis#0" />
-            <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
-            <element signature="method#rainbox_run#0;class#analysis#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -480,17 +356,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2736">
           <caret line="449" column="9" lean-forward="true" selection-start-line="449" selection-start-column="9" selection-end-line="449" selection-end-column="9" />
-          <folding>
-            <element signature="method#threshold_entropy#0;class#compareresult#0" />
-            <element signature="method#get_angular_result#0;class#compareresult#0" />
-            <element signature="method#save_angular_result#0;class#compareresult#0" />
-            <element signature="e#4040#5049#0" />
-            <element signature="e#5055#5462#0" />
-            <element signature="e#5467#6009#0" />
-            <element signature="e#6014#6556#0" />
-            <element signature="e#16267#16331#0" />
-            <element signature="e#16595#16657#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -498,12 +363,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -511,13 +370,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#openAndCropImage#0;class#rawimageopener#0" />
-            <element signature="method#openAndCropImagewithRotation#0;class#rawimageopener#0" />
-            <element signature="method#threshold#0;class#rawimageopener#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopener#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -532,15 +384,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-          <folding>
-            <element signature="method#binarize#0;class#analysis#0" />
-            <element signature="method#get_ellipse#0;class#analysis#0" />
-            <element signature="method#get_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_fixed#0;class#analysis#0" />
-            <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
-            <element signature="method#rainbox_run#0;class#analysis#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -548,17 +391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1332">
           <caret line="445" column="40" lean-forward="true" selection-start-line="445" selection-start-column="40" selection-end-line="445" selection-end-column="40" />
-          <folding>
-            <element signature="method#threshold_entropy#0;class#compareresult#0" />
-            <element signature="method#get_angular_result#0;class#compareresult#0" />
-            <element signature="method#save_angular_result#0;class#compareresult#0" />
-            <element signature="e#4040#5049#0" />
-            <element signature="e#5055#5462#0" />
-            <element signature="e#5467#6009#0" />
-            <element signature="e#6014#6556#0" />
-            <element signature="e#16267#16331#0" />
-            <element signature="e#16595#16657#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -566,12 +398,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -579,13 +405,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#openAndCropImage#0;class#rawimageopener#0" />
-            <element signature="method#openAndCropImagewithRotation#0;class#rawimageopener#0" />
-            <element signature="method#threshold#0;class#rawimageopener#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopener#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -593,17 +412,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1782">
           <caret line="446" column="31" lean-forward="true" selection-start-line="446" selection-start-column="31" selection-end-line="446" selection-end-column="31" />
-          <folding>
-            <element signature="method#threshold_entropy#0;class#compareresult#0" />
-            <element signature="method#get_angular_result#0;class#compareresult#0" />
-            <element signature="method#save_angular_result#0;class#compareresult#0" />
-            <element signature="e#4040#5049#0" />
-            <element signature="e#5055#5462#0" />
-            <element signature="e#5467#6009#0" />
-            <element signature="e#6014#6556#0" />
-            <element signature="e#16267#16331#0" />
-            <element signature="e#16595#16657#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -611,12 +419,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -624,13 +426,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#openAndCropImage#0;class#rawimageopener#0" />
-            <element signature="method#openAndCropImagewithRotation#0;class#rawimageopener#0" />
-            <element signature="method#threshold#0;class#rawimageopener#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopener#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -645,17 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2340">
           <caret line="427" column="55" lean-forward="true" selection-start-line="427" selection-start-column="55" selection-end-line="427" selection-end-column="55" />
-          <folding>
-            <element signature="method#threshold_entropy#0;class#compareresult#0" />
-            <element signature="method#get_angular_result#0;class#compareresult#0" />
-            <element signature="method#save_angular_result#0;class#compareresult#0" />
-            <element signature="e#4040#5049#0" />
-            <element signature="e#5055#5462#0" />
-            <element signature="e#5467#6009#0" />
-            <element signature="e#6014#6556#0" />
-            <element signature="e#16267#16331#0" />
-            <element signature="e#16595#16657#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -670,17 +454,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7758">
           <caret line="451" column="40" selection-start-line="451" selection-start-column="40" selection-end-line="451" selection-end-column="40" />
-          <folding>
-            <element signature="method#threshold_entropy#0;class#compareresult#0" />
-            <element signature="method#get_angular_result#0;class#compareresult#0" />
-            <element signature="method#save_angular_result#0;class#compareresult#0" />
-            <element signature="e#4040#5049#0" />
-            <element signature="e#5055#5462#0" />
-            <element signature="e#5467#6009#0" />
-            <element signature="e#6014#6556#0" />
-            <element signature="e#16267#16331#0" />
-            <element signature="e#16595#16657#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -688,15 +461,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11916">
           <caret line="855" column="45" selection-start-line="855" selection-start-column="45" selection-end-line="855" selection-end-column="45" />
-          <folding>
-            <element signature="method#binarize#0;class#analysis#0" />
-            <element signature="method#get_ellipse#0;class#analysis#0" />
-            <element signature="method#get_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_fixed#0;class#analysis#0" />
-            <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
-            <element signature="method#rainbox_run#0;class#analysis#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -704,12 +468,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -717,13 +475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#openAndCropImage#0;class#rawimageopener#0" />
-            <element signature="method#openAndCropImagewithRotation#0;class#rawimageopener#0" />
-            <element signature="method#threshold#0;class#rawimageopener#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopener#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -738,17 +489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8118">
           <caret line="451" column="40" selection-start-line="451" selection-start-column="40" selection-end-line="451" selection-end-column="40" />
-          <folding>
-            <element signature="method#threshold_entropy#0;class#compareresult#0" />
-            <element signature="method#get_angular_result#0;class#compareresult#0" />
-            <element signature="method#save_angular_result#0;class#compareresult#0" />
-            <element signature="e#4040#5049#0" />
-            <element signature="e#5055#5462#0" />
-            <element signature="e#5467#6009#0" />
-            <element signature="e#6014#6556#0" />
-            <element signature="e#16267#16331#0" />
-            <element signature="e#16595#16657#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -756,15 +496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15390">
           <caret line="855" column="45" lean-forward="true" selection-start-line="855" selection-start-column="45" selection-end-line="855" selection-end-column="45" />
-          <folding>
-            <element signature="method#binarize#0;class#analysis#0" />
-            <element signature="method#get_ellipse#0;class#analysis#0" />
-            <element signature="method#get_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_rainbow#0;class#analysis#0" />
-            <element signature="method#update_mask_fixed#0;class#analysis#0" />
-            <element signature="method#fix_one_angle_run_eq#0;class#analysis#0" />
-            <element signature="method#rainbox_run#0;class#analysis#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -772,12 +503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -785,25 +510,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="36" column="62" lean-forward="true" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#openAndCropImage#0;class#rawimageopener#0" />
-            <element signature="method#openAndCropImagewithRotation#0;class#rawimageopener#0" />
-            <element signature="method#threshold#0;class#rawimageopener#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopener#0" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compareresult.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/Stitching_2D.java" />
-    <entry file="file:///local/data/download/java_testing/src/getsamplesize/rawimageopener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///local/data/download/java_testing/src/getsamplesize/rawimageopener.java" />
     <entry file="file://$PROJECT_DIR$/target/classes/getsamplesize/compareresult.class" />
     <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -812,58 +524,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/mpicbg/mpicbg_/1.1.0/mpicbg_-1.1.0.pom">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/mpicbg/mpicbg_/1.1.0/mpicbg_-1.1.0.pom" />
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/configwriter.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/imagefeatures/FloatArray2DSIFT.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/imagefeatures/FloatArray2DSIFT.class" />
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/xmlMetadata.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/models/InverseCoordinateTransform.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/models/AffineModel2D.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5958">
-          <caret line="338" column="65" selection-start-line="338" selection-start-column="65" selection-end-line="338" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/models/Affine2D.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/ij/InverseTransformMapping.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="22" column="66" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/models/InverseCoordinateTransform.class" />
+    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/models/AffineModel2D.class" />
+    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/models/Affine2D.class" />
+    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/ij/InverseTransformMapping.class" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5">
@@ -875,11 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="18" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#create#0;class#configwriter#0" />
-            <element signature="method#read#0;class#configwriter#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -887,13 +556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="426">
           <caret line="79" selection-start-line="79" selection-end-line="81" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#openAndCropImage#0;class#rawimageopener#0" />
-            <element signature="method#openAndCropImagewithRotation#0;class#rawimageopener#0" />
-            <element signature="method#threshold#0;class#rawimageopener#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopener#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -901,20 +563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#SIFT_align#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -929,42 +577,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
           <caret line="163" column="5" lean-forward="true" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
-          <folding>
-            <element signature="method#threshold#0;class#rawimageopenerwithsift#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopenerwithsift#0" />
-            <element signature="e#986#1028#0" />
-            <element signature="e#1414#1876#0" />
-            <element signature="method#sideprojection_entropy#0;class#rawimageopenerwithsift#0" />
-            <element signature="e#1985#2027#0" />
-            <element signature="e#2504#2956#0" />
-            <element signature="method#find_dct_img#0;class#rawimageopenerwithsift#0" />
-            <element signature="method#run#0;class#rawimageopenerwithsift#0" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="89" column="33" selection-start-line="89" selection-start-column="33" selection-end-line="89" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="202" column="70" lean-forward="true" selection-start-line="202" selection-start-column="70" selection-end-line="202" selection-end-column="70" />
-          <folding>
-            <element signature="method#threshold_entropy#0;class#compareresult#0" />
-            <element signature="method#get_angular_result#0;class#compareresult#0" />
-            <element signature="method#save_angular_result#0;class#compareresult#0" />
-            <element signature="e#4040#5049#0" />
-            <element signature="e#5055#5462#0" />
-            <element signature="e#5467#6009#0" />
-            <element signature="e#6014#6556#0" />
-            <element signature="e#16267#16331#0" />
-            <element signature="e#16595#16657#0" />
-          </folding>
+        <state relative-caret-position="-547">
+          <caret line="138" column="28" lean-forward="true" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" selection-start-line="5" selection-start-column="2" selection-end-line="13" selection-end-column="7" />
+        <state relative-caret-position="180">
+          <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
         </state>
       </provider>
     </entry>
