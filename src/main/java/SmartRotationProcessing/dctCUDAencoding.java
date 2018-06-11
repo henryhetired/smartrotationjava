@@ -79,7 +79,7 @@ public class dctCUDAencoding {
             //////Perform encoding and operation
 
             Pointer next;
-            int[] blk_size_arr = blk_size;
+            int blk_size_arr[] = new int[1];
             blk_size_arr[0] = blk_size;
             for (int stack_number=0;stack_number<50;stack_number++){
                 System.out.println(String.format("Encoding slice %03d",stack_number));
@@ -88,6 +88,8 @@ public class dctCUDAencoding {
                 Pointer kernelParameters1 = Pointer.to(Pointer.to(float_image_in),Pointer.to(dctcoefficientsdevice),Pointer.to(dct_image_out),Pointer.to(blk_size_arr));
                 Pointer kernelParameters2 = Pointer.to(Pointer.to(dct_image_out),Pointer.to(dctcoefficientsdevice),Pointer.to(float_image_in),Pointer.to(blk_size_arr));
                 cuLaunchKernel(dctencodingfunction_h,num_blk_col,num_blk_row,1,blk_size,blk_size,1,0,null,kernelParameters1,null);
+                cuCtxSynchronize();
+                cuLaunchKernel(dctencodingfunction_v,num_blk_col,num_blk_row,1,blk_size,blk_size,1,0,null,kernelParameters2,null);
                 cuCtxSynchronize();
                 //cuLaunchKernel(dctencodingfunction_h,num_blk_col,num_blk_row,1,blk_size,blk_size,1,0,null,kernelParameters2,null);
                 cuMemcpyDtoH(next,float_image_in,plane_length*4);
@@ -99,7 +101,7 @@ public class dctCUDAencoding {
             cuMemFree(dct_image_out);
             cuMemFree(dctcoefficientsdevice);
             outputdct = new ImagePlus();
-            ImageProcessor ip = new FloatProcessor(stack.getWidth(),stack.getHeight(),pixels[0]);
+            ImageProcessor ip = new FloatProcessor(stack.getWidth(),stack.getHeight(),pixels[30]);
             outputdct.setProcessor(ip);
             new ImageJ();
             outputdct.show();
