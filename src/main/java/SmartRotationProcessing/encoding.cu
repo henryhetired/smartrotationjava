@@ -9,7 +9,7 @@ __global__ void calc_entropy_atomic(float *float_image_in, float *entropy_out, i
 	}
 	__syncthreads();
 	__shared__ float c;
-	int blocksize = &blk_size*&blk_size;
+	int blocksize = blk_size*blk_size;
 	//vertical offset to get to beginning of own block
 	int v_offset_to_blkrow = gridDim.x*blockDim.x*blockDim.y*blockIdx.y;
 	int v_offset_to_pixrow = blockDim.x*gridDim.x*threadIdx.y;
