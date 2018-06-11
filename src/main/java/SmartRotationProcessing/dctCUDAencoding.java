@@ -50,12 +50,14 @@ public class dctCUDAencoding {
             CUfunction dctencodingfunction_h = new CUfunction();
             cuModuleGetFunction(dctencodingfunction_h,moduledct,"thread_dct_h");
             cuModuleGetFunction(dctencodingfunction_v,moduledct,"thread_dct_v");
-            FloatProcessor ipfloat = stack.getProcessor().convertToFloatProcessor();
-            float[] pixels = (float[]) ipfloat.getPixels();
+            float[][] pixels = new float[stack.getStackSize()][stack.getHeight()*stack.getWidth()];
+            for (int i=0;i<stack.getStackSize();i++){
+                pixels[i] = (float[])stack.getStack().getProcessor(i+1).convertToFloatProcessor().getPixels();
+            }
             System.out.println(pixels.length);
             int array_length = pixels.length;
-            int dim1 = ipfloat.getWidth();
-            int dim2 = ipfloat.getHeight();
+            int dim1 = stack.getWidth();
+            int dim2 = stack.getHeight();
             int plane_length = dim1*dim2;
             int num_blk_col = dim1/blk_size;
             int num_blk_row = dim2/blk_size;
@@ -73,13 +75,13 @@ public class dctCUDAencoding {
             cuMemAlloc(dct_image_out,plane_length*4);
             System.out.println("Space allocaed on device");
             //////Perform encoding and operation
-            Pointer p = Pointer.to(pixels);
+
             Pointer next;
             int[] blk_size_arr = new int[1];
             blk_size_arr[0] = blk_size;
             for (int stack_number=0;stack_number<50;stack_number++){
                 System.out.println(String.format("Encoding slice %03d",stack_number));
-                next = p.withByteOffset(plane_length*4*stack_number);
+                next = Pointer.to(pixels[stack_number]);
                 cuMemcpyHtoD(float_image_in,next,plane_length*4);
                 Pointer kernelParameters1 = Pointer.to(Pointer.to(float_image_in),Pointer.to(dctcoefficientsdevice),Pointer.to(dct_image_out),Pointer.to(blk_size_arr));
                 Pointer kernelParameters2 = Pointer.to(Pointer.to(dct_image_out),Pointer.to(dctcoefficientsdevice),Pointer.to(float_image_in),Pointer.to(blk_size_arr));
