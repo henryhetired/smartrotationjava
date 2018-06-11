@@ -91,7 +91,7 @@ public class dctCUDAencoding {
                 cuCtxSynchronize();
                 cuLaunchKernel(dctencodingfunction_h,num_blk_col,num_blk_row,1,blk_size,blk_size,1,0,null,kernelParameters2,null);
                 cuMemcpyDtoH(next,float_image_in,plane_length*4);
-                System.out.println(pixels[plane_length*stack_number+1]);
+                System.out.println(pixels[stack_number][0]);
                 cuCtxSynchronize();
             }
             System.out.println("dct success");
