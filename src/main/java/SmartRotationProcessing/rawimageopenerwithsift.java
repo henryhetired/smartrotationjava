@@ -139,6 +139,7 @@ public class rawimageopenerwithsift {
             int background_value = meta.background;
             int blk_size = meta.blk_size;
             long start_time = System.currentTimeMillis();
+            System.out.println(fi.gapBetweenImages);
             rawImage = new FileOpener(fi).open(false);
             System.out.println("Read time is "+(System.currentTimeMillis() - start_time) +" ms");
         } else if (filename.endsWith("tif")) {
@@ -178,6 +179,7 @@ public class rawimageopenerwithsift {
         int blk_size = meta.blk_size;
         fi.width = fi.width/blk_size;
         fi.height = fi.height/blk_size;
+        fi.gapBetweenImages = 0;
         dctImage = new FileOpener(fi).open(false);
         float[] pixelfromtop = sideprojection_entropy(dctImage);
         FloatProcessor floattopimage = new FloatProcessor(dctImage.getWidth(), dctImage.getNSlices());

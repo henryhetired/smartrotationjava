@@ -214,15 +214,15 @@ public class compareresult {
         //filepath is the location of the image file along with meta.xml
 //        String filepath = args[0];
 //        String filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/t0000/conf0005/view0000/";
-        String filepathbase = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/t0000/";
+        String filepathbase = "/mnt/isilon/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/t0000/";
         //workspace is the location where all the mask/temp is located
 //        workspace = args[1];
-        workspace = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/workspace/";
+        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/workspace/";
         System.out.println("Starting analysis ");
         for (int i=0;i<24;i++) {
             idx = i;
             long start_time = System.currentTimeMillis();
-            String filepath = filepathbase + String.format("conf%04d", i) + "/view0000/";
+            String filepath = filepathbase + String.format("conf%04d", i);
             progressive_run(filepath, workspace);
             System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
 
