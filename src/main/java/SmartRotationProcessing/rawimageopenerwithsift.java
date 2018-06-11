@@ -129,7 +129,7 @@ public class rawimageopenerwithsift {
         meta.read(filepath + "/meta.xml");
         String filename = find_raw_img(filepath);
         String filenamebase = FilenameUtils.removeExtension(filename);
-        if (filename.contains("raw")) {
+        if (filename.endsWith("raw")) {
             //read raw image
             FileInfo fi = new FileInfo();
             meta.savetofileinfo(fi);
@@ -141,7 +141,7 @@ public class rawimageopenerwithsift {
             long start_time = System.currentTimeMillis();
             rawImage = new FileOpener(fi).open(false);
             System.out.println("Read time is "+(System.currentTimeMillis() - start_time) +" ms");
-        } else if (filename.contains("tif")) {
+        } else if (filename.endsWith("tif")) {
             ImagePlus rawImage = IJ.openImage(filepath + filename);
         } else {
             System.out.println("Can't find the image");

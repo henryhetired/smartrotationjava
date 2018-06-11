@@ -15,5 +15,21 @@
     <orderEntry type="library" name="Maven: mpicbg:mpicbg:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: mpicbg:mpicbg_:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcuda:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcuda-natives:linux-x86_64:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcublas:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcublas-natives:linux-x86_64:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcufft:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcufft-natives:linux-x86_64:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcusparse:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcusparse-natives:linux-x86_64:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcusolver:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcusolver-natives:linux-x86_64:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcurand:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcurand-natives:linux-x86_64:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jnvgraph:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jnvgraph-natives:linux-x86_64:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcudnn:0.9.0d" level="project" />
+    <orderEntry type="library" name="Maven: org.jcuda:jcudnn-natives:linux-x86_64:0.9.0d" level="project" />
   </component>
 </module>
