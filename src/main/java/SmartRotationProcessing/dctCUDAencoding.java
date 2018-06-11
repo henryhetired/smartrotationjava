@@ -98,6 +98,7 @@ public class dctCUDAencoding {
             cuMemFree(float_image_in);
             cuMemFree(dct_image_out);
             cuMemFree(dctcoefficientsdevice);
+            outputdct = new ImagePlus();
             ImageProcessor ip = outputdct.getProcessor();
             ip.setPixels(pixels[0]);
             outputdct.setProcessor(ip);
