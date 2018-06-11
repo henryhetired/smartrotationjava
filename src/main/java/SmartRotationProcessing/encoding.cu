@@ -2,7 +2,7 @@ extern "C"
 __global__ void calc_entropy_atomic(float *float_image_in, float *entropy_out, int* blk) {
 	//TODO: CHECK INDEX FOR ENTROPY_OUT
 	//calculate entropy of a block through a single thread
-        int blk_size = &blk;
+        int blk_size = *blk;
 	__shared__ float sum;
 	if (threadIdx.x == 0 && threadIdx.y == 0) {
 		sum = 0.0;
@@ -37,7 +37,7 @@ __global__ void calc_entropy_atomic(float *float_image_in, float *entropy_out, i
 __global__ void thread_dct_h(float *float_image_in, float *coefficients, float *float_image_out, int* blk) {
 	//dct on rows
 	//summation using Kahan algorithm, very important!
-  int blk_size = &blk;
+  int blk_size = *blk;
 	float sum = 0.0;
 	float c = 0.0;
 	for (int i = 0; i<blk_size; i++) {
@@ -54,7 +54,7 @@ __global__ void thread_dct_h(float *float_image_in, float *coefficients, float *
 __global__ void thread_dct_v(float *float_image_in, float *coefficients, float *float_image_out, int* blk) {
 	// dct on columns
 	//summation using Kahan algorithm, very important!
-  int blk_size = &blk;
+  int blk_size = *blk;
 	float sum = 0.0;
 	float c = 0.0;
 	for (int i = 0; i<blk_size; i++) {
