@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align$Param.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/analysiswithsift.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/compareresult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/configwriter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/image_registration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/rawimageopener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/rawimageopenerwithsift.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/xmlMetadata.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -50,8 +39,8 @@
       <file leaf-file-name="dctCUDAencoding.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="83" column="54" selection-start-line="83" selection-start-column="54" selection-end-line="83" selection-end-column="54" />
+            <state relative-caret-position="276">
+              <caret line="56" column="49" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -906,8 +895,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="83" column="54" selection-start-line="83" selection-start-column="54" selection-end-line="83" selection-end-column="54" />
+        <state relative-caret-position="276">
+          <caret line="56" column="49" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
         </state>
       </provider>
     </entry>

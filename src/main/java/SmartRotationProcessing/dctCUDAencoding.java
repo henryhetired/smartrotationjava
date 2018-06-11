@@ -52,7 +52,9 @@ public class dctCUDAencoding {
             cuModuleGetFunction(dctencodingfunction_v,moduledct,"thread_dct_v");
             float[][] pixels = new float[stack.getStackSize()][stack.getHeight()*stack.getWidth()];
             for (int i=0;i<stack.getStackSize();i++){
+                System.out.println(i);
                 pixels[i] = (float[])stack.getStack().getProcessor(i+1).convertToFloatProcessor().getPixels();
+                System.out.println(pixels[i][0]);
             }
             System.out.println(pixels.length);
             int array_length = pixels.length;
