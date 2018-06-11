@@ -2,6 +2,7 @@ package SmartRotationProcessing;
 
 import ij.process.FloatProcessor;
 import ij.*;
+import ij.process.ImageProcessor;
 import jcuda.Pointer;
 import jcuda.driver.*;
 
@@ -14,6 +15,7 @@ public class dctCUDAencoding {
     private CUdevice device;
     private CUcontext context;
     public ImagePlus stack;
+    public ImagePlus outputdct;
     public float[] dctcoefficients;
     private boolean initialized = false;
 
@@ -21,11 +23,13 @@ public class dctCUDAencoding {
         cuInit(0);
         device = new CUdevice();
         cuDeviceGet(device,0);
+        context = new CUcontext();
         cuCtxCreate(context,0,device);
         initialized = true;
     }
     private void calculate_dct_coefficients(){
         int N = blk_size;
+        dctcoefficients = new float[blk_size*blk_size];
         for (int j=0;j<N;j++){
             for (int k=0;k<N;k++){
                 if (k==0){
@@ -38,15 +42,17 @@ public class dctCUDAencoding {
         }
     }
     public void dct_encoding_run(){
+
         if (initialized){
             CUmodule moduledct = new CUmodule();
-            cuModuleLoad(moduledct,ptxfilelocation+"encoding.cu");
+            cuModuleLoad(moduledct,ptxfilelocation+"encoding.ptx");
             CUfunction dctencodingfunction_v = new CUfunction();
             CUfunction dctencodingfunction_h = new CUfunction();
             cuModuleGetFunction(dctencodingfunction_h,moduledct,"thread_dct_h");
             cuModuleGetFunction(dctencodingfunction_v,moduledct,"thread_dct_v");
             FloatProcessor ipfloat = stack.getProcessor().convertToFloatProcessor();
             float[] pixels = (float[]) ipfloat.getPixels();
+            System.out.println(pixels.length);
             int array_length = pixels.length;
             int dim1 = ipfloat.getWidth();
             int dim2 = ipfloat.getHeight();
@@ -71,7 +77,7 @@ public class dctCUDAencoding {
             Pointer next;
             int[] blk_size_arr = new int[1];
             blk_size_arr[0] = blk_size;
-            for (int stack_number=0;stack_number<stack.getStackSize();stack_number++){
+            for (int stack_number=0;stack_number<50;stack_number++){
                 System.out.println(String.format("Encoding slice %03d",stack_number));
                 next = p.withByteOffset(plane_length*4*stack_number);
                 cuMemcpyHtoD(float_image_in,next,plane_length*4);
@@ -81,13 +87,18 @@ public class dctCUDAencoding {
                 cuCtxSynchronize();
                 cuLaunchKernel(dctencodingfunction_h,num_blk_col,num_blk_row,1,blk_size,blk_size,1,0,null,kernelParameters2,null);
                 cuMemcpyDtoH(next,float_image_in,plane_length*4);
+                System.out.println(pixels[plane_length*stack_number+1]);
                 cuCtxSynchronize();
             }
             System.out.println("dct success");
             cuMemFree(float_image_in);
             cuMemFree(dct_image_out);
             cuMemFree(dctcoefficientsdevice);
-
+            ImageProcessor ip = outputdct.getProcessor();
+            ip.setPixels(pixels);
+            outputdct.setProcessor(ip);
+            new ImageJ();
+            outputdct.show();
 
 
         }
