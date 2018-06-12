@@ -34,7 +34,7 @@ public class JCudaVectorAdd
         JCudaDriver.setExceptionsEnabled(true);
 
         // Create the PTX file by calling the NVCC
-        String ptxFileName = preparePtxFile("JCudaVectorAddKernel.cu");
+        String ptxFileName = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/JCudaVectorAddKernel.cu");
 
         // Initialize the driver and create a context for the first device.
         cuInit(0);
@@ -45,7 +45,7 @@ public class JCudaVectorAdd
 
         // Load the ptx file.
         CUmodule module = new CUmodule();
-        cuModuleLoad(module, ptxFileName);
+        System.out.println(cuModuleLoad(module, ptxFileName));
 
         // Obtain a function pointer to the "add" function.
         CUfunction function = new CUfunction();
@@ -89,7 +89,7 @@ public class JCudaVectorAdd
         // Call the kernel function.
         int blockSizeX = 256;
         int gridSizeX = (int)Math.ceil((double)numElements / blockSizeX);
-        cuLaunchKernel(function,
+        int result = cuLaunchKernel(function,
                 gridSizeX,  1, 1,      // Grid dimension
                 blockSizeX, 1, 1,      // Block dimension
                 0, null,               // Shared memory size and stream

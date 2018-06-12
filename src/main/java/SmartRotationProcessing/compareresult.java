@@ -230,9 +230,12 @@ public class compareresult {
         dctCUDAencoding cuda = new dctCUDAencoding();
         cuda.init_cuda();
         cuda.blk_size = 16;
-        cuda.ptxfilelocation = "/home/local/MORGRIDGE/jhe1/IdeaProjects/smartrotationjava/src/main/java/SmartRotationProcessing/";
+        cuda.ptxfilelocation = "/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/";
         ImagePlus ip = new ImagePlus("/mnt/isilon/Henry-SPIM/06112018_richard/e5/data/t0059_conf0000_view0000_view0000.ome.tif");
         cuda.stack = ip;
-        cuda.dct_encoding_run();
+        try{cuda.dct_encoding_run();}
+        catch (IOException e){
+            e.printStackTrace();
+        }
         }
 }
