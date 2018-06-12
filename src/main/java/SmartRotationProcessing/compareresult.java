@@ -221,10 +221,10 @@ public class compareresult {
 //        System.out.println("Starting analysis ");
 //        for (int i=0;i<24;i++) {
 //            idx = i;
-//            long start_time = System.currentTimeMillis();
+            long start_time = System.currentTimeMillis();
 //            String filepath = filepathbase + String.format("conf%04d", i);
 //            progressive_run(filepath, workspace);
-//            System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
+
 //
 //        }
         dctCUDAencoding cuda = new dctCUDAencoding();
@@ -237,5 +237,7 @@ public class compareresult {
         catch (IOException e){
             e.printStackTrace();
         }
+        System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
         }
+
 }

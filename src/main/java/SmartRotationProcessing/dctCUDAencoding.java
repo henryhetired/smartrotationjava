@@ -3,15 +3,18 @@ package SmartRotationProcessing;
 import ij.process.FloatProcessor;
 import ij.*;
 import ij.process.ImageProcessor;
+import ij.process.ShortProcessor;
 import jcuda.Pointer;
 import jcuda.Sizeof;
 import jcuda.driver.*;
 import jcuda.runtime.JCuda;
+import jcuda.runtime.cudaStream_t;
 
 import java.io.File;
 import java.io.IOException;
 
 import static jcuda.driver.JCudaDriver.*;
+import static jcuda.runtime.cudaMemcpyKind.cudaMemcpyHostToDevice;
 import static org.apache.commons.io.IOUtils.toByteArray;
 
 
@@ -21,7 +24,8 @@ public class dctCUDAencoding {
     private CUdevice device;
     private CUcontext context;
     public ImagePlus stack;
-    public ImagePlus outputdct;
+    private ImagePlus outputdct;
+    public ImagePlus entropyimg;
     public float[] dctcoefficients;
     private boolean initialized = false;
 
@@ -51,21 +55,23 @@ public class dctCUDAencoding {
         JCuda.setExceptionsEnabled(true);
         if (initialized){
             CUmodule moduledct = new CUmodule();
-            String ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.cu");
+            //String ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.cu");
+            String ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.ptx");
             System.out.println(ptxfile);
             int result;
             result = cuModuleLoad(moduledct,ptxfile);
             CUfunction dctencodingfunction_v = new CUfunction();
             CUfunction dctencodingfunction_h = new CUfunction();
+            CUfunction entropy_calculation = new CUfunction();
+            result = cuModuleGetFunction(entropy_calculation,moduledct,"calc_entropy_atomic");
             result = cuModuleGetFunction(dctencodingfunction_h,moduledct,"thread_dct_h");
             result = cuModuleGetFunction(dctencodingfunction_v,moduledct,"thread_dct_v");
-            float[] pixels = new float[stack.getHeight()*stack.getWidth()];
-            System.out.println(pixels.length);
-            int array_length = pixels.length;
+            float[][] pixels = new float[stack.getStackSize()][stack.getHeight()*stack.getWidth()];
+            System.out.println(pixels[0].length);
             int dim1 = stack.getWidth();
             int dim2 = stack.getHeight();
             int plane_length = dim1*dim2;
-            int num_blk_col = dim1/blk_size;;
+            int num_blk_col = dim1/blk_size;
             int num_blk_row = dim2/blk_size;
             //////calculate coefficients and copy to device
             calculate_dct_coefficients();
@@ -79,41 +85,62 @@ public class dctCUDAencoding {
             //////Allocate device space for input and output
             CUdeviceptr float_image_in = new CUdeviceptr();
             cuMemAlloc(float_image_in,plane_length* Sizeof.FLOAT);
-            CUdeviceptr dct_image_out = new CUdeviceptr();
-            cuMemAlloc(dct_image_out,plane_length*Sizeof.FLOAT);
+            CUdeviceptr dct_image = new CUdeviceptr();
+            cuMemAlloc(dct_image,plane_length*Sizeof.FLOAT);
             System.out.println("Space allocaed on device");
+            CUdeviceptr entropy_image_out = new CUdeviceptr();
+            cuMemAlloc(entropy_image_out,plane_length/blk_size/blk_size*Sizeof.FLOAT);
             //////Perform encoding and operation
-
             Pointer next;
-            float[] pixeloutput = new float[plane_length];
-            for (int stack_number=0;stack_number<5;stack_number++){
-                System.out.println(String.format("Encoding slice %03d",stack_number));
-                pixels = (float[])stack.getStack().getProcessor(stack_number+1).convertToFloatProcessor().getPixelsCopy();
-                System.out.println(pixels[0]);
-                next = Pointer.to(pixels);
-                cuMemcpyHtoD(float_image_in,next,plane_length*Sizeof.FLOAT);
-                Pointer kernelParameters1 = Pointer.to(Pointer.to(float_image_in),Pointer.to(dctcoefficientsdevice),Pointer.to(dct_image_out),Pointer.to(new int[]{blk_size}));
-                Pointer kernelParameters2 = Pointer.to(Pointer.to(dct_image_out),Pointer.to(dctcoefficientsdevice),Pointer.to(float_image_in),Pointer.to(new int[]{blk_size}));
-                result = cuLaunchKernel(dctencodingfunction_h,num_blk_col,num_blk_row,1,blk_size,blk_size,1,10,null,kernelParameters1,null);
-                //System.out.println(result);
-                cuCtxSynchronize();
-                cuLaunchKernel(dctencodingfunction_v,num_blk_col,num_blk_row,1,blk_size,blk_size,1,10,null,kernelParameters2,null);
-                cuCtxSynchronize();
-                //cuLaunchKernel(dctencodingfunction_h,num_blk_col,num_blk_row,1,blk_size,blk_size,1,0,null,kernelParameters2,null);
-                cuMemcpyDtoH(Pointer.to(pixeloutput),float_image_in,plane_length*Sizeof.FLOAT);
-                System.out.println(pixeloutput[0]);
-                cuCtxSynchronize();
+            float[][] entropy = new float[stack.getStackSize()][plane_length/blk_size/blk_size];
+            for (int i=0;i<stack.getStackSize();i++){
+                pixels[i] = (float[])stack.getStack().getProcessor(i+1).convertToFloatProcessor().getPixelsCopy();
             }
+            for (int stack_number=0;stack_number<stack.getStackSize();stack_number++) {
+                System.out.println(String.format("Encoding slice %03d", stack_number));
+                next = Pointer.to(pixels[stack_number]);
+                cuMemcpyHtoD(float_image_in, next, plane_length * Sizeof.FLOAT);
+                Pointer kernelParameters1 = Pointer.to(Pointer.to(float_image_in), Pointer.to(dctcoefficientsdevice), Pointer.to(dct_image), Pointer.to(new int[]{blk_size}));
+
+                result = cuLaunchKernel(dctencodingfunction_h, num_blk_col, num_blk_row, 1, blk_size, blk_size, 1, 8, null, kernelParameters1, null);
+
+                Pointer kernelParameters2 = Pointer.to(Pointer.to(dct_image), Pointer.to(dctcoefficientsdevice), Pointer.to(float_image_in), Pointer.to(new int[]{blk_size}));
+                cuLaunchKernel(dctencodingfunction_v, num_blk_col, num_blk_row, 1, blk_size, blk_size, 1, 0, null, kernelParameters2, null);
+                Pointer kernelParameters3 = Pointer.to(Pointer.to(float_image_in),Pointer.to(entropy_image_out),Pointer.to(new int[]{blk_size}));
+                cuLaunchKernel(entropy_calculation, num_blk_col, num_blk_row, 1, blk_size, blk_size, 1, 12, null, kernelParameters3, null);
+                cuMemcpyDtoH(Pointer.to(entropy[stack_number]),entropy_image_out,plane_length/blk_size/blk_size*Sizeof.FLOAT);
+            }
+            cuCtxSynchronize();
             System.out.println("dct success");
+
+
+//            ImageStack outputdctstack = new ImageStack(stack.getWidth(),stack.getHeight(),stack.getStackSize());
+//            for (int i=0;i<stack.getStackSize();i++){
+//                ImageProcessor ip =new FloatProcessor(stack.getWidth(),stack.getHeight());
+//                ip.setPixels(pixeloutput[i]);
+//                outputdctstack.setProcessor(ip,i+1);
+//            }
+//            outputdct = new ImagePlus("dctstack",outputdctstack);
+            ////Perform entropy encoding
+            System.out.println("Starting entropy encoding");
+
+            System.out.println("Entropy calculation success!");
+            ImageStack outputentropystack = new ImageStack(dim1/blk_size,dim2/blk_size,stack.getStackSize());
+            for (int i=0;i<stack.getStackSize();i++){
+                ImageProcessor ip =new FloatProcessor(dim1/blk_size,dim2/blk_size);
+                ip.setPixels(entropy[i]);
+                outputentropystack.setProcessor(ip,i+1);
+            }
+            entropyimg = new ImagePlus("entropy",outputentropystack);
+            
+            cuMemFree(dct_image);
             cuMemFree(float_image_in);
-            cuMemFree(dct_image_out);
+
             cuMemFree(dctcoefficientsdevice);
-            outputdct = new ImagePlus();
-            ImageProcessor ip = new FloatProcessor(stack.getWidth(),stack.getHeight(),pixeloutput);
-            outputdct.setProcessor(ip);
             new ImageJ();
-            outputdct.show();
-            IJ.saveAs(outputdct,"tif","test.tif");
+            //outputdct.show();
+            entropyimg.show();
+            //IJ.saveAs(outputdct,"tif","test.tif");
 
 
         }

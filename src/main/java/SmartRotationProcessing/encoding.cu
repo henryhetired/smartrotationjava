@@ -37,7 +37,9 @@ __global__ void calc_entropy_atomic(float *float_image_in, float *entropy_out, i
 extern "C" __global__ void thread_dct_h(float *float_image_in, float *coefficients, float *float_image_out, int blk_size) {
 	//dct on rows
 	//summation using Kahan algorithm, very important!
-
+    if (blk_size>32){
+    blk_size = 32;
+    }
 	float sum = 0.0;
 	float c = 0.0;
 	for (int i = 0; i<blk_size; i++) {
@@ -54,6 +56,9 @@ extern "C" __global__ void thread_dct_h(float *float_image_in, float *coefficien
 extern "C" __global__ void thread_dct_v(float *float_image_in, float *coefficients, float *float_image_out, int blk_size) {
 	// dct on columns
 	//summation using Kahan algorithm, very important!
+	if (blk_size>32){
+	blk_size = 32;
+	}
 	float sum = 0.0;
 	float c = 0.0;
 	for (int i = 0; i<blk_size; i++) {

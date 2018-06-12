@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/JCudaVectorAdd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/JCudaVectorAdd.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/encoding.cu" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/encoding.cu" afterDir="false" />
@@ -32,11 +31,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dctCUDAencoding.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dctCUDAencoding.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="94" column="175" selection-start-line="94" selection-start-column="175" selection-end-line="94" selection-end-column="175" />
+            <state relative-caret-position="289">
+              <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+              <folding>
+                <element signature="method#init_cuda#0;class#dctCUDAencoding#0" />
+                <element signature="method#calculate_dct_coefficients#0;class#dctCUDAencoding#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="compareresult.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="499">
+              <caret line="234" column="24" lean-forward="true" selection-start-line="234" selection-start-column="24" selection-end-line="234" selection-end-column="24" />
+              <folding>
+                <element signature="method#get_angular_result#0;class#compareresult#0" />
+                <element signature="method#save_angular_result#0;class#compareresult#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,8 +60,8 @@
       <file leaf-file-name="encoding.cu" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/encoding.cu">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+            <state relative-caret-position="600">
+              <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -115,9 +131,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/cudadctencoding_testing.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/JCudaVectorAdd.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/encoding.cu" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" />
       </list>
     </option>
   </component>
@@ -278,12 +294,12 @@
       <option name="presentableId" value="Default" />
       <updated>1525727219136</updated>
     </task>
-    <task id="LOCAL-00001" summary="first commit">
-      <created>1525731916507</created>
+    <task id="LOCAL-00001" summary="cuda working!!!!">
+      <created>1528765916958</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1525731916507</updated>
+      <updated>1528765916958</updated>
     </task>
     <task id="LOCAL-00002" summary="&#10;&quot;First Ubuntu commit&quot;">
       <created>1525794732312</created>
@@ -292,6 +308,7 @@
       <option name="project" value="LOCAL" />
       <updated>1525794732312</updated>
     </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -307,7 +324,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32939324" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.21355398" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
@@ -317,7 +334,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" visible="true" weight="0.26871553" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" visible="true" weight="0.41371158" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info id="Designer" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -349,9 +366,13 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="cuda working!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="cuda working!!!!" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="18" />
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -377,12 +398,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -408,12 +423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -471,12 +480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -516,12 +519,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -558,12 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#read#0;class#xmlMetadata#0" />
-            <element signature="method#save#0;class#xmlMetadata#0" />
-            <element signature="method#create#0;class#xmlMetadata#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -599,11 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="18" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#create#0;class#configwriter#0" />
-            <element signature="method#read#0;class#configwriter#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -614,30 +600,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1566">
           <caret line="104" column="51" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -681,34 +647,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="237" column="32" selection-start-line="237" selection-start-column="32" selection-end-line="237" selection-end-column="32" />
-          <folding>
-            <element signature="method#get_angular_result#0;class#compareresult#0" />
-            <element signature="method#save_angular_result#0;class#compareresult#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-232">
           <caret line="96" selection-start-line="96" selection-end-line="96" />
-          <folding>
-            <element signature="method#threshold#0;class#rawimageopenerwithsift#0" />
-            <element signature="method#sideprojection_raw#0;class#rawimageopenerwithsift#0" />
-            <element signature="e#1051#1093#0" />
-            <element signature="e#1479#1941#0" />
-            <element signature="method#sideprojection_entropy#0;class#rawimageopenerwithsift#0" />
-            <element signature="e#2050#2092#0" />
-            <element signature="e#2569#3021#0" />
-            <element signature="method#find_raw_img#0;class#rawimageopenerwithsift#0" />
-            <element signature="method#find_dct_img#0;class#rawimageopenerwithsift#0" />
-            <element signature="method#process_raw_image#0;class#rawimageopenerwithsift#0" />
-            <element signature="method#process_dct_image#0;class#rawimageopenerwithsift#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -729,6 +671,16 @@
     <entry file="file://$PROJECT_DIR$/SmartRotationProcessing.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/JCudaVectorAdd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -739,17 +691,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/encoding.cu">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+        <state relative-caret-position="600">
+          <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="94" column="175" selection-start-line="94" selection-start-column="175" selection-end-line="94" selection-end-column="175" />
+        <state relative-caret-position="289">
+          <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+          <folding>
+            <element signature="method#init_cuda#0;class#dctCUDAencoding#0" />
+            <element signature="method#calculate_dct_coefficients#0;class#dctCUDAencoding#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="234" column="24" lean-forward="true" selection-start-line="234" selection-start-column="24" selection-end-line="234" selection-end-column="24" />
+          <folding>
+            <element signature="method#get_angular_result#0;class#compareresult#0" />
+            <element signature="method#save_angular_result#0;class#compareresult#0" />
+          </folding>
         </state>
       </provider>
     </entry>
