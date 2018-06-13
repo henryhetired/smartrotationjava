@@ -20,7 +20,7 @@ import ij.ImagePlus;
 import static SmartRotationProcessing.rawimageopenerwithsift.find_dct_img;
 import static SmartRotationProcessing.rawimageopenerwithsift.find_raw_img;
 
-public class compareresult {
+public class SmartRotationProcessing {
     private static String maskpath = "Z:\\Henry-SPIM\\11132017\\e2\\t0000\\";
     private static String curr_filename;
     private static String workspace;
