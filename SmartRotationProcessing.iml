@@ -14,6 +14,10 @@
     <orderEntry type="library" name="Maven: gov.nist.math:jama:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: mpicbg:mpicbg:1.2.0" level="project" />
     <orderEntry type="library" name="Maven: mpicbg:mpicbg_:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: sc.fiji:Fiji_Plugins:3.1.1" level="project" />
+    <orderEntry type="library" name="Maven: sc.fiji:fiji-lib:2.1.1" level="project" />
+    <orderEntry type="library" name="Maven: net.imagej:ij1-patcher:0.12.5" level="project" />
+    <orderEntry type="library" name="Maven: org.javassist:javassist:3.20.0-GA" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.1" level="project" />
     <orderEntry type="library" name="Maven: org.jcuda:jcuda:0.9.0d" level="project" />
     <orderEntry type="library" name="Maven: org.jcuda:jcuda-natives:linux-x86_64:0.9.0d" level="project" />

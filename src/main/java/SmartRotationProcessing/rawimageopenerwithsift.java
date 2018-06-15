@@ -18,10 +18,25 @@ import org.apache.commons.io.FilenameUtils;
 
 public class rawimageopenerwithsift {
     //version of rawimageopener that uses SIFT to register views
-    private xmlMetadata meta;
-    public ImagePlus rawImage;
-    public ImagePlus dctImage;
+    public xmlMetadata meta;
+    public static ImagePlus rawImage;
+    public static ImagePlus dctImage;
     public ImagePlus imageMask;
+    public String filepath;
+    public String workspace;
+    public String filenamebase;
+    public boolean initialized=false;
+    public void init(String filepathin,String workpathin,ImagePlus raw,ImagePlus dct){
+        filepath = filepathin;
+        workspace = workpathin;
+        rawImage = raw;
+        dctImage = dct;
+        initialized = true;
+        filenamebase = FilenameUtils.getBaseName(filepathin);
+        filepath = FilenameUtils.getFullPath(filepathin);
+        meta = new xmlMetadata();
+        meta.read(filepath + filenamebase + ".xml");
+    }
     private void threshold(ImageProcessor input, int min) {
         for (int i = 0; i < input.getHeight(); i++) {
             for (int j = 0; j < input.getWidth(); j++) {
@@ -34,7 +49,6 @@ public class rawimageopenerwithsift {
 
         }
     }
-
     private short[] sideprojection_raw(ImagePlus imp) {
 
         //////////////////////////////////////////
@@ -82,30 +96,6 @@ public class rawimageopenerwithsift {
         return imagecontainer;
     }
 
-    static String find_raw_img(String filepath) {
-        //assuming the largest file in the folder is the raw imagefile (safe bet isn't it)
-        File folder = new File(filepath);
-        File[] listoffiles = folder.listFiles();
-        int maxat = 0;
-        for (int i = 0; i < listoffiles.length; i++) {
-            if (listoffiles[i].isFile()) {
-                maxat = listoffiles[i].length() > listoffiles[maxat].length() ? i : maxat;
-            }
-        }
-        return listoffiles[maxat].getName();
-    }
-
-    static String find_dct_img(String filepath) {
-        File folder = new File(filepath);
-        File[] listoffiles = folder.listFiles();
-        int idx = 0;
-        for (int i = 0; i < listoffiles.length; i++) {
-            if (listoffiles[i].isFile()) {
-                idx = listoffiles[i].getName().contains("dct") ? i : idx;
-            }
-        }
-        return listoffiles[idx].getName();
-    }
     public ImagePlus process_raw_image(ImagePlus rawimage,int background){
         //remove outlier for the raw image
         ImageProcessor ip = rawimage.getProcessor().duplicate();
@@ -124,84 +114,57 @@ public class rawimageopenerwithsift {
         return (ic.run("multiply create",dctimage,imgmask));
     }
 
-    public void project_raw_image(String filepath, String workspace) {
-        meta = new xmlMetadata();
-        meta.read(filepath + "/meta.xml");
-        String filename = find_raw_img(filepath);
-        String filenamebase = FilenameUtils.removeExtension(filename);
-        if (filename.endsWith("raw")) {
-            //read raw image
-            FileInfo fi = new FileInfo();
-            meta.savetofileinfo(fi);
-            fi.fileType = FileInfo.GRAY16_UNSIGNED;
-            fi.fileName = filename;
-            fi.directory = filepath;
-            int background_value = meta.background;
-            int blk_size = meta.blk_size;
-            long start_time = System.currentTimeMillis();
-            System.out.println(fi.gapBetweenImages);
-            rawImage = new FileOpener(fi).open(false);
-            System.out.println("Read time is "+(System.currentTimeMillis() - start_time) +" ms");
-        } else if (filename.endsWith("tif")) {
-            ImagePlus rawImage = IJ.openImage(filepath + filename);
-        } else {
-            System.out.println("Can't find the image");
+    public void project_raw_image() {
+        if (initialized) {
+            short[] pixelfromtop = sideprojection_raw(rawImage);
+            ShortProcessor rawtopimage = new ShortProcessor(rawImage.getWidth(), rawImage.getNSlices());
+            rawtopimage.setPixels(pixelfromtop);
+            rawtopimage.setInterpolationMethod(ImageProcessor.BILINEAR);
+            ShortProcessor rawtopimageresized = (ShortProcessor) rawtopimage.resize((int) Math.floor(rawtopimage.getWidth() * meta.xypixelsize), (int) (rawtopimage.getHeight() * meta.zpixelsize));
+            CanvasResizer cr = new CanvasResizer();
+            ImageProcessor expandedoutput = cr.expandImage(rawtopimageresized, 2000, 2000, (2000 - rawtopimageresized.getWidth()) / 2, (2000 - rawtopimageresized.getHeight()) / 2);
+            expandedoutput.rotate(-meta.anglepos);
+            rawImage.close();
+            rawImage = new ImagePlus();
+            rawImage.setProcessor(expandedoutput);
+            imageMask = process_raw_image(rawImage, meta.background);
+            IJ.saveAs(rawImage, "tif", workspace + filenamebase + ".tif");
+        }
+        else{
+            System.out.println("No file read");
             return;
         }
-        short[] pixelfromtop = sideprojection_raw(rawImage);
-        ShortProcessor rawtopimage = new ShortProcessor(rawImage.getWidth(), rawImage.getNSlices());
-        rawtopimage.setPixels(pixelfromtop);
-        rawtopimage.setInterpolationMethod(ImageProcessor.BILINEAR);
-        ShortProcessor rawtopimageresized = (ShortProcessor) rawtopimage.resize((int) Math.floor(rawtopimage.getWidth() * meta.xypixelsize), (int) (rawtopimage.getHeight() * meta.zpixelsize));
-        CanvasResizer cr = new CanvasResizer();
-        ImageProcessor expandedoutput = cr.expandImage(rawtopimageresized, 2000, 2000, (2000 - rawtopimageresized.getWidth()) / 2, (2000 - rawtopimageresized.getHeight()) / 2);
-        expandedoutput.rotate(-meta.anglepos);
-        rawImage.close();
-        rawImage = new ImagePlus();
-        rawImage.setProcessor(expandedoutput);
-        imageMask = process_raw_image(rawImage,meta.background);
-        IJ.saveAs(rawImage, "tif", workspace + filenamebase + ".tif");
 
     }
 
-    public void project_dct_image(String filepath, String workspace) {
-        meta = new xmlMetadata();
-        meta.read(filepath + "/meta.xml");
-        String filename = find_dct_img(filepath);
-        String filenamebase = FilenameUtils.removeExtension(filename);
-        //read raw image
-        FileInfo fi = new FileInfo();
-        meta.savetofileinfo(fi);
-        fi.fileType = FileInfo.GRAY32_FLOAT;
-        fi.fileName = filename;
-        fi.directory = filepath;
-        int background_value = meta.background;
-        int blk_size = meta.blk_size;
-        fi.width = fi.width/blk_size;
-        fi.height = fi.height/blk_size;
-        fi.gapBetweenImages = 0;
-        dctImage = new FileOpener(fi).open(false);
-        float[] pixelfromtop = sideprojection_entropy(dctImage);
-        FloatProcessor floattopimage = new FloatProcessor(dctImage.getWidth(), dctImage.getNSlices());
-        floattopimage.setPixels(pixelfromtop);
-        floattopimage.setInterpolationMethod(ImageProcessor.BILINEAR);
-        FloatProcessor floattopimageresized = (FloatProcessor) floattopimage.resize((int) Math.floor(floattopimage.getWidth() * meta.xypixelsize*blk_size), (int) (floattopimage.getHeight() * meta.zpixelsize));
-        CanvasResizer cr = new CanvasResizer();
-        ImageProcessor expandedoutput = cr.expandImage(floattopimageresized, 2000, 2000, (2000 - floattopimageresized.getWidth()) / 2, (2000 - floattopimageresized.getHeight()) / 2);
-        expandedoutput.setBackgroundValue(meta.entropybackground);
-        expandedoutput.setInterpolationMethod(0);
-        expandedoutput.rotate(-meta.anglepos);
-        dctImage.close();
-        dctImage = new ImagePlus();
-        dctImage.setProcessor(expandedoutput);
-        IJ.saveAs(process_dct_image(dctImage,imageMask,meta.entropybackground), "tif", workspace + filenamebase + ".tif");
+    public void project_dct_image() {
+        if (initialized) {
+            float[] pixelfromtop = sideprojection_entropy(dctImage);
+            FloatProcessor floattopimage = new FloatProcessor(dctImage.getWidth(), dctImage.getNSlices());
+            floattopimage.setPixels(pixelfromtop);
+            floattopimage.setInterpolationMethod(ImageProcessor.BILINEAR);
+            FloatProcessor floattopimageresized = (FloatProcessor) floattopimage.resize((int) Math.floor(floattopimage.getWidth() * meta.xypixelsize * meta.blk_size), (int) (floattopimage.getHeight() * meta.zpixelsize));
+            CanvasResizer cr = new CanvasResizer();
+            ImageProcessor expandedoutput = cr.expandImage(floattopimageresized, 2000, 2000, (2000 - floattopimageresized.getWidth()) / 2, (2000 - floattopimageresized.getHeight()) / 2);
+            expandedoutput.setBackgroundValue(meta.entropybackground);
+            expandedoutput.setInterpolationMethod(0);
+            expandedoutput.rotate(-meta.anglepos);
+            dctImage.close();
+            dctImage = new ImagePlus();
+            dctImage.setProcessor(expandedoutput);
+            IJ.saveAs(process_dct_image(dctImage, imageMask, meta.entropybackground), "tif", workspace + filenamebase + "_dct.tif");
+        }
+        else{
+            System.out.println("No file read");
+            return;
+        }
 
     }
 
-    public void run(String filepath, String workspace) {
+    public void run() {
         //Process image to generate a top down projection on both the raw image and the dct image
-        project_raw_image(filepath, workspace);
-        project_dct_image(filepath,workspace);
+        project_raw_image();
+        project_dct_image();
     }
 }
 

@@ -64,7 +64,7 @@ public class SIFT_align {
     final private List<Feature> fs1 = new ArrayList<Feature>();
     final private List<Feature> fs2 = new ArrayList<Feature>();
     public Mapping mapping;
-
+    public AbstractAffineModel2D<?> currentModel;
     static private class Param {
         final public FloatArray2DSIFT.Param sift = new FloatArray2DSIFT.Param();
 
@@ -137,7 +137,7 @@ public class SIFT_align {
         final Vector<PointMatch> inliers = new Vector<PointMatch>();
 
         // TODO Implement other models for choice
-        AbstractAffineModel2D<?> currentModel;
+
         switch (p.modelIndex) {
             case 0:
                 currentModel = new TranslationModel2D();

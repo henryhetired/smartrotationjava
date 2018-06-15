@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static jcuda.driver.JCudaDriver.*;
+import static jcuda.runtime.JCuda.cudaDeviceReset;
 import static jcuda.runtime.cudaMemcpyKind.cudaMemcpyHostToDevice;
 import static org.apache.commons.io.IOUtils.toByteArray;
 
@@ -30,6 +31,7 @@ public class dctCUDAencoding {
     private boolean initialized = false;
 
     public void init_cuda(){
+        cudaDeviceReset();
         cuInit(0);
         device = new CUdevice();
         cuDeviceGet(device,0);
@@ -57,7 +59,7 @@ public class dctCUDAencoding {
             CUmodule moduledct = new CUmodule();
             //String ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.cu");
             String ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.ptx");
-            System.out.println(ptxfile);
+            //System.out.println(ptxfile);
             int result;
             result = cuModuleLoad(moduledct,ptxfile);
             CUfunction dctencodingfunction_v = new CUfunction();
@@ -67,9 +69,10 @@ public class dctCUDAencoding {
             result = cuModuleGetFunction(dctencodingfunction_h,moduledct,"thread_dct_h");
             result = cuModuleGetFunction(dctencodingfunction_v,moduledct,"thread_dct_v");
             float[][] pixels = new float[stack.getStackSize()][stack.getHeight()*stack.getWidth()];
-            System.out.println(pixels[0].length);
+//            System.out.println(pixels[0].length);
             int dim1 = stack.getWidth();
             int dim2 = stack.getHeight();
+//            System.out.println(stack.getStackSize());
             int plane_length = dim1*dim2;
             int num_blk_col = dim1/blk_size;
             int num_blk_row = dim2/blk_size;
@@ -78,9 +81,9 @@ public class dctCUDAencoding {
             System.out.println("Coefficients ready");
             CUdeviceptr dctcoefficientsdevice = new CUdeviceptr();
             result = cuMemAlloc(dctcoefficientsdevice,blk_size*blk_size*Sizeof.FLOAT);
-            System.out.println(result);
+            //System.out.println(result);
             result = cuMemcpyHtoD(dctcoefficientsdevice,Pointer.to(dctcoefficients),blk_size*blk_size*Sizeof.FLOAT);
-            System.out.println(result);
+            //System.out.println(result);
             System.out.println("Coefficients copied to device");
             //////Allocate device space for input and output
             CUdeviceptr float_image_in = new CUdeviceptr();
@@ -97,7 +100,7 @@ public class dctCUDAencoding {
                 pixels[i] = (float[])stack.getStack().getProcessor(i+1).convertToFloatProcessor().getPixelsCopy();
             }
             for (int stack_number=0;stack_number<stack.getStackSize();stack_number++) {
-                System.out.println(String.format("Encoding slice %03d", stack_number));
+                //System.out.println(String.format("Encoding slice %03d", stack_number));
                 next = Pointer.to(pixels[stack_number]);
                 cuMemcpyHtoD(float_image_in, next, plane_length * Sizeof.FLOAT);
                 Pointer kernelParameters1 = Pointer.to(Pointer.to(float_image_in), Pointer.to(dctcoefficientsdevice), Pointer.to(dct_image), Pointer.to(new int[]{blk_size}));
@@ -137,9 +140,9 @@ public class dctCUDAencoding {
             cuMemFree(float_image_in);
 
             cuMemFree(dctcoefficientsdevice);
-            new ImageJ();
+//            new ImageJ();
             //outputdct.show();
-            entropyimg.show();
+//            entropyimg.show();
             //IJ.saveAs(outputdct,"tif","test.tif");
 
 

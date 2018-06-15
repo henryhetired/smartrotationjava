@@ -17,9 +17,6 @@ import ij.plugin.CanvasResizer;
 import ij.process.*;
 import ij.ImagePlus;
 
-import static SmartRotationProcessing.rawimageopenerwithsift.find_dct_img;
-import static SmartRotationProcessing.rawimageopenerwithsift.find_raw_img;
-
 public class SmartRotationProcessing {
     private static String maskpath = "Z:\\Henry-SPIM\\11132017\\e2\\t0000\\";
     private static String curr_filename;
@@ -35,10 +32,14 @@ public class SmartRotationProcessing {
     private static int angle_reso = 10;
     private static int[] angle_count;
     private static float[] angle_avg;
+    public static ImagePlus rawImg;
+    public static ImagePlus dctImg;
     private static boolean is_first = true;
     private static int idx;
     private static int out[][];
-
+    private static boolean usesift = true;
+    private static boolean useregistration = true;
+    private static int[] angle_updated;
 
     static void threshold_entropy(FloatProcessor ip, float max) {
         //function to threshold the entropy
@@ -119,6 +120,7 @@ public class SmartRotationProcessing {
             for (int j=0;j<old_data.getWidth();j++){
                 if (new_data.getPixelValue(j,i)<old_data.getPixelValue(j,i)){
                     old_data.setf(j,i,new_data.getPixelValue(j,i));
+                    angle_updated[idx+1]++;
                 }
             }
         }
@@ -151,8 +153,8 @@ public class SmartRotationProcessing {
         }
 
         File lastmodifiedmaskFile = files[0];
-        for (int i=1;i<files.length;i++){
-            if (lastmodifiedmaskFile.lastModified() < files[i].lastModified() && files[i].getName().contains("dct")){
+        for (int i=0;i<files.length;i++){
+            if (lastmodifiedmaskFile.lastModified() <= files[i].lastModified() && files[i].getName().contains("dct")){
                 lastmodifiedmaskFile = files[i];
             }
         }
@@ -166,8 +168,8 @@ public class SmartRotationProcessing {
         }
 
         File lastmodifiedmaskFile = files[0];
-        for (int i=1;i<files.length;i++){
-            if (lastmodifiedmaskFile.lastModified() < files[i].lastModified() && !files[i].getName().contains("dct")){
+        for (int i=0;i<files.length;i++){
+            if (lastmodifiedmaskFile.lastModified() <= files[i].lastModified() && !files[i].getName().contains("dct")){
                 lastmodifiedmaskFile = files[i];
             }
         }
@@ -175,21 +177,38 @@ public class SmartRotationProcessing {
     }
     static void progressive_run(String filepath,String workspace){
         rawimageopenerwithsift rows = new rawimageopenerwithsift();
-        rows.run(filepath,workspace);
+        rows.init(filepath,workspace,rawImg,dctImg);
+        rows.run();
         File maskdct = new File(workspace+"maskdct.tif");
         File maskraw = new File(workspace+"maskraw.tif");
         String latestmask = get_last_mask(workspace);
         String latestraw = get_last_raw(workspace);
+        System.out.println(latestmask);
+        System.out.println(latestraw);
         if (!maskdct.exists()&&!maskraw.exists()){
             System.out.println("This is the first stack");
-            try {
-                Files.copy(Paths.get(workspace + latestmask), Paths.get(workspace + "maskdct.tif"));
-                Files.copy(Paths.get(workspace + latestmask), Paths.get(workspace + "maskdct00.tif"));
-                Files.copy(Paths.get(workspace + latestraw), Paths.get(workspace + "maskraw.tif"));
+
+
+                ImagePlus og= new ImagePlus(workspace+latestraw);
+                ImagePlus new_dct_transformed = new ImagePlus(workspace+latestmask);
+            if (useregistration) {
+                image_registration ir = new image_registration();
+                ir.use_SIFT = false;
+
+                og = ir.run(og, og);
+
+                new_dct_transformed.setProcessor(ir.applymapping(new_dct_transformed));
             }
-            catch (IOException e){
-                e.printStackTrace();
-            }
+                IJ.saveAs(new_dct_transformed,"tif",workspace+"maskdct.tif");
+                IJ.saveAs(new_dct_transformed,"tif",workspace+"maskdct00.tif");
+                IJ.saveAs(og,"tif",workspace+"maskraw.tif");
+                IJ.saveAs(og,"tif",workspace+latestraw);
+
+//                Files.copy(Paths.get(workspace + latestmask), Paths.get(workspace + "maskdct.tif"));
+//                Files.copy(Paths.get(workspace + latestmask), Paths.get(workspace + "maskdct00.tif"));
+                //Files.copy(Paths.get(workspace + latestraw), Paths.get(workspace + "maskraw.tif"));
+                //Files.copy(Paths.get(workspace + latestraw), Paths.get(workspace + "maskrawref.tif"));
+
             ImagePlus img = new ImagePlus(workspace+"maskdct00.tif");
             get_angular_result(img);
             save_angular_result("angularcount0000.txt","angularaverage0000.txt");
@@ -199,45 +218,75 @@ public class SmartRotationProcessing {
         ImagePlus new_mask = new ImagePlus(workspace+latestmask);
         ImagePlus old_raw = new ImagePlus(workspace+"maskraw.tif");
         ImagePlus new_raw = new ImagePlus(workspace+latestraw);
-        image_registration ir = new image_registration();
-        new_raw = ir.run(old_raw,new_raw);
+        ImagePlus new_dct_transformed = new ImagePlus();
+        if (useregistration) {
+            image_registration ir = new image_registration();
+            ir.use_SIFT = usesift;
+            new_raw = ir.run(old_raw, new_raw);
+            new_dct_transformed.setProcessor(ir.applymapping(new_mask));
+        }
+        else{
+            new_dct_transformed.setProcessor(new_mask.getProcessor());
+        }
         IJ.saveAs(new_raw,"tif",workspace+"maskraw.tif");
         IJ.saveAs(new_raw,"tif",workspace+latestraw);
-        ImagePlus new_dct_transformed = new ImagePlus();
-        new_dct_transformed.setProcessor(ir.applymapping(new_mask));
         get_angular_result(new_dct_transformed);
         save_angular_result(String.format("angularcount%04d.txt",idx),String.format("angularaverage%04d.txt",idx));
         IJ.saveAs(new_dct_transformed,"tif",workspace+latestmask);
         update_mask(old_mask,new_dct_transformed);
+//        new ImageJ();
+//        dctImg.show();
+//        rawImg.show();
+        return;
     }
-    public static void main(String[] args) {
-        //filepath is the location of the image file along with meta.xml
-////        String filepath = args[0];
-////        String filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/04052018_corrected/t0000/conf0005/view0000/";
-//        String filepathbase = "/mnt/isilon/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/t0000/";
-//        //workspace is the location where all the mask/temp is located
-////        workspace = args[1];
-//        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/04052018_correct/corrected/corrected_raw/workspace/";
-//        System.out.println("Starting analysis ");
-//        for (int i=0;i<24;i++) {
-//            idx = i;
-            long start_time = System.currentTimeMillis();
-//            String filepath = filepathbase + String.format("conf%04d", i);
-//            progressive_run(filepath, workspace);
+    public static void evaluation_step(int num_angles,String filepath){
 
-//
-//        }
+        //workspace is the location where all the mask/temp is located
+//        workspace = args[1];
+        useregistration = true;
+        usesift = true;
+        System.out.println("Starting analysis ");
+        angle_updated = new int[num_angles-1];
         dctCUDAencoding cuda = new dctCUDAencoding();
         cuda.init_cuda();
-        cuda.blk_size = 16;
-        cuda.ptxfilelocation = "/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/";
-        ImagePlus ip = new ImagePlus("/mnt/isilon/Henry-SPIM/06112018_richard/e5/data/t0059_conf0000_view0000_view0000.ome.tif");
-        cuda.stack = ip;
-        try{cuda.dct_encoding_run();}
-        catch (IOException e){
-            e.printStackTrace();
+        for (int i=0;i<num_angles;i++) {
+            idx = i;
+            long start_time = System.currentTimeMillis();
+            String filename = filepath + String.format("t0000_conf%04d_view0000.tif",i);
+            cuda.blk_size = 16;
+            cuda.ptxfilelocation = "/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/";
+            rawImg = new ImagePlus(filename);
+//            new ImageJ();
+//            rawImg.show();
+            cuda.stack = rawImg;
+            try{cuda.dct_encoding_run();}
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            System.out.println("Encoding time is " + (System.currentTimeMillis() - start_time) + " ms");
+            dctImg = cuda.entropyimg;
+            progressive_run(filename, workspace);
+            System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
         }
-        System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
+        analysiswithsift as = new analysiswithsift();
+        as.generate_rainbow_plot(workspace,24);
+    }
+    public static void main(String[] args) {
+        ////filepath is the location of the image file along with meta.xml
+        String filepath = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample2/merged/c00/";
+        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample2/merged/workspace/";
+        evaluation_step(24,filepath);
+        for (int i=0;i<angle_updated.length;i++){
+            System.out.println(angle_updated[i]);
+        }
+//        String filepath = args[0];
+
+//        try{processingserver ps = new processingserver(53705);}
+//        catch (IOException i){
+//            i.printStackTrace();
+//        }
+
+
         }
 
 }
