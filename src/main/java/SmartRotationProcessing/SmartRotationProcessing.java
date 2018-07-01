@@ -120,7 +120,7 @@ public class SmartRotationProcessing {
             for (int j=0;j<old_data.getWidth();j++){
                 if (new_data.getPixelValue(j,i)<old_data.getPixelValue(j,i)){
                     old_data.setf(j,i,new_data.getPixelValue(j,i));
-                    angle_updated[idx+1]++;
+//                    angle_updated[idx+1]++;
                 }
             }
         }
@@ -273,19 +273,24 @@ public class SmartRotationProcessing {
     }
     public static void main(String[] args) {
         ////filepath is the location of the image file along with meta.xml
-        String filepath = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample2/merged/c00/";
-        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample2/merged/workspace/";
-        evaluation_step(24,filepath);
-        for (int i=0;i<angle_updated.length;i++){
-            System.out.println(angle_updated[i]);
-        }
+//        String filepath = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/merged/c00/";
+//        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/";
+//        evaluation_step(24,filepath);
+//        for (int i=0;i<angle_updated.length;i++){
+//            System.out.println(angle_updated[i]);
+//        }
 //        String filepath = args[0];
 
 //        try{processingserver ps = new processingserver(53705);}
 //        catch (IOException i){
 //            i.printStackTrace();
 //        }
-
+        long start_time = System.currentTimeMillis();
+        pythonevaluation pt = new pythonevaluation();
+        pt.pythonlocation = "/home/henryhe/anaconda3/bin/python";
+        pt.scriptlocation = "/mnt/fileserver/Henry-SPIM/smart_rotation/python/evaluationstep.py";
+        pt.pycalltest("/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/angularcount/",24,10);
+        System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
 
         }
 
