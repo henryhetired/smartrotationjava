@@ -273,25 +273,25 @@ public class SmartRotationProcessing {
     }
     public static void main(String[] args) {
         ////filepath is the location of the image file along with meta.xml
-//        String filepath = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/merged/c00/";
-//        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/";
-//        evaluation_step(24,filepath);
+        String filepath = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/downsampled4x/c00/";
+        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/downsampled4x/workspace/";
+        evaluation_step(24,filepath);
 //        for (int i=0;i<angle_updated.length;i++){
 //            System.out.println(angle_updated[i]);
 //        }
 //        String filepath = args[0];
-
+//
 //        try{processingserver ps = new processingserver(53705);}
 //        catch (IOException i){
 //            i.printStackTrace();
 //        }
-        long start_time = System.currentTimeMillis();
-        pythonevaluation pt = new pythonevaluation();
-        pt.pythonlocation = "/home/henryhe/anaconda3/bin/python";
-        pt.scriptlocation = "/mnt/fileserver/Henry-SPIM/smart_rotation/python/evaluationstep.py";
-        pt.pycalltest("/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/angularcount/",24,10);
-        System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
-
+//        long start_time = System.currentTimeMillis();
+//        pythonevaluation pt = new pythonevaluation();
+//        pt.pythonlocation = "/home/henryhe/anaconda3/bin/python";
+//        pt.scriptlocation = "/mnt/fileserver/Henry-SPIM/smart_rotation/python/evaluationstep.py";
+//        pt.pycalltest("/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/angularcount/",24,10);
+//        System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
+//
         }
 
 }
