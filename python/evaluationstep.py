@@ -73,15 +73,9 @@ def evaluate_angles(filepath, num_angles_in, angular_resolution_in):
 #    print(c.flatten())
 #    print(k.flatten())
     return
-def get_mip(arr1,arr2):
-    #get the mip of two arrays
-    result = np.zeros(len(arr1))
-    for i in range(len(arr1)):
-        result[i] = arr1[i] if (arr1[i]>=arr2[i]) else arr2[i]
-    return result;
         
-def find_next():
-    #given a mip of a couple of views, what's the next best view
+def find_next_global():
+    #given a mip of a couple of views, what's the next best view based on the overall number of foreground blocks
     global num_angles
     global distribution
     global coverage
@@ -91,16 +85,55 @@ def find_next():
     coverage_sum = np.sum(coverage,0)
     for i in range(len(angles_to_try)):
         try_angle = angles_to_try.pop()
-        new_coverage = get_mip(coverage,distribution[:,try_angle])
+        new_coverage = np.maximum(coverage,distribution[:,try_angle])
         new_coverage_sum = np.sum(new_coverage)
         if (new_coverage_sum>coverage_sum):
             coverage_sum = new_coverage_sum
             current_winner = try_angle
-    coverage = get_mip(coverage,distribution[:,current_winner])
+    coverage = np.maximum(coverage,distribution[:,current_winner])
     angles_used.add(current_winner)
     return;
-        
-        
+
+
+def estimate_coverage_average(angle_array):
+    current_coverage = coverage
+    for i in range(len(angle_array)):
+        current_coverage = np.maximum(current_coverage,distribution[:,angle_array[i]])                
+    return(np.mean(current_coverage/np.max(distribution,1)))
+def estimate_coverage_global(angle_array):
+    current_coverage = coverage
+    for i in range(len(angle_array)):
+        current_coverage = np.maximum(current_coverage,distribution[:,angle_array[i]])                
+    return(np.sum(current_coverage))
+def get_optimal_coverage(num_angles):
+#    given the number of angles used, what combination gives the highest average percentage of maximum
+    global distribution
+    from itertools import combinations
+    comb = list(combinations(range(24),num_angles))
+    coverage_percentage = 0
+    coverage_sum = np.sum(coverage,0)
+    for i in range(len(comb)):
+        current_coverage = coverage
+        new_coverage_percentage = estimate_coverage_average(comb[i])
+        if (new_coverage_percentage>coverage_percentage):
+            winner = comb[i]
+            coverage_percentage = new_coverage_percentage
+    print(winner)
+def get_optimal_global(num_angles): 
+    from itertools import combinations
+    comb = list(combinations(range(24),num_angles))
+    global distribution
+    global coverage
+    coverage_sum = np.sum(coverage,0)
+    variation = np.zeros(len(comb))
+    for i in range(len(comb)):
+        new_coverage_sum = estimate_coverage_global(comb[i])
+        variation[i] = new_coverage_sum
+        if (new_coverage_sum>coverage_sum):
+            winner = comb[i]
+            coverage_sum = new_coverage_sum
+    print(np.var(variation/np.linalg.norm(variation)))
+    print(winner)
 def getrequirednumberofangles(percentage):
     # get the number of angles needed to get the percentage cover
     global angular_resolution
@@ -135,14 +168,14 @@ def getrequirednumberofangles(percentage):
 
     return angles
 
-
-def run():    
+def run_global(num_angles):   
+#    perform optimization based on overall number of foreground blocks
     global coverage
     global a
     global angles_used
     evaluate_angles(
             "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/angularcount/", 24, 10)    
-    first_angle = np.argmax(a,0)[0]
+    first_angle = 0
     angles_used.add(first_angle)
     coverage = distribution[:,first_angle]
     plt.hold(True)
@@ -156,11 +189,17 @@ def run():
     ax = plt.subplot(111)
     ax.legend(bbox_to_anchor=(1.2,1),labelspacing = 0.01,fontsize = 5,frameon=False)
     plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
-    for i in range(1,24):
-        find_next()
+    for i in range(1,num_angles-1):
+        find_next_global()
         plt.plot(range(0,360,10),coverage,label="View %02d"%i)
         name = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/figures/"+"coverage_%02d.pdf"%i
         ax.legend(bbox_to_anchor=(1.2,1),labelspacing = 0.01,fontsize = 5,frameon=False)
         plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
         
-run()
+#run_global(4)
+#print(angles_used)
+evaluate_angles(
+            "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/angularcount/", 24, 10)
+num_angles = 5
+get_optimal_coverage(num_angles)
+get_optimal_global(num_angles)

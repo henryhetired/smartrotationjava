@@ -59,7 +59,6 @@ public class SmartRotationProcessing {
     static void get_angular_result(ImagePlus img) {
         //the function that calculates the angular foreground count
         angle_count = new int[360 / angle_reso];
-        angle_avg = new float[360 / angle_reso];
         FloatProcessor ip = (FloatProcessor) img.getProcessor();
         int curr_angle = 0;
         for (int i = 0; i < img.getHeight(); i++) {
@@ -79,32 +78,23 @@ public class SmartRotationProcessing {
                         }
                     }
                     angle_count[curr_angle / angle_reso % (360 / angle_reso)]++;
-                    angle_avg[curr_angle / angle_reso % (360 / angle_reso)] += ip.getPixelValue(j, i);
                 }
             }
-        }
-        for (int i = 0; i < angle_count.length; i++) {
-            angle_avg[i] = angle_avg[i] / angle_count[i];
         }
     }
 
-    static void save_angular_result(String filenamecount, String filenameavg) {
+    static void save_angular_result(String filenamecount) {
         try {
             FileWriter writer = new FileWriter(workspace + filenamecount);
-            FileWriter writer2 = new FileWriter(workspace + filenameavg);
             for (int i = 0; i < angle_count.length; i++) {
                 writer.append(Integer.toString(angle_count[i]));
-                writer2.append(Float.toString(angle_avg[i]));
                 if (i < angle_count.length - 1) {
                     writer.append(',');
-                    writer2.append(',');
                 } else {
                     writer.append('\n');
-                    writer2.append('\n');
                 }
             }
             writer.close();
-            writer2.close();
         } catch (IOException io) {
             io.printStackTrace();
         }
@@ -129,7 +119,7 @@ public class SmartRotationProcessing {
         IJ.saveAs(updated_mask,"tif",workspace+"maskdct.tif");
         IJ.saveAs(updated_mask,"tif",workspace+"maskdct"+String.format("%02d",idx)+".tif");
         get_angular_result(updated_mask);
-        save_angular_result(String.format("angularcountcumulative%04d.txt",idx),String.format("angularavgcumulative%04d.txt",idx));
+        save_angular_result(String.format("angularcountcumulative%04d.txt",idx));
 
     }
 
@@ -211,7 +201,7 @@ public class SmartRotationProcessing {
 
             ImagePlus img = new ImagePlus(workspace+"maskdct00.tif");
             get_angular_result(img);
-            save_angular_result("angularcount0000.txt","angularaverage0000.txt");
+            save_angular_result("angularcount0000.txt");
             return;
         }
         ImagePlus old_mask = new ImagePlus(workspace+"maskdct.tif");
@@ -231,7 +221,7 @@ public class SmartRotationProcessing {
         IJ.saveAs(new_raw,"tif",workspace+"maskraw.tif");
         IJ.saveAs(new_raw,"tif",workspace+latestraw);
         get_angular_result(new_dct_transformed);
-        save_angular_result(String.format("angularcount%04d.txt",idx),String.format("angularaverage%04d.txt",idx));
+        save_angular_result(String.format("angularcount%04d.txt",idx));
         IJ.saveAs(new_dct_transformed,"tif",workspace+latestmask);
         update_mask(old_mask,new_dct_transformed);
 //        new ImageJ();
