@@ -30,7 +30,7 @@ countdata = np.zeros((24,36))
 
 avgdata = np.zeros((24,36))
 
-filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace"
+filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled2x/workspace"
 for i in range(0,24):
     countname = filepath+"/angularcount/angularcount"+str(i).zfill(4)+".txt"
     with open(countname,"r") as countstream:
@@ -39,7 +39,7 @@ for i in range(0,24):
             for j in range(0,len(currentline)):
                 countdata[i,j] = currentline[j]
 #savepath = "Z:\\Henry-SPIM\\11132017\\e2\\t0000\\analysis\\analysis5 angular_plot\\figures\\plot 3_1\\"
-savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/figures/"
+savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled2x/workspace/figures/"
 savename = "information_content_fitted"  
 
 a = np.zeros((36,1))
@@ -48,7 +48,7 @@ k = np.zeros((36,1))
 patches = []
 for i in range(0,36):
     print(i)
-    plt.cla();
+#    plt.cla();
     patches.append(mpatches.Patch(color=cmap(i),label='',alpha = 0.5))
     name = savepath+savename+"%04d"%i+".pdf"
     r = countdata[:,i]
@@ -71,13 +71,13 @@ for i in range(0,36):
 #    plt.legend(fontsize=7,loc = 1)
     plt.xlim((0,360))
     plt.ylim((0,14000))
-    plt.legend(handles = patches,bbox_to_anchor=(1.1,1),labelspacing = 0.01,fontsize = 5,frameon=False)
-    s = r'$ %03d^{\circ}$'%(350-10*i)
-    plt.title("Imaging response curve of anglular slice "+s)
+#    plt.legend(handles = patches,bbox_to_anchor=(1.1,1),labelspacing = 0.01,fontsize = 5,frameon=False)
+#    s = r'$ %03d^{\circ}$'%(350-10*i)
+    plt.title("Imaging response curve of anglular slice ")
     plt.xlabel("Imaging angle")
     plt.ylabel("number of foreground blocks")
-    plt.legend(fontsize = 7)
-#    plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
+#    plt.legend(fontsize = 7)
+plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
 plt.cla();
 plt.plot(range(0,360,10),a)
 plt.title("Angular maximum information content vs angle")

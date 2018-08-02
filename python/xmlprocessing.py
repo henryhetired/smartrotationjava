@@ -8,8 +8,8 @@ Created on Sat Nov 11 14:58:14 2017
 import xml.etree.cElementTree as ET
 for i in range(0,24):
     angle = str(15*i)
-    filepath = "/mnt/fileserver//Henry-SPIM//smart_rotation//06142018//sample1//downsampled4x//c00//";
-    filebase = "t0000_conf%04d_view0000.xml" % i;
+    filepath = "/mnt/fileserver//Henry-SPIM//smart_rotation//06142018//sample1//downsamplez//downsampled8x//c00//";
+    filebase = "t0000_conf%04d_view0000_c00.xml" % i;
     root = ET.Element("root");
     stage_pos = ET.SubElement(root,"stage_pos");
     ET.SubElement(stage_pos,"x").text = "5"
@@ -19,7 +19,7 @@ for i in range(0,24):
     ET.SubElement(stage_pos,"angle").text = angle
     image_attribute = ET.SubElement(root,"image_attributes")
     ET.SubElement(image_attribute,"xypixelsize").text = "0.65"
-    ET.SubElement(image_attribute,"zpixelsize").text = "7.96"
+    ET.SubElement(image_attribute,"zpixelsize").text = "16"
     ET.SubElement(image_attribute,"width").text = "2048"
     ET.SubElement(image_attribute,"height").text = "2048"
     ET.SubElement(image_attribute,"nImages").text = "106"

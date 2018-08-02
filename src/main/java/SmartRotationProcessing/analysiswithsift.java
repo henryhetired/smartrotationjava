@@ -2,19 +2,20 @@ package SmartRotationProcessing;
 
 import ij.IJ;
 import ij.ImagePlus;
+import ij.ImageStack;
 import ij.process.ImageProcessor;
 
 import java.io.File;
 
 public class analysiswithsift {
-    public void generate_rainbow_plot(String workspace,int num_images){
+    public void generate_rainbow_plot(String workspace,int num_images,int gap){
         //Function to generate a rainbow plot of ALL angles taken showing the optimal angle for each subregion
         ImagePlus mask = IJ.createImage("mask","32-bit black",2000,2000,1);
         ImageProcessor maskprocessor = mask.getProcessor();
         String firstfilename = workspace + String.format("maskdct%02d.tif",0);
         ImagePlus first_image = IJ.openImage(firstfilename);
         ImageProcessor first_image_processor = first_image.getProcessor();
-        for (int i=0;i<num_images;i++){
+        for (int i=0;i<num_images;i+=gap){
             String filename = workspace + String.format("maskdct%02d.tif",i);
             ImagePlus current_img = IJ.openImage(filename);
             ImageProcessor current_imp = current_img.getProcessor();
@@ -29,5 +30,31 @@ public class analysiswithsift {
             first_image_processor = current_imp;
             IJ.saveAs(mask,"tiff",workspace+String.format("maskrainbow%02d.tif",i));
         }
+    }
+    public ImagePlus run_comparison(String workspace,String[] anglesname,int raw_threshold,float entropybackground,int numangles){
+        workspace = workspace+Integer.toString(numangles)+"angles/";
+        ImageStack stack = new ImageStack(2000,2000);
+        
+        for (String x:anglesname){
+            rawimageopenerwithsift ir = new rawimageopenerwithsift();
+            ImagePlus temp = new ImagePlus();
+            temp = ir.process_raw_image(new ImagePlus(workspace+x+"_raw.tif"),400);
+            ImagePlus temp2 = new ImagePlus();
+            temp2 = ir.process_dct_image(new ImagePlus(workspace+x+"_dct.tif"),temp);
+            IJ.saveAs(temp2,"tif",workspace+x+"_dct_masked.tif");
+            ImageProcessor ip = temp2.getProcessor();
+            stack.addSlice(ip);
+        }
+        ImagePlus imp = new ImagePlus();
+        imp.setStack(stack);
+        return(imp);
+
+    }
+    public void generate_comparison(String workspace,int raw_threshold,float entropybackground){
+        String[] twoanglesname ={"0,12","7,20","8,21"};
+        String[] threeanglesname = {"0,8,16","4,9,20","8,18,23"};
+        String[] fouranglesname = {"0,6,12,18","4,9,18,22"};
+
+
     }
 }

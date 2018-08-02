@@ -27,10 +27,10 @@ def uniform_density(numangles):
     r, th = np.meshgrid(rad, azm)
     a = np.ones(500)
     a = a/np.linalg.norm(a)
-    density = vonmises(th,a[0],0,np.mean(k_new))
+    density = vonmises(th,a[0],np.pi/4,np.mean(k_new))
     
     for i in range(numangles-1):
-        temp=vonmises(th,a[i],(i+1)*np.pi*2/numangles,np.mean(k_new))
+        temp=vonmises(th,a[i],(i+1)*np.pi*2/numangles+np.pi/4,np.mean(k_new))
         density = np.maximum(temp,density)
     ax2 = plt.subplot(projection="polar")
     ax2.set_theta_zero_location("W")
@@ -38,9 +38,9 @@ def uniform_density(numangles):
     ax2.set_yticklabels([])
     plt.pcolormesh(th, r, density,cmap='viridis',vmin=0)
     plt.plot(azm, r, color='r', ls='none') 
-    plt.colorbar(pad=0.1)
-    ax2.set_title("Theoretical relative imaging response",y=1.1)
-    plt.savefig(savepath+"uniform_response.pdf",format="pdf",dpi=300)
+#    plt.colorbar(pad=0.1)
+#    ax2.set_title("Theoretical relative imaging response",y=1)
+#    plt.savefig(savepath+"uniform_response.pdf",format="pdf",dpi=300)
     plt.show() 
     return((np.min(density),np.max(density)))
 def get_real_data():
@@ -119,9 +119,9 @@ def plot_real_data(num_angles,vmin,vmax):
     ax2.set_theta_direction(1)
     ax2.set_yticklabels([])
     plt.pcolormesh(th, r, density,cmap='viridis',vmin=0,vmax=vmax)
-    plt.colorbar(pad=0.1)
+#    plt.colorbar(pad=0.1)
     plt.plot(azm, r, color='r', ls='none') 
-    ax2.set_title("Measured relative imaging response",y=1.1)
+#    ax2.set_title("Measured relative imaging response",y=1.1)
     plt.savefig(savepath+"real_response.pdf",format="pdf",dpi=300)
     plt.show()  
     return(a_new)
@@ -143,12 +143,12 @@ def plot_fluorophore_density():
     ax2.set_theta_zero_location("W")
     ax2.set_theta_direction(1)
     ax2.set_yticklabels([])
-    plt.pcolormesh(th, r, density,cmap='viridis')
-    plt.colorbar(pad=0.1)
+    plt.pcolormesh(th, r, density,cmap='plasma')
+#    plt.colorbar(pad=0.1)
     plt.plot(azm, r, color='r', ls='none') 
-    ax2.set_title("Relative angular fluorophore distribution",y=1.1)
+#    ax2.set_title("Relative angular fluorophore distribution",y=1.1)
     savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/figures/"
-#    plt.savefig(savepath+"fluorophore_distribution.pdf",format="pdf",dpi=300)
+    plt.savefig(savepath+"fluorophore_distribution.pdf",format="pdf",dpi=300)
     plt.show()  
 def plot_optical_accessibility():
     global a_new
@@ -170,10 +170,10 @@ def plot_optical_accessibility():
     ax1.set_theta_zero_location("W")
     ax1.set_theta_direction(1)
     ax1.set_yticklabels([])
-    plt.pcolormesh(th, r, density,cmap='viridis')
-    plt.colorbar(pad=0.1)
+    plt.pcolormesh(th, r, density,cmap='inferno')
+#    plt.colorbar(pad=0.1)
     ax1.plot(azm, r, color='r', ls='none') 
-    ax1.set_title("Optical accessibility",y=1.1)
+#    ax1.set_title("Optical accessibility",y=1.1)
     savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/figures/"
     plt.savefig(savepath+"optical_accessiblity.pdf",format="pdf",dpi=300)
     
@@ -182,5 +182,6 @@ get_real_data()
 numangles=4
 displaymin,displaymax=uniform_density(numangles)
 #random_density(numangles,displaymin,displaymax)
-
+#plot_fluorophore_density()
+#plot_optical_accessibility()
 plot_real_data(numangles,displaymin,displaymax)

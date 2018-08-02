@@ -99,9 +99,10 @@ public class rawimageopenerwithsift {
     public ImagePlus process_raw_image(ImagePlus rawimage,int background){
         //remove outlier for the raw image
         ImageProcessor ip = rawimage.getProcessor().duplicate();
-        RankFilters rf = new RankFilters();
-        //remove outliers
-        rf.rank(ip, 50, RankFilters.MEDIAN, RankFilters.BRIGHT_OUTLIERS, 50);
+//        RankFilters rf = new RankFilters();
+//        //remove outliers
+//        rf.rank(ip, 150, RankFilters.MEDIAN, RankFilters.BRIGHT_OUTLIERS, 50);
+
         ip.threshold(background);
         ip.max(1);
         ImagePlus imgmask = new ImagePlus();
@@ -109,7 +110,7 @@ public class rawimageopenerwithsift {
 
         return(imgmask);
     }
-    public ImagePlus process_dct_image(ImagePlus dctimage,ImagePlus imgmask,float entropy_background){
+    public ImagePlus process_dct_image(ImagePlus dctimage,ImagePlus imgmask){
         ImageCalculator ic = new ImageCalculator();
         return (ic.run("multiply create",dctimage,imgmask));
     }
@@ -127,7 +128,7 @@ public class rawimageopenerwithsift {
             rawImage.close();
             rawImage = new ImagePlus();
             rawImage.setProcessor(expandedoutput);
-            imageMask = process_raw_image(rawImage, meta.background);
+            imageMask = process_raw_image(rawImage, 150);
             IJ.saveAs(rawImage, "tif", workspace + filenamebase + ".tif");
         }
         else{
@@ -152,7 +153,7 @@ public class rawimageopenerwithsift {
             dctImage.close();
             dctImage = new ImagePlus();
             dctImage.setProcessor(expandedoutput);
-            IJ.saveAs(process_dct_image(dctImage, imageMask, meta.entropybackground), "tif", workspace + filenamebase + "_dct.tif");
+            IJ.saveAs(process_dct_image(dctImage, imageMask), "tif", workspace + filenamebase + "_dct.tif");
         }
         else{
             System.out.println("No file read");

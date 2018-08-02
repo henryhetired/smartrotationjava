@@ -20,11 +20,13 @@ public class image_registration {
     public int imgheight = 2000;
     public int imgwidth = 2000;
     public boolean use_SIFT = false;
+    public float downsamplingfactor = 1.6f;
     public ImagePlus run(ImagePlus oldimg, ImagePlus newimg){
         if (use_SIFT) {
             IJ.run(oldimg, "Enhance Contrast", "saturated = 0.35");
             IJ.run(newimg, "Enhance Contrast", "saturated = 0.35");
             SIFT_align siftaligner = new SIFT_align();
+            siftaligner.downsamplefactor=downsamplingfactor;
             ImageProcessor ip = siftaligner.run(oldimg, newimg);
             map = siftaligner.mapping;
             TranslationModel2D model = (TranslationModel2D) siftaligner.currentModel;

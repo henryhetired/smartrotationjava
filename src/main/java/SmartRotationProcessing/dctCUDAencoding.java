@@ -57,7 +57,6 @@ public class dctCUDAencoding {
         JCuda.setExceptionsEnabled(true);
         if (initialized){
             CUmodule moduledct = new CUmodule();
-            //String ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.cu");
             String ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.ptx");
             //System.out.println(ptxfile);
             int result;
@@ -115,7 +114,6 @@ public class dctCUDAencoding {
             }
             cuCtxSynchronize();
             System.out.println("dct success");
-
 
 //            ImageStack outputdctstack = new ImageStack(stack.getWidth(),stack.getHeight(),stack.getStackSize());
 //            for (int i=0;i<stack.getStackSize();i++){

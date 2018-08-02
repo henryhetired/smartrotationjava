@@ -54,22 +54,16 @@ countdata = np.zeros((24,36))
 
 avgdata = np.zeros((24,36))
 
-filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsampled4x/workspace"
+filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled8x/workspace"
 for i in range(0,24):
     countname = filepath+"/angularcount/angularcount"+str(i).zfill(4)+".txt"
-    avgname = filepath+"/angularaverage/angularaverage"+str(i).zfill(4)+".txt"
     with open(countname,"r") as countstream:
         for line in countstream:
             currentline = line.split(",")
             for j in range(0,len(currentline)):
                 countdata[i,j] = currentline[j]
-    with open(avgname,"r") as countstream:
-        for line in countstream:
-            currentline = line.split(",")
-            for j in range(0,len(currentline)):
-                avgdata[i,j] = currentline[j]
 #savepath = "Z:\\Henry-SPIM\\11132017\\e2\\t0000\\analysis\\analysis5 angular_plot\\figures\\plot 3_1\\"
-savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsampled4x/workspace/figures/"
+savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled8x/workspace/figures/"
 savename = "information_content_full"     
 name = savepath+savename+".pdf"                   
 def get_cmap(n, name='brg'):

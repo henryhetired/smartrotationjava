@@ -65,6 +65,7 @@ public class SIFT_align {
     final private List<Feature> fs2 = new ArrayList<Feature>();
     public Mapping mapping;
     public AbstractAffineModel2D<?> currentModel;
+    public float downsamplefactor = 1.6f;
     static private class Param {
         final public FloatArray2DSIFT.Param sift = new FloatArray2DSIFT.Param();
 
@@ -106,9 +107,10 @@ public class SIFT_align {
 
         final FloatArray2DSIFT sift = new FloatArray2DSIFT(p.sift);
         final SIFT ijSIFT = new SIFT(sift);
-
+        
         long start_time = System.currentTimeMillis();
         System.out.println("Processing SIFT ...");
+        p.sift.initialSigma = downsamplefactor;
         ijSIFT.extractFeatures(ip1, fs1);
 
 
