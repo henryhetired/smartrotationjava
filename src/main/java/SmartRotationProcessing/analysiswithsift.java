@@ -31,14 +31,14 @@ public class analysiswithsift {
             IJ.saveAs(mask,"tiff",workspace+String.format("maskrainbow%02d.tif",i));
         }
     }
-    public ImagePlus run_comparison(String workspace,String[] anglesname,int raw_threshold,float entropybackground,int numangles){
-        workspace = workspace+Integer.toString(numangles)+"angles/";
+    public ImagePlus run_comparison(String workspace,String[] anglesname){
+
         ImageStack stack = new ImageStack(2000,2000);
         
         for (String x:anglesname){
             rawimageopenerwithsift ir = new rawimageopenerwithsift();
             ImagePlus temp = new ImagePlus();
-            temp = ir.process_raw_image(new ImagePlus(workspace+x+"_raw.tif"),400);
+            temp = ir.process_raw_image(new ImagePlus(workspace+x+"_raw.tif"),150);
             ImagePlus temp2 = new ImagePlus();
             temp2 = ir.process_dct_image(new ImagePlus(workspace+x+"_dct.tif"),temp);
             IJ.saveAs(temp2,"tif",workspace+x+"_dct_masked.tif");
@@ -47,13 +47,21 @@ public class analysiswithsift {
         }
         ImagePlus imp = new ImagePlus();
         imp.setStack(stack);
+        IJ.saveAs(imp,"tiff",workspace+"dct_resized.tif");
         return(imp);
 
     }
-    public void generate_comparison(String workspace,int raw_threshold,float entropybackground){
+    public void generate_comparison(String workspace){
         String[] twoanglesname ={"0,12","7,20","8,21"};
         String[] threeanglesname = {"0,8,16","4,9,20","8,18,23"};
         String[] fouranglesname = {"0,6,12,18","4,9,18,22"};
+        String workspacetemp = workspace+Integer.toString(2)+"angles/";
+        run_comparison(workspacetemp,twoanglesname);
+        workspacetemp = workspace+Integer.toString(3)+"angles/";
+        run_comparison(workspacetemp,threeanglesname);
+        workspacetemp = workspace+Integer.toString(4)+"angles/";
+        run_comparison(workspacetemp,fouranglesname);
+
 
 
     }

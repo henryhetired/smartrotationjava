@@ -12,6 +12,7 @@ import mpicbg.ij.InverseTransformMapping;
 import mpicbg.ij.Mapping;
 import mpicbg.ij.SIFT;
 import mpicbg.imagefeatures.Feature;
+import mpicbg.imagefeatures.FloatArray2D;
 import mpicbg.imagefeatures.FloatArray2DSIFT;
 import mpicbg.models.AbstractAffineModel2D;
 import mpicbg.models.AffineModel2D;
@@ -106,6 +107,7 @@ public class SIFT_align {
         ImageProcessor ip2 = imgnew.getProcessor();
 
         final FloatArray2DSIFT sift = new FloatArray2DSIFT(p.sift);
+
         final SIFT ijSIFT = new SIFT(sift);
         
         long start_time = System.currentTimeMillis();
@@ -162,7 +164,7 @@ public class SIFT_align {
             modelFound = currentModel.filterRansac(
                     candidates,
                     inliers,
-                    1000,
+                    2000,
                     p.maxEpsilon,
                     p.minInlierRatio);
         } catch (final Exception e) {

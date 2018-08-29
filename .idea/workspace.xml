@@ -3,11 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/comparison.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/evaluationstep.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/evaluationstep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/plot_3_polar.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/plot_3_polar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/plot_4_rainbow.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/plot_4_rainbow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/plot_5_cumurainbow.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/plot_5_cumurainbow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/plot_s1_vonmises.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/plot_s1_vonmises.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/simulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/simulation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/xmlprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/xmlprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java" afterDir="false" />
@@ -19,8 +20,8 @@
       <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SIFT_align.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SmartRotationProcessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SmartRotationProcessing.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/analysiswithsift.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/analysiswithsift.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/dctCUDAencoding.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/dctCUDAencoding.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/image_registration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/image_registration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/pythontest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/rawimageopenerwithsift.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/rawimageopenerwithsift.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="analysiswithsift.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="analysiswithsift.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+            <state relative-caret-position="72">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -51,8 +52,26 @@
       <file leaf-file-name="SmartRotationProcessing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="306" selection-start-line="306" selection-end-line="306" />
+            <state relative-caret-position="618">
+              <caret line="272" column="34" selection-start-line="272" selection-start-column="34" selection-end-line="272" selection-end-column="34" />
+              <folding>
+                <element signature="method#threshold_entropy#0;class#SmartRotationProcessing#0" />
+                <element signature="method#get_angular_result#0;class#SmartRotationProcessing#0" />
+                <element signature="method#save_angular_result#0;class#SmartRotationProcessing#0" />
+                <element signature="method#update_mask#0;class#SmartRotationProcessing#0" />
+                <element signature="method#count_foreground#0;class#SmartRotationProcessing#0" />
+                <element signature="method#get_last_mask#0;class#SmartRotationProcessing#0" />
+                <element signature="method#get_last_raw#0;class#SmartRotationProcessing#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="image_registration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -60,17 +79,23 @@
       <file leaf-file-name="rawimageopenerwithsift.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+            <state relative-caret-position="432">
+              <caret line="104" column="73" lean-forward="true" selection-start-line="104" selection-start-column="73" selection-end-line="104" selection-end-column="73" />
+              <folding>
+                <element signature="method#threshold#0;class#rawimageopenerwithsift#0" />
+                <element signature="method#sideprojection_raw#0;class#rawimageopenerwithsift#0" />
+                <element signature="method#sideprojection_entropy#0;class#rawimageopenerwithsift#0" />
+                <element signature="method#get_entropy_threshold#0;class#rawimageopenerwithsift#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dctCUDAencoding.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dctCUDAencoding.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1476">
-              <caret line="98" selection-start-line="98" selection-end-line="98" />
+            <state relative-caret-position="492">
+              <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -144,14 +169,14 @@
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/compareresult.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/processingserver.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/pythontest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" />
         <option value="$APPLICATION_CONFIG_DIR$/idea64.vmoptions" />
+        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" />
       </list>
     </option>
   </component>
@@ -163,9 +188,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2192" />
+    <option name="x" value="-363" />
     <option name="y" value="-4" />
-    <option name="width" value="1869" />
+    <option name="width" value="1920" />
     <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -285,7 +310,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
+    <frame x="51" y="-4" width="1869" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -307,43 +332,62 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" weight="0.34751773" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info id="Designer" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info active="true" anchor="right" id="Coverage" order="8" side_tool="true" visible="true" weight="0.3296875" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32939324" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" weight="0.34751773" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.1213554" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49865228" weight="0.35955057" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1625" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info active="true" anchor="right" id="Coverage" order="8" side_tool="true" visible="true" weight="0.3296875" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32939324" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.1213554" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" visible="true" weight="0.34751773" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49865228" weight="0.35955057" />
-      <window_info active="true" anchor="right" id="Coverage" order="8" side_tool="true" visible="true" weight="0.3296875" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1625" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info id="Favorites" order="5" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -355,7 +399,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="21" />
+      <option name="time" value="22" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -417,13 +461,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/configwriter.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/imagefeatures/FloatArray2DSIFT.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/models/InverseCoordinateTransform.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -520,13 +557,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="45" column="57" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.vmoptions" />
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/processingserver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -537,42 +568,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.vmoptions" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/mpicbg/mpicbg/1.2.0/mpicbg-1.2.0.jar!/mpicbg/imagefeatures/FloatArray2DSIFT.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1476">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
+        <state relative-caret-position="8028">
+          <caret line="466" column="24" selection-start-line="466" selection-start-column="24" selection-end-line="466" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="91" column="33" selection-start-line="91" selection-start-column="33" selection-end-line="91" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="104" column="73" lean-forward="true" selection-start-line="104" selection-start-column="73" selection-end-line="104" selection-end-column="73" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#threshold#0;class#rawimageopenerwithsift#0" />
+            <element signature="method#sideprojection_raw#0;class#rawimageopenerwithsift#0" />
+            <element signature="method#sideprojection_entropy#0;class#rawimageopenerwithsift#0" />
+            <element signature="method#get_entropy_threshold#0;class#rawimageopenerwithsift#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="32" column="44" lean-forward="true" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+        <state relative-caret-position="60">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="306" selection-start-line="306" selection-end-line="306" />
+        <state relative-caret-position="618">
+          <caret line="272" column="34" selection-start-line="272" selection-start-column="34" selection-end-line="272" selection-end-column="34" />
+          <folding>
+            <element signature="method#threshold_entropy#0;class#SmartRotationProcessing#0" />
+            <element signature="method#get_angular_result#0;class#SmartRotationProcessing#0" />
+            <element signature="method#save_angular_result#0;class#SmartRotationProcessing#0" />
+            <element signature="method#update_mask#0;class#SmartRotationProcessing#0" />
+            <element signature="method#count_foreground#0;class#SmartRotationProcessing#0" />
+            <element signature="method#get_last_mask#0;class#SmartRotationProcessing#0" />
+            <element signature="method#get_last_raw#0;class#SmartRotationProcessing#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+        <state relative-caret-position="492">
+          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

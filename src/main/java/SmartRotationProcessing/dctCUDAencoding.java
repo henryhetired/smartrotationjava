@@ -53,6 +53,9 @@ public class dctCUDAencoding {
             }
         }
     }
+    public void dct_encoding_run_asyn() throws IOException{
+
+    }
     public void dct_encoding_run() throws IOException{
         JCuda.setExceptionsEnabled(true);
         if (initialized){

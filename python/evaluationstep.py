@@ -174,7 +174,7 @@ def run_global(num_angles):
     global a
     global angles_used
     evaluate_angles(
-            "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled8x/workspace/angularcount/", 24, 10)    
+            "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_adjusted/angularcount/", 24, 10)    
     first_angle = 0
     angles_used.add(first_angle)
     coverage = distribution[:,first_angle]
@@ -182,26 +182,26 @@ def run_global(num_angles):
     plt.xlabel("Angle within sample")
     plt.ylabel("Number of foreground blocks")
     plt.xlim((0,360))
-    plt.ylim((0,13000))
+    plt.ylim((0,8000))
     plt.plot(range(0,360,10),np.max(distribution,1),'--', label = "Maximum")
     plt.plot(range(0,360,10),coverage,label="View %02d"%0)
-    name = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled8x/workspace/figures/"+"coverage_%02d.pdf"%0
+    name = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_adjusted/figures/"+"coverage_%02d.pdf"%0
     ax = plt.subplot(111)
     ax.legend(bbox_to_anchor=(1.2,1),labelspacing = 0.01,fontsize = 5,frameon=False)
     plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
     for i in range(1,num_angles-1):
         find_next_global()
         plt.plot(range(0,360,10),coverage,label="View %02d"%i)
-        name = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled8x/workspace/figures/"+"coverage_%02d.pdf"%i
+        name = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_adjusted/figures/"+"coverage_%02d.pdf"%i
         ax.legend(bbox_to_anchor=(1.2,1),labelspacing = 0.01,fontsize = 5,frameon=False)
         plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
         
 #run_global(4)
 #print(angles_used)
-pathtotext = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled8x/workspace/angularcount/"
+pathtotext = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_adjusted/angularcount/"
 evaluate_angles(
             pathtotext, 24, 10)
-num_angles = 3
+num_angles = 2
 get_optimal_coverage(num_angles)
 get_optimal_global(num_angles)
 run_global(num_angles)

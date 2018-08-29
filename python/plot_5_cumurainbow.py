@@ -62,7 +62,7 @@ countdata = np.zeros((24,36))
 
 avgdata = np.zeros((24,36))
 
-filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled8x/workspace"
+filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_adjusted"
 for i in range(0,24):
     countname = filepath+"/angularcountcumulative/angularcountcumulative"+str(i).zfill(4)+".txt"
     with open(countname,"r") as countstream:

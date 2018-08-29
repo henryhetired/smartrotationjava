@@ -25,6 +25,7 @@ public class rawimageopenerwithsift {
     public String filepath;
     public String workspace;
     public String filenamebase;
+    public float entropybackground;
     public boolean initialized=false;
     public void init(String filepathin,String workpathin,ImagePlus raw,ImagePlus dct){
         filepath = filepathin;
@@ -99,9 +100,9 @@ public class rawimageopenerwithsift {
     public ImagePlus process_raw_image(ImagePlus rawimage,int background){
         //remove outlier for the raw image
         ImageProcessor ip = rawimage.getProcessor().duplicate();
-//        RankFilters rf = new RankFilters();
-//        //remove outliers
-//        rf.rank(ip, 150, RankFilters.MEDIAN, RankFilters.BRIGHT_OUTLIERS, 50);
+        RankFilters rf = new RankFilters();
+        //remove outliers
+        rf.rank(ip, 40, RankFilters.MEDIAN, RankFilters.BRIGHT_OUTLIERS, 50);
 
         ip.threshold(background);
         ip.max(1);
@@ -137,7 +138,12 @@ public class rawimageopenerwithsift {
         }
 
     }
+    public float get_entropy_threshold(FloatProcessor ip,int nbins){
+        double max = ip.getMax();
+        double min = ip.getMin();
+        return((float)(min+(max-min)/256*nbins));
 
+    }
     public void project_dct_image() {
         if (initialized) {
             float[] pixelfromtop = sideprojection_entropy(dctImage);
@@ -153,6 +159,7 @@ public class rawimageopenerwithsift {
             dctImage.close();
             dctImage = new ImagePlus();
             dctImage.setProcessor(expandedoutput);
+//            IJ.saveAs(imageMask,"tif",workspace+"test.tif");
             IJ.saveAs(process_dct_image(dctImage, imageMask), "tif", workspace + filenamebase + "_dct.tif");
         }
         else{

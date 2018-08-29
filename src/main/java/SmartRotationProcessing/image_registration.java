@@ -8,10 +8,7 @@ import ij.process.ImageProcessor;
 import mpicbg.ij.InverseTransformMapping;
 import mpicbg.ij.Mapping;
 import mpicbg.ij.TransformMapping;
-import mpicbg.models.AbstractAffineModel2D;
-import mpicbg.models.CoordinateTransform;
-import mpicbg.models.InverseCoordinateTransform;
-import mpicbg.models.TranslationModel2D;
+import mpicbg.models.*;
 import fiji.selection.*;
 import java.awt.*;
 
@@ -37,7 +34,7 @@ public class image_registration {
         else{
             ImagePlus temp = newimg.duplicate();
             ImageProcessor ip = temp.getProcessor();
-            //threshold image, plance in the center
+            //threshold image, place in the center
             IJ.run(temp, "Enhance Contrast", "saturated = 0.35");
             IJ.setAutoThreshold(newimg,"Default dark");
             IJ.run(temp,"Convert to Mask","");
