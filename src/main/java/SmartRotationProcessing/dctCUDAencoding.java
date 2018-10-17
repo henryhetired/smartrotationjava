@@ -54,7 +54,7 @@ public class dctCUDAencoding {
         }
     }
     public void dct_encoding_run_asyn() throws IOException{
-
+//TODO: mutlistream dct encoding and entropy calculation
     }
     public void dct_encoding_run() throws IOException{
         JCuda.setExceptionsEnabled(true);

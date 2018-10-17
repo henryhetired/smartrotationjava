@@ -52,10 +52,12 @@ public class analysiswithsift {
 
     }
     public void generate_comparison(String workspace){
+        //Angle selection based on python analysis, used for making figure 5.
         String[] twoanglesname ={"0,12","7,20","8,21"};
         String[] threeanglesname = {"0,8,16","4,9,20","8,18,23"};
         String[] fouranglesname = {"0,6,12,18","4,9,18,22"};
         String workspacetemp = workspace+Integer.toString(2)+"angles/";
+
         run_comparison(workspacetemp,twoanglesname);
         workspacetemp = workspace+Integer.toString(3)+"angles/";
         run_comparison(workspacetemp,threeanglesname);

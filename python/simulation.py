@@ -13,7 +13,7 @@ from mpl_toolkits.mplot3d import Axes3D
 global a_new
 global c_new
 global k_new
-savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/figures/"
+savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final/figures/"
 def vonmises(x, amp, cen, kappa):
 #    "1-d vonmises"
     return (amp/(np.pi*2*np.i0(kappa))) * np.exp(kappa*np.cos(x-cen))
@@ -40,14 +40,14 @@ def uniform_density(numangles):
     plt.plot(azm, r, color='r', ls='none') 
 #    plt.colorbar(pad=0.1)
 #    ax2.set_title("Theoretical relative imaging response",y=1)
-#    plt.savefig(savepath+"uniform_response.pdf",format="pdf",dpi=300)
+    plt.savefig(savepath+"uniform_response.pdf",format="pdf",dpi=300,bbox_inches="tight")
     plt.show() 
     return((np.min(density),np.max(density)))
 def get_real_data():
     from scipy.interpolate import interp1d,CubicSpline
     from lmfit import Model,Parameters
     countdata = np.zeros((24,36))
-    filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace"
+    filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final"
     for i in range(0,24):
         countname = filepath+"/angularcount/angularcount"+str(i).zfill(4)+".txt"
         with open(countname,"r") as countstream:
@@ -95,6 +95,14 @@ def get_real_data():
     c_new = fc(azm)
     global k_new
     k_new = fk(azm)
+def save_colormap(savepath,cmapname):
+    gradient = np.linspace(0,1,256)
+    gradient = np.vstack((gradient,gradient))
+    ax = plt.subplot(111)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.imshow(gradient,aspect=5,cmap=plt.get_cmap(cmapname))
+    plt.savefig(savepath+cmapname+".pdf",format="pdf",dpi=100,bbox_inches="tight")
 def plot_real_data(num_angles,vmin,vmax):
     global a_new
     global c_new
@@ -122,7 +130,7 @@ def plot_real_data(num_angles,vmin,vmax):
 #    plt.colorbar(pad=0.1)
     plt.plot(azm, r, color='r', ls='none') 
 #    ax2.set_title("Measured relative imaging response",y=1.1)
-    plt.savefig(savepath+"real_response.pdf",format="pdf",dpi=300)
+    plt.savefig(savepath+"real_response.pdf",format="pdf",dpi=300,bbox_inches="tight")
     plt.show()  
     return(a_new)
 def plot_fluorophore_density():
@@ -147,8 +155,8 @@ def plot_fluorophore_density():
 #    plt.colorbar(pad=0.1)
     plt.plot(azm, r, color='r', ls='none') 
 #    ax2.set_title("Relative angular fluorophore distribution",y=1.1)
-    savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/figures/"
-    plt.savefig(savepath+"fluorophore_distribution.pdf",format="pdf",dpi=300)
+    savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final/figures/"
+    plt.savefig(savepath+"fluorophore_distribution.pdf",format="pdf",dpi=300,bbox_inches="tight")
     plt.show()  
 def plot_optical_accessibility():
     global a_new
@@ -163,6 +171,8 @@ def plot_optical_accessibility():
     
     density = np.zeros((len(th),len(th[0])))
     fwhm = (np.arccos(np.log(np.exp(np.abs(k))/2)/np.abs(k)))/np.pi*180*2
+#    fwhm = fwhm-np.mean(fwhm)
+    print(fwhm)
     for i in range(len(density)):
         density[i].fill(fwhm[i])
     r, th = np.meshgrid(rad, azm)
@@ -170,18 +180,20 @@ def plot_optical_accessibility():
     ax1.set_theta_zero_location("W")
     ax1.set_theta_direction(1)
     ax1.set_yticklabels([])
-    plt.pcolormesh(th, r, density,cmap='inferno')
+    plt.pcolormesh(th, r, density,cmap='gist_gray')
 #    plt.colorbar(pad=0.1)
     ax1.plot(azm, r, color='r', ls='none') 
 #    ax1.set_title("Optical accessibility",y=1.1)
-    savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/figures/"
-    plt.savefig(savepath+"optical_accessiblity.pdf",format="pdf",dpi=300)
+    savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final/figures/"
+    plt.savefig(savepath+"optical_accessiblity.pdf",format="pdf",dpi=300,bbox_inches="tight")
     
     plt.show() 
 get_real_data()
-numangles=4
+numangles=1
 displaymin,displaymax=uniform_density(numangles)
 #random_density(numangles,displaymin,displaymax)
 #plot_fluorophore_density()
 #plot_optical_accessibility()
-plot_real_data(numangles,displaymin,displaymax)
+#plot_real_data(numangles,displaymin,displaymax)
+
+#save_colormap(savepath,'plasma')

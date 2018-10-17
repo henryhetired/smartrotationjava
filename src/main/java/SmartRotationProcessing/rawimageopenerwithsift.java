@@ -25,7 +25,6 @@ public class rawimageopenerwithsift {
     public String filepath;
     public String workspace;
     public String filenamebase;
-    public float entropybackground;
     public boolean initialized=false;
     public void init(String filepathin,String workpathin,ImagePlus raw,ImagePlus dct){
         filepath = filepathin;
@@ -38,18 +37,7 @@ public class rawimageopenerwithsift {
         meta = new xmlMetadata();
         meta.read(filepath + filenamebase + ".xml");
     }
-    private void threshold(ImageProcessor input, int min) {
-        for (int i = 0; i < input.getHeight(); i++) {
-            for (int j = 0; j < input.getWidth(); j++) {
-                if (input.getPixel(j, i) > min) {
-                    input.set(j, i, 255);
-                } else {
-                    input.set(j, i, 0);
-                }
-            }
 
-        }
-    }
     private short[] sideprojection_raw(ImagePlus imp) {
 
         //////////////////////////////////////////
@@ -138,12 +126,6 @@ public class rawimageopenerwithsift {
         }
 
     }
-    public float get_entropy_threshold(FloatProcessor ip,int nbins){
-        double max = ip.getMax();
-        double min = ip.getMin();
-        return((float)(min+(max-min)/256*nbins));
-
-    }
     public void project_dct_image() {
         if (initialized) {
             float[] pixelfromtop = sideprojection_entropy(dctImage);
@@ -159,7 +141,6 @@ public class rawimageopenerwithsift {
             dctImage.close();
             dctImage = new ImagePlus();
             dctImage.setProcessor(expandedoutput);
-//            IJ.saveAs(imageMask,"tif",workspace+"test.tif");
             IJ.saveAs(process_dct_image(dctImage, imageMask), "tif", workspace + filenamebase + "_dct.tif");
         }
         else{

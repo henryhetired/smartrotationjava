@@ -45,10 +45,6 @@ public class image_registration {
             Roi boundingbox =temp.getRoi();
             Rectangle rec = boundingbox.getBounds();
             TranslationModel2D model = new TranslationModel2D();
-//            System.out.println(rec.x);
-//            System.out.println(rec.y);
-//            System.out.println(rec.width);
-//            System.out.println(rec.height);
             model.set((1000-rec.x-rec.width/2),(1000-rec.y-rec.height/2));
             map = new InverseTransformMapping<AbstractAffineModel2D<?>>(model);
             ImageProcessor alignedimg = ip.createProcessor(newimg.getWidth(), newimg.getHeight());
@@ -56,11 +52,7 @@ public class image_registration {
             map.mapInterpolated(ip,alignedimg);
             newimg.setProcessor(alignedimg);
             return newimg;
-
-
         }
-
-
     }
     public ImageProcessor applymapping(ImagePlus img){
         ImageProcessor oldip = img.getProcessor();

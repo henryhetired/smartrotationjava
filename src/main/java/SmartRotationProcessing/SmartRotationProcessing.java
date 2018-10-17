@@ -40,7 +40,6 @@ public class SmartRotationProcessing {
     private static boolean usesift = true;
     private static boolean useregistration = true;
     private static float downsamplefactor = 1;
-    private static int[] angle_updated;
 
 
     static void threshold_entropy(FloatProcessor ip, float max) {
@@ -200,11 +199,6 @@ public class SmartRotationProcessing {
                 IJ.saveAs(new_dct_transformed,"tif",workspace+"maskdct00.tif");
                 IJ.saveAs(og,"tif",workspace+"maskraw.tif");
                 IJ.saveAs(og,"tif",workspace+latestraw);
-//                Files.copy(Paths.get(workspace + latestmask), Paths.get(workspace + "maskdct.tif"));
-//                Files.copy(Paths.get(workspace + latestmask), Paths.get(workspace + "maskdct00.tif"));
-                //Files.copy(Paths.get(workspace + latestraw), Paths.get(workspace + "maskraw.tif"));
-                //Files.copy(Paths.get(workspace + latestraw), Paths.get(workspace + "maskrawref.tif"));
-
             ImagePlus img = new ImagePlus(workspace+"maskdct00.tif");
             get_angular_result(img);
             save_angular_result("angularcount0000.txt");
@@ -231,19 +225,14 @@ public class SmartRotationProcessing {
         save_angular_result(String.format("angularcount%04d.txt",idx));
         IJ.saveAs(new_dct_transformed,"tif",workspace+latestmask);
         update_mask(old_mask,new_dct_transformed);
-//        new ImageJ();
-//        dctImg.show();
-//        rawImg.show();
         return;
     }
     public static void evaluation_step(int num_angles,String filepath,int gap){
 
         //workspace is the location where all the mask/temp is located
-//        workspace = args[1];
         useregistration = true;
         usesift = true;
         System.out.println("Starting analysis ");
-        angle_updated = new int[num_angles-1];
         dctCUDAencoding cuda = new dctCUDAencoding();
         cuda.init_cuda();
         for (int i=0;i<num_angles;i+=gap) {
@@ -251,7 +240,7 @@ public class SmartRotationProcessing {
             long start_time = System.currentTimeMillis();
             String filename = filepath + String.format("t0000_conf%04d_view0000_c00.tif",i);
             cuda.blk_size = 16;
-            cuda.ptxfilelocation = "/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/";
+            cuda.ptxfilelocation = workspace;
             rawImg = new ImagePlus(filename);
             long tp1 = System.currentTimeMillis() - start_time;
             System.out.println("File reading time is " + tp1 + " ms");
@@ -261,8 +250,6 @@ public class SmartRotationProcessing {
             else{
                 downsamplefactor = 1f;
             }
-//            new ImageJ();
-//            rawImg.show();
             cuda.stack = rawImg;
             try{cuda.dct_encoding_run();}
             catch (IOException e){
@@ -271,6 +258,7 @@ public class SmartRotationProcessing {
             long tp2 = System.currentTimeMillis() - start_time;
             System.out.println("Encoding time is " + (tp2-tp1) + " ms");
             dctImg = cuda.entropyimg;
+            IJ.saveAs(dctImg,"tiff",workspace+String.format("t0000_conf%04d_view0000_c00_dct.tif",i));
             progressive_run(filename, workspace);
             System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
         }
@@ -279,13 +267,12 @@ public class SmartRotationProcessing {
     }
     public static void main(String[] args) {
 //        filepath is the location of the image file along with meta.xml
-        String filepath = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/merged/c00/";
-        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_test/";
+        String filepath = args[0];
+        workspace = args[1];
         idx=0;
-//        System.out.println(get_last_raw(workspace));
         int gap = 1;
         usesift=true;
-        entropybackground = 7.2f;
+        entropybackground = 6.5f;
         evaluation_step(24,filepath,gap);
 
 //        for (int i=0;i<angle_updated.length;i++){
@@ -304,11 +291,11 @@ public class SmartRotationProcessing {
 //        pt.pycalltest("/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/angularcount/",24,10);
 //        System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
 //
-//        workspace = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/c00/";
+//        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/merged/c00/";
 //        String workspaceorigin = workspace;
-//        entropybackground = 7.15f;
-////        analysiswithsift ir = new analysiswithsift();
-////        ir.generate_comparison(workspace);
+//        entropybackground = 7.11f;
+//        analysiswithsift ir = new analysiswithsift();
+//        ir.generate_comparison(workspace);
 //        for (int i=4;i<5;i++){
 //            workspace = workspaceorigin;
 //            String workspacetemp = workspace+Integer.toString(i)+"angles/";
