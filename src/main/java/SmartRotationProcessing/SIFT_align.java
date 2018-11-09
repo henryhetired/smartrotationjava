@@ -78,7 +78,7 @@ public class SIFT_align {
         /**
          * Maximal allowed alignment error in px
          */
-        public float maxEpsilon = 25.0f;
+        public float maxEpsilon = 10.0f;
 
         /**
          * Inlier/candidates ratio

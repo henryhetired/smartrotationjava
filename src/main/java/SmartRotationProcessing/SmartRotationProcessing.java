@@ -18,29 +18,20 @@ import ij.process.*;
 import ij.ImagePlus;
 
 public class SmartRotationProcessing {
-    private static String maskpath = "Z:\\Henry-SPIM\\11132017\\e2\\t0000\\";
-    private static String curr_filename;
     private static String workspace;
-    private static String maskfilename;
-    private static int mask_width;
-    private static int mask_height;
-    private static double xypixelsize = 0.65;
-    private static double zpixelsize = 2;
-    private static int blk_size = 16;
-    private static double angle;
     private static float entropybackground = 7.2f;
     private static int angle_reso = 10;
     private static int[] angle_count;
-    private static float[] angle_avg;
     public static ImagePlus rawImg;
     public static ImagePlus dctImg;
-    private static boolean is_first = true;
     private static int idx;
-    private static int out[][];
     private static boolean usesift = true;
     private static boolean useregistration = true;
     private static float downsamplefactor = 1;
-
+    private static dctCUDAencoding cuda;
+    private static boolean initialized = false;
+    private static String filepattern;
+    private static configwriter config;
 
     static void threshold_entropy(FloatProcessor ip, float max) {
         //function to threshold the entropy
@@ -227,24 +218,19 @@ public class SmartRotationProcessing {
         update_mask(old_mask,new_dct_transformed);
         return;
     }
-    public static void evaluation_step(int num_angles,String filepath,int gap){
+    public static void evaluation_step(int timepoint,int num_angles,String filepath,int gap){
 
         //workspace is the location where all the mask/temp is located
-        useregistration = true;
-        usesift = true;
-        System.out.println("Starting analysis ");
-        dctCUDAencoding cuda = new dctCUDAencoding();
-        cuda.init_cuda();
+        //Evaluate all the images at timepoint with num_angles number of angles
+        System.out.println("Starting analysis:");
         for (int i=0;i<num_angles;i+=gap) {
             idx = i;
             long start_time = System.currentTimeMillis();
-            String filename = filepath + String.format("t0000_conf%04d_view0000_c00.tif",i);
-            cuda.blk_size = 16;
-            cuda.ptxfilelocation = workspace;
-            rawImg = new ImagePlus(filename);
+            String filename = filepath + String.format(config.filepattern,timepoint,idx);
+            open_image(filename);
             long tp1 = System.currentTimeMillis() - start_time;
             System.out.println("File reading time is " + tp1 + " ms");
-            if (rawImg.getStackSize()>250){
+            if (rawImg.getStackSize()>500){
                 downsamplefactor = 1.6f;
             }
             else{
@@ -258,22 +244,62 @@ public class SmartRotationProcessing {
             long tp2 = System.currentTimeMillis() - start_time;
             System.out.println("Encoding time is " + (tp2-tp1) + " ms");
             dctImg = cuda.entropyimg;
-            IJ.saveAs(dctImg,"tiff",workspace+String.format("t0000_conf%04d_view0000_c00_dct.tif",i));
+//            IJ.saveAs(dctImg,"tiff",workspace+String.format("t0000_conf%04d_view0000_c00_dct.tif",i));
             progressive_run(filename, workspace);
             System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
         }
         analysiswithsift as = new analysiswithsift();
         as.generate_rainbow_plot(workspace,num_angles,gap);
     }
+    private static void open_image(String filename){
+        if (filename.endsWith("tif")){
+            rawImg = new ImagePlus(filename);
+        }
+        else if (filename.endsWith("raw")){
+            FileInfo fi = new FileInfo();
+            fi.fileType = FileInfo.GRAY16_UNSIGNED;
+            fi.fileName = filename;
+            fi.width = config.ImgWidth;
+            fi.height = config.ImgHeight;
+            fi.nImages = config.nImage;
+            fi.gapBetweenImages = config.gapbetweenimages;
+            rawImg = new FileOpener(fi).open(false);
+        }
+    }
+    public static void init(){
+        //initialize cuda device and prep
+        cuda = new dctCUDAencoding();
+        cuda.init_cuda();
+        //default registration parameters
+        useregistration = true;
+        usesift = true;
+        initialized = true;
+        String configname = workspace + "config.txt";
+        config = new configwriter();
+        try{config.read(configname);}
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        cuda.blk_size = config.blk_size;
+        cuda.ptxfilelocation = workspace;
+    }
     public static void main(String[] args) {
 //        filepath is the location of the image file along with meta.xml
         String filepath = args[0];
         workspace = args[1];
-        idx=0;
-        int gap = 1;
-        usesift=true;
-        entropybackground = 6.5f;
-        evaluation_step(24,filepath,gap);
+        init();
+        if (initialized){
+            if (args[2] == "evaluation"){
+                int gap = 1;
+                int num_angles = Integer.parseInt(args[3]);
+                int timepoint = Integer.parseInt(args[4]);
+                entropybackground = 6.5f;
+                evaluation_step(timepoint,num_angles,filepath,gap);
+            }
+        }
+
+
+
 
 //        for (int i=0;i<angle_updated.length;i++){
 //            System.out.println(angle_updated[i]);

@@ -17,6 +17,7 @@ public class configwriter {
     public int backgroundintensity = 700;
     public float entropybackground = 7.2f;
     public int ang_reso=10;
+    public String filepattern ="t%04d_conf%04d_view%04d.tif";
     private static Document doc;
     public void create (String filepath) throws IOException {
         //create a config file with the default parameters at filepath
@@ -44,6 +45,8 @@ public class configwriter {
         bw.write("bitdepth="+Integer.toString(bitdepth));
         bw.newLine();
         bw.write("gapbetweenimages="+Integer.toString(gapbetweenimages));
+        bw.newLine();
+        bw.write("file pattern string=" +filepattern);
         bw.newLine();
         bw.write(new String(new char[30]).replace("\0","-"));
         bw.newLine();
@@ -103,6 +106,11 @@ public class configwriter {
                     }
                     if (line.contains("angular resolution")){
                         ang_reso = Integer.parseInt(line.substring(line.indexOf("=")+1));
+                    }
+                    if (line.contains("file pattern string")){
+
+                        filepattern = line.substring(line.indexOf("=")+1);
+
                     }
                 }
             }
