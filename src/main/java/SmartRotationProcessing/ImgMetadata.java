@@ -4,20 +4,20 @@ import java.io.*;
 
 public class ImgMetadata {
     //Class to read and create ImgMetadata file
-    public static int ImgWidth = 2048;
-    public static int ImgHeight = 2048;
-    public static int nImage = 500;
-    public static double xypixelsizeum = 0.65d;
-    public static double zpixelsizeum = 2d;
-    public static double xpos = 0.0d;
-    public static double ypos = 0.0d;
-    public static double startzpos = 0.0d;
-    public static double endzpos = 0.0d;
-    public static double anglepos = 0;
-    public static int bitdepth = 16;
-    public static int gapbetweenimages = 4;
-    public static String filepattern = "t%04d_conf%04d_view0000.tif";
-    public static void read(String filename) throws IOException{
+    public int ImgWidth = 2048;
+    public int ImgHeight = 2048;
+    public int nImage = 500;
+    public double xypixelsizeum = 0.65d;
+    public double zpixelsizeum = 2d;
+    public double xpos = 0.0d;
+    public double ypos = 0.0d;
+    public double startzpos = 0.0d;
+    public double endzpos = 0.0d;
+    public double anglepos = 0;
+    public int bitdepth = 16;
+    public int gapbetweenimages = 4;
+    public String filepattern = "t%04d_conf%04d_view0000.tif";
+    public void read(String filename) throws IOException{
         //image meta file reader to get the metadata
         try(BufferedReader br = new BufferedReader(new FileReader(filename))){
             String line;

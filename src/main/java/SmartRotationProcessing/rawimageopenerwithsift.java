@@ -7,6 +7,7 @@ import ij.io.FileInfo;
 import ij.io.FileOpener;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.stream.IntStream;
 
 import ij.plugin.CanvasResizer;
@@ -18,15 +19,16 @@ import org.apache.commons.io.FilenameUtils;
 
 public class rawimageopenerwithsift {
     //version of rawimageopener that uses SIFT to register views
-    public xmlMetadata meta;
-    public static ImagePlus rawImage;
-    public static ImagePlus dctImage;
+    public ImgMetadata meta;
+    public ImagePlus rawImage;
+    public ImagePlus dctImage;
     public ImagePlus imageMask;
     public String filepath;
     public String workspace;
     public String filenamebase;
     public boolean initialized=false;
-    public void init(String filepathin,String workpathin,ImagePlus raw,ImagePlus dct){
+    public configwriter config;
+    public void init(String filepathin,String workpathin,ImagePlus raw,ImagePlus dct, configwriter configin){
         filepath = filepathin;
         workspace = workpathin;
         rawImage = raw;
@@ -34,8 +36,12 @@ public class rawimageopenerwithsift {
         initialized = true;
         filenamebase = FilenameUtils.getBaseName(filepathin);
         filepath = FilenameUtils.getFullPath(filepathin);
-        meta = new xmlMetadata();
-        meta.read(filepath + filenamebase + ".xml");
+        meta = new ImgMetadata();
+        try{meta.read(filepath + filenamebase + ".txt");}
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        config = configin;
     }
 
     private short[] sideprojection_raw(ImagePlus imp) {
@@ -110,7 +116,7 @@ public class rawimageopenerwithsift {
             ShortProcessor rawtopimage = new ShortProcessor(rawImage.getWidth(), rawImage.getNSlices());
             rawtopimage.setPixels(pixelfromtop);
             rawtopimage.setInterpolationMethod(ImageProcessor.BILINEAR);
-            ShortProcessor rawtopimageresized = (ShortProcessor) rawtopimage.resize((int) Math.floor(rawtopimage.getWidth() * meta.xypixelsize), (int) (rawtopimage.getHeight() * meta.zpixelsize));
+            ShortProcessor rawtopimageresized = (ShortProcessor) rawtopimage.resize((int) Math.floor(rawtopimage.getWidth() * meta.xypixelsizeum), (int) (rawtopimage.getHeight() * meta.zpixelsizeum));
             CanvasResizer cr = new CanvasResizer();
             ImageProcessor expandedoutput = cr.expandImage(rawtopimageresized, 2000, 2000, (2000 - rawtopimageresized.getWidth()) / 2, (2000 - rawtopimageresized.getHeight()) / 2);
             expandedoutput.rotate(-meta.anglepos);
@@ -132,10 +138,10 @@ public class rawimageopenerwithsift {
             FloatProcessor floattopimage = new FloatProcessor(dctImage.getWidth(), dctImage.getNSlices());
             floattopimage.setPixels(pixelfromtop);
             floattopimage.setInterpolationMethod(ImageProcessor.BILINEAR);
-            FloatProcessor floattopimageresized = (FloatProcessor) floattopimage.resize((int) Math.floor(floattopimage.getWidth() * meta.xypixelsize * meta.blk_size), (int) (floattopimage.getHeight() * meta.zpixelsize));
+            FloatProcessor floattopimageresized = (FloatProcessor) floattopimage.resize((int) Math.floor(floattopimage.getWidth() * meta.xypixelsizeum * config.blk_size), (int) (floattopimage.getHeight() * meta.zpixelsizeum));
             CanvasResizer cr = new CanvasResizer();
             ImageProcessor expandedoutput = cr.expandImage(floattopimageresized, 2000, 2000, (2000 - floattopimageresized.getWidth()) / 2, (2000 - floattopimageresized.getHeight()) / 2);
-            expandedoutput.setBackgroundValue(meta.entropybackground);
+            expandedoutput.setBackgroundValue(config.entropybackground);
             expandedoutput.setInterpolationMethod(0);
             expandedoutput.rotate(-meta.anglepos);
             dctImage.close();

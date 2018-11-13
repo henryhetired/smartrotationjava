@@ -16,6 +16,7 @@ import java.util.stream.IntStream;
 import ij.plugin.CanvasResizer;
 import ij.process.*;
 import ij.ImagePlus;
+import org.apache.commons.io.FilenameUtils;
 
 public class SmartRotationProcessing {
     private static String workspace;
@@ -25,6 +26,7 @@ public class SmartRotationProcessing {
     public static ImagePlus rawImg;
     public static ImagePlus dctImg;
     private static int idx;
+    private static int current_timepoint;
     private static boolean usesift = true;
     private static boolean useregistration = true;
     private static float downsamplefactor = 1;
@@ -32,7 +34,8 @@ public class SmartRotationProcessing {
     private static boolean initialized = false;
     private static String filepattern;
     private static configwriter config;
-
+    private static boolean evaluated;
+    private static int reference_tp;
     static void threshold_entropy(FloatProcessor ip, float max) {
         //function to threshold the entropy
         for (int i = 0; i < ip.getHeight(); i++) {
@@ -92,28 +95,6 @@ public class SmartRotationProcessing {
         }
     }
 
-    static void update_mask(ImagePlus old_mask, ImagePlus new_mask) {
-        //get a minimum intensity projection between old_mask and new_mask to get a updated mask and store it in mask.tif in workspace
-        FloatProcessor old_data = (FloatProcessor) old_mask.getProcessor();
-        threshold_entropy(old_data,entropybackground);
-        FloatProcessor new_data = (FloatProcessor) new_mask.getProcessor();
-        threshold_entropy(new_data,entropybackground);
-        for (int i=0;i<old_data.getHeight();i++){
-            for (int j=0;j<old_data.getWidth();j++){
-                if (new_data.getPixelValue(j,i)<old_data.getPixelValue(j,i)){
-                    old_data.setf(j,i,new_data.getPixelValue(j,i));
-//                    angle_updated[idx+1]++;
-                }
-            }
-        }
-        ImagePlus updated_mask = new ImagePlus();
-        updated_mask.setProcessor(old_data);
-        IJ.saveAs(updated_mask,"tif",workspace+"maskdct.tif");
-        IJ.saveAs(updated_mask,"tif",workspace+"maskdct"+String.format("%02d",idx)+".tif");
-        get_angular_result(updated_mask);
-        save_angular_result(String.format("angularcountcumulative%04d.txt",idx));
-
-    }
 
     static int count_foreground(ImagePlus img) {
         int count = 0;
@@ -164,20 +145,20 @@ public class SmartRotationProcessing {
         }
         return lastmodifiedmaskFile.getName();
     }
-    static void progressive_run(String filepath,String workspace){
+    static void evaluation_run(String filepath,String workspace){
+        //run steps for all the evaluation steps
+        cudaEncode();
         rawimageopenerwithsift rows = new rawimageopenerwithsift();
-        rows.init(filepath,workspace,rawImg,dctImg);
+        rows.init(filepath,workspace,rawImg,dctImg,config);
         rows.run();
-        File maskdct = new File(workspace+"maskdct.tif");
-        File maskraw = new File(workspace+"maskraw.tif");
-        String latestmask = get_last_mask(workspace);
-        String latestraw = get_last_raw(workspace);
+        String latestmask = get_last_mask(workspace); //latest reference of the DCT mask
+        String latestraw = get_last_raw(workspace);//latest reference MIP
         System.out.println("latestest image is "+ latestraw);
         System.out.println("latest mask is"+latestmask);
-        if (!maskdct.exists()&&!maskraw.exists()){
+        if (idx==0){
             System.out.println("This is the first stack");
-                ImagePlus og= new ImagePlus(workspace+latestraw);
-                ImagePlus new_dct_transformed = new ImagePlus(workspace+latestmask);
+                ImagePlus og= rows.rawImage;
+                ImagePlus new_dct_transformed = rows.dctImage;
             if (useregistration) {
                 image_registration ir = new image_registration();
                 ir.use_SIFT = false;
@@ -186,36 +167,32 @@ public class SmartRotationProcessing {
 
                 new_dct_transformed.setProcessor(ir.applymapping(new_dct_transformed));
             }
-                IJ.saveAs(new_dct_transformed,"tif",workspace+"maskdct.tif");
-                IJ.saveAs(new_dct_transformed,"tif",workspace+"maskdct00.tif");
-                IJ.saveAs(og,"tif",workspace+"maskraw.tif");
-                IJ.saveAs(og,"tif",workspace+latestraw);
-            ImagePlus img = new ImagePlus(workspace+"maskdct00.tif");
-            get_angular_result(img);
-            save_angular_result("angularcount0000.txt");
+            IJ.saveAs(og,"tif",workspace+latestraw);
+            get_angular_result(new_dct_transformed);
+            save_angular_result(String.format("angularcount%04d_%04d.txt",current_timepoint,idx));
+            IJ.saveAs(new_dct_transformed,"tif",workspace+latestmask);
             return;
         }
-        ImagePlus old_mask = new ImagePlus(workspace+"maskdct.tif");
-        ImagePlus new_mask = new ImagePlus(workspace+latestmask);
-        ImagePlus old_raw = new ImagePlus(workspace+"maskraw.tif");
-        ImagePlus new_raw = new ImagePlus(workspace+latestraw);
-        ImagePlus new_dct_transformed = new ImagePlus();
-        if (useregistration) {
-            image_registration ir = new image_registration();
-            ir.downsamplingfactor=downsamplefactor;
-            ir.use_SIFT = usesift;
-            new_raw = ir.run(old_raw, new_raw);
-            new_dct_transformed.setProcessor(ir.applymapping(new_mask));
-        }
         else{
-            new_dct_transformed.setProcessor(new_mask.getProcessor());
+            ImagePlus new_mask = rows.dctImage;
+            ImagePlus old_raw = new ImagePlus(workspace+String.format(config.filepattern,current_timepoint,idx-1));
+            ImagePlus new_raw = rows.rawImage;
+            ImagePlus new_dct_transformed = new ImagePlus();
+            if (useregistration) {
+                image_registration ir = new image_registration();
+                ir.downsamplingfactor=downsamplefactor;
+                ir.use_SIFT = usesift;
+                new_raw = ir.run(old_raw, new_raw);
+                new_dct_transformed.setProcessor(ir.applymapping(new_mask));
+            }
+            else{
+                new_dct_transformed.setProcessor(new_mask.getProcessor());
+            }
+            IJ.saveAs(new_raw,"tif",workspace+latestraw);
+            get_angular_result(new_dct_transformed);
+            save_angular_result(String.format("angularcount%04d_%04d.txt",current_timepoint,idx));
+            IJ.saveAs(new_dct_transformed,"tif",workspace+latestmask);
         }
-        IJ.saveAs(new_raw,"tif",workspace+"maskraw.tif");
-        IJ.saveAs(new_raw,"tif",workspace+latestraw);
-        get_angular_result(new_dct_transformed);
-        save_angular_result(String.format("angularcount%04d.txt",idx));
-        IJ.saveAs(new_dct_transformed,"tif",workspace+latestmask);
-        update_mask(old_mask,new_dct_transformed);
         return;
     }
     public static void evaluation_step(int timepoint,int num_angles,String filepath,int gap){
@@ -225,9 +202,55 @@ public class SmartRotationProcessing {
         System.out.println("Starting analysis:");
         for (int i=0;i<num_angles;i+=gap) {
             idx = i;
-            long start_time = System.currentTimeMillis();
             String filename = filepath + String.format(config.filepattern,timepoint,idx);
             open_image(filename); //open either tif or raw files
+//            IJ.saveAs(dctImg,"tiff",workspace+String.format("t0000_conf%04d_view0000_c00_dct.tif",i));
+            evaluation_run(filename, workspace);
+        }
+        analysiswithsift as = new analysiswithsift();
+        as.generate_rainbow_plot(workspace,num_angles,gap);
+        reference_tp = current_timepoint;
+    }
+    public static void update_step(int angle_idx,int timepoint,String filepath){
+        //function to create the evaluation of a specific view at a specific timepoint
+
+        if (evaluated) {
+            /*open and encode image*/
+            String filename = filepath + String.format(config.filepattern, timepoint, angle_idx);
+            open_image(filename);
+            cudaEncode();
+            rawimageopenerwithsift rows = new rawimageopenerwithsift();
+            rows.init(filepath, workspace, rawImg, dctImg, config);
+            rows.run();
+            /*grab the latest projection images just generated*/
+            ImagePlus new_mask = rows.dctImage;
+            ImagePlus old_raw = new ImagePlus(workspace+String.format(config.filepattern,reference_tp,idx));
+            ImagePlus new_raw = rows.rawImage;
+            ImagePlus new_dct_transformed = new ImagePlus();
+            if (useregistration) {
+                image_registration ir = new image_registration();
+                ir.downsamplingfactor=downsamplefactor;
+                ir.use_SIFT = usesift;
+                new_raw = ir.run(old_raw, new_raw);
+                new_dct_transformed.setProcessor(ir.applymapping(new_mask));
+            }
+            else{
+                new_dct_transformed.setProcessor(new_mask.getProcessor());
+            }
+            IJ.saveAs(new_raw,"tif",workspace+String.format(config.filepattern,timepoint,angle_idx));
+            get_angular_result(new_dct_transformed);
+            save_angular_result(String.format("angularcount%04d_%04d.txt",current_timepoint,idx));
+            IJ.saveAs(new_dct_transformed,"tif",workspace+FilenameUtils.getBaseName(filename)+"_dct.tif");
+            System.out.println("Evaluation completed");
+        }
+        else{
+            System.out.println("No evaluation step has been performed, terminating");
+            return;
+        }
+    }
+    private static void cudaEncode(){
+        if (initialized){
+            long start_time = System.currentTimeMillis();
             long tp1 = System.currentTimeMillis() - start_time;
             System.out.println("File reading time is " + tp1 + " ms");
             if (rawImg.getStackSize()>500){
@@ -244,25 +267,27 @@ public class SmartRotationProcessing {
             long tp2 = System.currentTimeMillis() - start_time;
             System.out.println("Encoding time is " + (tp2-tp1) + " ms");
             dctImg = cuda.entropyimg;
-//            IJ.saveAs(dctImg,"tiff",workspace+String.format("t0000_conf%04d_view0000_c00_dct.tif",i));
-            progressive_run(filename, workspace);
-            System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
+            evaluated = true;
         }
-        analysiswithsift as = new analysiswithsift();
-        as.generate_rainbow_plot(workspace,num_angles,gap);
     }
     private static void open_image(String filename){
         if (filename.endsWith("tif")){
             rawImg = new ImagePlus(filename);
         }
         else if (filename.endsWith("raw")){
+            String filenamebase = FilenameUtils.removeExtension(filename);
+            ImgMetadata meta = new ImgMetadata();
+            try{meta.read(filenamebase+"txt");}
+            catch (IOException e){
+                e.printStackTrace();
+            }
             FileInfo fi = new FileInfo();
             fi.fileType = FileInfo.GRAY16_UNSIGNED;
             fi.fileName = filename;
-            fi.width = config.ImgWidth;
-            fi.height = config.ImgHeight;
-            fi.nImages = config.nImage;
-            fi.gapBetweenImages = config.gapbetweenimages;
+            fi.width = meta.ImgWidth;
+            fi.height = meta.ImgHeight;
+            fi.nImages = meta.nImage;
+            fi.gapBetweenImages = meta.gapbetweenimages;
             rawImg = new FileOpener(fi).open(false);
         }
     }
@@ -283,6 +308,9 @@ public class SmartRotationProcessing {
         cuda.blk_size = config.blk_size;
         cuda.ptxfilelocation = workspace;
         angle_reso = config.ang_reso;
+        idx = 0;
+        current_timepoint = 0;
+        reference_tp = 0;
     }
     public static void main(String[] args) {
 //        filepath is the location of the image file along with meta.xml
@@ -295,7 +323,7 @@ public class SmartRotationProcessing {
 //                int num_angles = Integer.parseInt(args[3]);
 //                int timepoint = Integer.parseInt(args[4]);
 //                entropybackground = 6.5f;
-//                evaluation_step(timepoint,num_angles,filepath,gap);
+//                evaluation_step(num_angles,filepath,gap);
 //            }
 //        }
         configwriter cw = new configwriter();

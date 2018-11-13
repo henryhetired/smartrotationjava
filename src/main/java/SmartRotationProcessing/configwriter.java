@@ -31,21 +31,6 @@ public class configwriter {
         bw.write("***");
         bw.write("Image Parameters");
         bw.write("***");
-        bw.newLine();
-        bw.write("ImgWidth="+Integer.toString(ImgWidth));
-        bw.newLine();
-        bw.write("ImgHeight="+Integer.toString(ImgHeight));
-        bw.newLine();
-        bw.write("nImage="+Integer.toString(nImage));
-        bw.newLine();
-        bw.write("xypixelsize="+Double.toString(xypixelsize));
-        bw.newLine();
-        bw.write("zpixelsize="+Double.toString(zpixelsize));
-        bw.newLine();
-        bw.write("bitdepth="+Integer.toString(bitdepth));
-        bw.newLine();
-        bw.write("gapbetweenimages="+Integer.toString(gapbetweenimages));
-        bw.newLine();
         bw.write("file pattern string=" +filepattern);
         bw.newLine();
         bw.write(new String(new char[30]).replace("\0","-"));
@@ -71,30 +56,6 @@ public class configwriter {
             String line;
             while((line = br.readLine())!=null){
                 if (line.contains("=")){
-                    if (line.contains("ImgWidth")){
-                        ImgWidth = Integer.parseInt(line.substring(line.indexOf("=")+1));
-                    }
-                    if (line.contains("ImgHeight")){
-                        ImgHeight = Integer.parseInt(line.substring(line.indexOf("=")+1));
-                    }
-                    if (line.contains("nImage")){
-                        nImage = Integer.parseInt(line.substring(line.indexOf("=")+1));
-                    }
-                    if (line.contains("xypixelsize")){
-                        xypixelsize = Double.parseDouble(line.substring(line.indexOf("=")+1));
-                    }
-                    if (line.contains("zpixelsize")){
-                        zpixelsize = Double.parseDouble(line.substring(line.indexOf("=")+1));
-                    }
-                    if (line.contains("bitdepth")){
-                        bitdepth = Integer.parseInt(line.substring(line.indexOf("=")+1));
-                    }
-                    if (line.contains("nImage")){
-                        nImage = Integer.parseInt(line.substring(line.indexOf("=")+1));
-                    }
-                    if (line.contains("gapbetweenimages")){
-                        gapbetweenimages = Integer.parseInt(line.substring(line.indexOf("=")+1));
-                    }
                     if (line.contains("blk_size")){
                         blk_size = Integer.parseInt(line.substring(line.indexOf("=")+1));
                     }
@@ -110,7 +71,6 @@ public class configwriter {
                     if (line.contains("file pattern string")){
 
                         filepattern = line.substring(line.indexOf("=")+1);
-
                     }
                 }
             }
