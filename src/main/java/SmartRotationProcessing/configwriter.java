@@ -17,7 +17,7 @@ public class configwriter {
     public int backgroundintensity = 700;
     public float entropybackground = 7.2f;
     public int ang_reso=10;
-    public String filepattern ="t%04d_conf%04d_view%04d.tif";
+    public String filepattern ="t%04d_conf%04d.tif";
     private static Document doc;
     public void create (String filepath) throws IOException {
         //create a config file with the default parameters at filepath

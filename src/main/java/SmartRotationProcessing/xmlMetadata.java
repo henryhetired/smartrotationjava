@@ -69,19 +69,6 @@ public class xmlMetadata {
             zpixelsize = Double.parseDouble(iElement.getElementsByTagName("zpixelsize").item(0).getTextContent());
             gapbetweenimages = Integer.parseInt(iElement.getElementsByTagName("gapbetweenimages").item(0).getTextContent());
             background = Integer.parseInt(iElement.getElementsByTagName("background").item(0).getTextContent());
-            NodeList samplelist = doc.getElementsByTagName("sample_position");
-            Node nNode3 = samplelist.item(0);
-            Element sElement = (Element) nNode3;
-            samplestartx = Integer.parseInt(sElement.getElementsByTagName("startX").item(0).getTextContent());
-            sampleendx = Integer.parseInt(sElement.getElementsByTagName("endX").item(0).getTextContent());
-            samplestartz = Integer.parseInt(sElement.getElementsByTagName("startZ").item(0).getTextContent());
-            sampleendz = Integer.parseInt(sElement.getElementsByTagName("endZ").item(0).getTextContent());
-            NodeList analysislist = doc.getElementsByTagName("smart_rot_param");
-            Node nNode4 = analysislist.item(0);
-            Element aElement = (Element) nNode4;
-            blk_size = Integer.parseInt(aElement.getElementsByTagName("blk_size").item(0).getTextContent());
-            entropybackground = (float) Double.parseDouble(aElement.getElementsByTagName("entropybackground").item(0).getTextContent());
-            ang_reso = Integer.parseInt(aElement.getElementsByTagName("angular_resolution").item(0).getTextContent());
         } catch (Exception ex) {
             ex.printStackTrace();
         }

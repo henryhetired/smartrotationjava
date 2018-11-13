@@ -227,7 +227,7 @@ public class SmartRotationProcessing {
             idx = i;
             long start_time = System.currentTimeMillis();
             String filename = filepath + String.format(config.filepattern,timepoint,idx);
-            open_image(filename);
+            open_image(filename); //open either tif or raw files
             long tp1 = System.currentTimeMillis() - start_time;
             System.out.println("File reading time is " + tp1 + " ms");
             if (rawImg.getStackSize()>500){
@@ -282,22 +282,28 @@ public class SmartRotationProcessing {
         }
         cuda.blk_size = config.blk_size;
         cuda.ptxfilelocation = workspace;
+        angle_reso = config.ang_reso;
     }
     public static void main(String[] args) {
 //        filepath is the location of the image file along with meta.xml
-        String filepath = args[0];
-        workspace = args[1];
-        init();
-        if (initialized){
-            if (args[2] == "evaluation"){
-                int gap = 1;
-                int num_angles = Integer.parseInt(args[3]);
-                int timepoint = Integer.parseInt(args[4]);
-                entropybackground = 6.5f;
-                evaluation_step(timepoint,num_angles,filepath,gap);
-            }
+//        String filepath = args[0];
+//        workspace = args[1];
+//        init();
+//        if (initialized){
+//            if (args[2] == "evaluation"){
+//                int gap = 1;
+//                int num_angles = Integer.parseInt(args[3]);
+//                int timepoint = Integer.parseInt(args[4]);
+//                entropybackground = 6.5f;
+//                evaluation_step(timepoint,num_angles,filepath,gap);
+//            }
+//        }
+        configwriter cw = new configwriter();
+        try{cw.read("/mnt/fileserver/Henry-SPIM/");}
+        catch (IOException e){
+            e.printStackTrace();
         }
-
+        System.out.println(String.format(cw.filepattern,4,4));
 
 
 
