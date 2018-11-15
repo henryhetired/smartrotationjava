@@ -326,12 +326,15 @@ public class SmartRotationProcessing {
 //                evaluation_step(num_angles,filepath,gap);
 //            }
 //        }
-        configwriter cw = new configwriter();
-        try{cw.read("/mnt/fileserver/Henry-SPIM/");}
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        System.out.println(String.format(cw.filepattern,4,4));
+//        configwriter cw = new configwriter();
+//        try{cw.read("/mnt/fileserver/Henry-SPIM/");}
+//        catch (IOException e){
+//            e.printStackTrace();
+//        }
+//        System.out.println(String.format(cw.filepattern,4,4));
+        TCPserver runserver = new TCPserver();
+        runserver.init();
+        runserver.run();
 
 
 

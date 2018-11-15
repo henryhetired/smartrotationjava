@@ -56,9 +56,6 @@ public class ImgMetadata {
                     if (line.contains("bitdepth")){
                         bitdepth = Integer.parseInt(line.substring(line.indexOf("=")+1));
                     }
-                    if (line.contains("nImage")){
-                        nImage = Integer.parseInt(line.substring(line.indexOf("=")+1));
-                    }
                     if (line.contains("gapbetweenimages")){
                         gapbetweenimages = Integer.parseInt(line.substring(line.indexOf("=")+1));
                     }
