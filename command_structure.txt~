@@ -1,0 +1,6 @@
+----Command structure----
+
+1) Evaluate the fix spacing single timepoint data:	
+   evaluation $filepath $timeponit $numberofangles $gap
+   EXAMPLE COMMAND:
+   evaluation /mnt/fileserver/testdata/ 0 24 0

@@ -36,9 +36,21 @@ public class TCPserver {
         processing_engine = new SmartRotationProcessing();
     }
     public static void process_command(String command){
+        if (command.startsWith("initialize") && initialized){
+            String[] split_command = command.split("\\ ");
+            processing_engine.init(split_command[1]);
+        }
         if (command.startsWith("evaluation")){
             String[] split_command = command.split("\\ ");
-
+            if (processing_engine.initialized){
+                processing_engine.evaluation_step(split_command[1],Integer.parseInt(split_command[2]),Integer.parseInt(split_command[3]),Integer.parseInt(split_command[4]));
+            }
+        }
+        if (command.startsWith("processangle")){
+            String[] split_command = command.split("\\ ");
+            if (processing_engine.initialized){
+                processing_engine.update_step(split_command[1],Integer.parseInt(split_command[2]),Integer.parseInt(split_command[3]));
+            }
         }
 
     }
@@ -46,14 +58,15 @@ public class TCPserver {
         myexecutor.execute(new Runnable() {
             @Override
             public void run() {
+                String current_command;
                 while (keeprunning) {
                     try {
-                        String current_command = commands.remove();
+                        current_command = commands.remove();
+                        process_command(current_command);
                         System.out.println(current_command);
                     } catch (NoSuchElementException e) {
                         continue;
                     }
-
                     try {
                         Thread.sleep(20);
                     } catch (Exception e) {

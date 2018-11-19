@@ -1,0 +1,21 @@
+----Command structure----
+0) Initialize the analysis server
+   initialize $workspace
+   EXAMPLE COMMAND:
+   
+   initialize /mnt/fileserver/workspace/
+   
+1) Evaluate the fix spacing single timepoint data:	
+   evaluation $filepath $timepoint $numberofangles $gap
+   EXAMPLE COMMAND:
+   
+   evaluation /mnt/fileserver/data/ 0 24 2
+   
+   evaluate data stored at /mnt/fileserver/data/ timepoint 0 and a total of 24 angles with 2 gap (12 angles)
+2) Process a single angular stack that comes in
+   processangle $filepath $timepoint $angle
+   EXAMPLE COMMAND:
+   
+   evaluation /mnt/fileserver/data/ 0 5
+
+   evaluate data at /mnt/fileserver/data/, specifically data at timepoint 0, angleidx 5

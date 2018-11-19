@@ -31,7 +31,7 @@ public class SmartRotationProcessing {
     private static boolean useregistration = true;
     private static float downsamplefactor = 1;
     private static dctCUDAencoding cuda;
-    private static boolean initialized = false;
+    public  boolean initialized = false;
     private static String filepattern;
     private static configwriter config;
     private static boolean evaluated;
@@ -51,7 +51,7 @@ public class SmartRotationProcessing {
         }
     }
 
-    static void get_angular_result(ImagePlus img) {
+    private static void get_angular_result(ImagePlus img) {
         //the function that calculates the angular foreground count
         angle_count = new int[360 / angle_reso];
         FloatProcessor ip = (FloatProcessor) img.getProcessor();
@@ -78,7 +78,7 @@ public class SmartRotationProcessing {
         }
     }
 
-    static void save_angular_result(String filenamecount) {
+    private static void save_angular_result(String filenamecount) {
         try {
             FileWriter writer = new FileWriter(workspace + filenamecount);
             for (int i = 0; i < angle_count.length; i++) {
@@ -96,7 +96,7 @@ public class SmartRotationProcessing {
     }
 
 
-    static int count_foreground(ImagePlus img) {
+    private static int count_foreground(ImagePlus img) {
         int count = 0;
         FloatProcessor ip = (FloatProcessor) img.getProcessor();
         for (int i = 0; i < img.getHeight(); i++) {
@@ -108,7 +108,7 @@ public class SmartRotationProcessing {
         }
         return (count);
     }
-    static String get_last_mask(String workspace){
+    private static String get_last_mask(String workspace){
         File dir = new File(workspace);
         File[] files = dir.listFiles();
         if (files == null || files.length ==0){
@@ -123,7 +123,7 @@ public class SmartRotationProcessing {
         }
         return lastmodifiedmaskFile.getName();
     }
-    static String get_last_raw(String workspace){
+    private static String get_last_raw(String workspace){
         File dir = new File(workspace);
         File[] files = dir.listFiles();
         if (files == null || files.length ==0){
@@ -145,7 +145,7 @@ public class SmartRotationProcessing {
         }
         return lastmodifiedmaskFile.getName();
     }
-    static void evaluation_run(String filepath,String workspace){
+     void evaluation_run(String filepath){
         //run steps for all the evaluation steps
         cudaEncode();
         rawimageopenerwithsift rows = new rawimageopenerwithsift();
@@ -195,7 +195,7 @@ public class SmartRotationProcessing {
         }
         return;
     }
-    public static void evaluation_step(int timepoint,int num_angles,String filepath,int gap){
+    public void evaluation_step(String filepath,int timepoint,int num_angles,int gap){
 
         //workspace is the location where all the mask/temp is located
         //Evaluate all the images at timepoint with num_angles number of angles
@@ -205,13 +205,13 @@ public class SmartRotationProcessing {
             String filename = filepath + String.format(config.filepattern,timepoint,idx);
             open_image(filename); //open either tif or raw files
 //            IJ.saveAs(dctImg,"tiff",workspace+String.format("t0000_conf%04d_view0000_c00_dct.tif",i));
-            evaluation_run(filename, workspace);
+            evaluation_run(filename);
         }
         analysiswithsift as = new analysiswithsift();
         as.generate_rainbow_plot(workspace,num_angles,gap);
         reference_tp = current_timepoint;
     }
-    public static void update_step(int angle_idx,int timepoint,String filepath){
+    public  void update_step(String filepath,int angle_idx,int timepoint){
         //function to create the evaluation of a specific view at a specific timepoint
 
         if (evaluated) {
@@ -248,7 +248,7 @@ public class SmartRotationProcessing {
             return;
         }
     }
-    private static void cudaEncode(){
+    private void cudaEncode(){
         if (initialized){
             long start_time = System.currentTimeMillis();
             long tp1 = System.currentTimeMillis() - start_time;
@@ -291,8 +291,9 @@ public class SmartRotationProcessing {
             rawImg = new FileOpener(fi).open(false);
         }
     }
-    public static void init(){
+    public  void init(String workspacein){
         //initialize cuda device and prep
+        workspace = workspacein;
         cuda = new dctCUDAencoding();
         cuda.init_cuda();
         //default registration parameters
@@ -335,7 +336,6 @@ public class SmartRotationProcessing {
         TCPserver runserver = new TCPserver();
         runserver.init();
         runserver.run();
-
 
 
 //        for (int i=0;i<angle_updated.length;i++){
