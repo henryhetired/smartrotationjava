@@ -204,8 +204,8 @@ public class SmartRotationProcessing {
             idx = i;
             String filename = filepath + String.format(config.filepattern,timepoint,idx);
             open_image(filename); //open either tif or raw files
-//            IJ.saveAs(dctImg,"tiff",workspace+String.format("t0000_conf%04d_view0000_c00_dct.tif",i));
             evaluation_run(filename);
+            //IJ.saveAs(dctImg,"tiff",workspace+String.format("t0000_conf%04d_view0000_c00_dct.tif",i));
         }
         analysiswithsift as = new analysiswithsift();
         as.generate_rainbow_plot(workspace,num_angles,gap);
