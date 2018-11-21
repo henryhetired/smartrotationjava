@@ -7,15 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__colt_colt_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__concurrent_concurrent_1_3_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/vonmisesfitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartRotationProcessing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SmartRotationProcessing.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -45,8 +38,8 @@
       <file leaf-file-name="SmartRotationProcessing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="53" column="59" lean-forward="true" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
+            <state relative-caret-position="126">
+              <caret line="23" column="33" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="33" />
               <folding>
                 <element signature="method#threshold_entropy#0;class#SmartRotationProcessing#0" />
                 <element signature="method#save_angular_result#0;class#SmartRotationProcessing#0" />
@@ -77,8 +70,8 @@
       <file leaf-file-name="vonmisesfitter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/vonmisesfitter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="27" column="71" lean-forward="true" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
+            <state relative-caret-position="441">
+              <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,17 +82,12 @@
       <file leaf-file-name="decisionengine.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="101" column="21" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
+            <state relative-caret-position="297">
+              <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1412#1435#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,8 +95,8 @@
       <file leaf-file-name="configwriter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+            <state relative-caret-position="423">
+              <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -163,6 +151,7 @@
       <find>filepattern</find>
       <find>meta</find>
       <find>ang_reso</find>
+      <find>reso</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,7 +187,6 @@
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/xmlMetadata.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/ImgMetadata.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/TCPserver.java" />
@@ -206,6 +194,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/vonmises.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/vonmisesfitter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java" />
       </list>
     </option>
@@ -665,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9">
@@ -711,8 +693,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="53" column="59" lean-forward="true" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
+        <state relative-caret-position="126">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="33" />
           <folding>
             <element signature="method#threshold_entropy#0;class#SmartRotationProcessing#0" />
             <element signature="method#save_angular_result#0;class#SmartRotationProcessing#0" />
@@ -727,10 +709,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/vonmisesfitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="27" column="71" lean-forward="true" selection-start-line="27" selection-start-column="71" selection-end-line="27" selection-end-column="71" />
+        <state relative-caret-position="441">
+          <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -739,8 +728,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="297">
+          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1412#1435#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

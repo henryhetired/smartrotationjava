@@ -17,6 +17,7 @@ public class configwriter {
     public int backgroundintensity = 700;
     public float entropybackground = 7.2f;
     public int ang_reso=10;
+    public int nAngles = 4;
     public String filepattern ="t%04d_conf%04d.tif";
     private static Document doc;
     public void create (String filepath) throws IOException {
@@ -47,6 +48,8 @@ public class configwriter {
         bw.newLine();
         bw.write("angular resolution="+Integer.toString(ang_reso));
         bw.newLine();
+        bw.write("nAngles="+Integer.toString(nAngles));
+        bw.newLine();
         bw.write(new String(new char[30]).replace("\0","-"));
         bw.close();
         System.out.println("Config File successfully created: "+filepath+"config.txt");
@@ -69,6 +72,10 @@ public class configwriter {
                         ang_reso = Integer.parseInt(line.substring(line.indexOf("=")+1));
                     }
                     if (line.contains("file pattern string")){
+
+                        filepattern = line.substring(line.indexOf("=")+1);
+                    }
+                    if (line.contains("nAngle")){
 
                         filepattern = line.substring(line.indexOf("=")+1);
                     }
