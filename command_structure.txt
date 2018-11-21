@@ -19,3 +19,6 @@
    evaluation /mnt/fileserver/data/ 0 5
 
    evaluate data at /mnt/fileserver/data/, specifically data at timepoint 0, angleidx 5
+3) Send the current estimation of optimal angle
+   angles=$a0,$a1.....
+   
