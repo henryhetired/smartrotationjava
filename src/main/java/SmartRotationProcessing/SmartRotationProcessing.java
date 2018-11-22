@@ -341,10 +341,16 @@ public class SmartRotationProcessing {
 //            e.printStackTrace();
 //        }
 //        System.out.println(String.format(cw.filepattern,4,4));
-        TCPserver runserver = new TCPserver();
-        runserver.init();
-        runserver.run();
-
+//        TCPserver runserver = new TCPserver();
+//        runserver.init();
+//        runserver.run();
+        configwriter cg = new configwriter();
+        try{
+        cg.read("/mnt/fileserver/Henry-SPIM/smart_rotation/");
+        System.out.println(String.format(cg.filepattern,2,2));}
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
 //        for (int i=0;i<angle_updated.length;i++){
 //            System.out.println(angle_updated[i]);

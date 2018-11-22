@@ -1,14 +1,11 @@
 extern "C"
 __global__ void calc_entropy_atomic(float *float_image_in, float *entropy_out, int blk_size) {
-	//TODO: CHECK INDEX FOR ENTROPY_OUT
 	//calculate entropy of a block through a single thread
-
 	__shared__ float sum;
 	if (threadIdx.x == 0 && threadIdx.y == 0) {
 		sum = 0.0;
 	}
 	__syncthreads();
-	__shared__ float c;
 	int blocksize = blk_size*blk_size;
 	//vertical offset to get to beginning of own block
 	int v_offset_to_blkrow = gridDim.x*blockDim.x*blockDim.y*blockIdx.y;
