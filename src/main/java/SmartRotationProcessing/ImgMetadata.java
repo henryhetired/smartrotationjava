@@ -16,7 +16,7 @@ public class ImgMetadata {
     public double anglepos = 0;
     public int bitdepth = 16;
     public int gapbetweenimages = 4;
-    public String filepattern = "t%04d_conf%04d_view0000.tif";
+    public String filepattern = "t%04d_conf%04d_view0000.ome.raw";
 
     public void read(String filename) throws IOException {
         //image meta file reader to get the metadata

@@ -24,7 +24,7 @@ public class TCPserver {
     private final Object lock = new Object(); //lock to ensure the processing engine isn't trying to access an update when
 
     //TCP/IP server class that listen to command for processing
-    public static void init() {
+    public void init() {
         try {
             server = new ServerSocket(53705);
             System.out.println("Server Started");
@@ -104,6 +104,7 @@ public class TCPserver {
                         current_command = commands.remove();
                         process_command(current_command);
                         System.out.println(current_command);
+                        System.out.println("Command finished");
                     } catch (NoSuchElementException e) {
                         continue;
                     }
@@ -112,7 +113,7 @@ public class TCPserver {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    System.out.println("Stopped running");
+
                 }
                 return;
             }

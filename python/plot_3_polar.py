@@ -36,27 +36,27 @@ def gaussian(x, amp, cen, wid):
     return (amp/(np.sqrt(2*np.pi)*wid)) * np.exp(-(x-cen)**2 /(2*wid**2))
 window_size = 5
 
-countdata = np.zeros((24,36))
+countdata = np.zeros((24,24))
 
-avgdata = np.zeros((24,36))
-
-filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_test/"
+avgdata = np.zeros((24,24))
+timepoint = 7
+filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/11222018/e5/data/workspace/"
 for i in range(0,24):
-    countname = filepath+"/angularcount/angularcount"+str(i).zfill(4)+".txt"
+    countname = filepath+"angularcount"+str(timepoint).zfill(4)+"_"+str(i).zfill(4)+".txt"
     with open(countname,"r") as countstream:
         for line in countstream:
             currentline = line.split(",")
             for j in range(0,len(currentline)):
                 countdata[i,j] = currentline[j]
-savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_test/figures/"
-savename = "information_content"                     
+savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/11222018/e5/data/workspace/figures/"
+savename = "information_content"+str(timepoint).zfill(4)                     
 for idx in range(0,24):
     print(idx)
     name = savepath+savename+str(idx).zfill(3)+".pdf"
-    normalized = np.flip(countdata[idx,:],0)
+    normalized = countdata[idx,:]
     maxidx = np.argmax(countdata[idx,:])
     plt.cla()
-    x = range(0,360,10)
+    x = range(0,360,15)
     x = np.array(x)
     ax = plt.subplot(111,polar=True)
     ax.set_theta_zero_location("W")
@@ -67,13 +67,11 @@ for idx in range(0,24):
     ax.arrow((idx*15+90.0)%360.0/180.0*np.pi,12000,0,1000,head_width = 5.0/180*np.pi,head_length = 900,fc ='g',ec='g',alpha = 0.5)
     blue_patch = mpatches.Patch(color='blue',label='Illumination',alpha = 0.5)
     green_patch = mpatches.Patch(color='green',label='Detection',alpha = 0.5)
-    theta = np.linspace(0.0,2*np.pi,36,endpoint=False)
+    theta = np.linspace(0.0,2*np.pi,24,endpoint=False)
 
     ax.bar(theta,normalized,width=2*np.pi/36,color='g',alpha = 0.2)
     
-    newrange = np.linspace(0,360,360);
-    datasmooth = spline(range(0,360,10),normalized,newrange)
-    indexes = peakutils.indexes(normalized,min_dist = 12)
+
 #    ax.legend(handles=[blue_patch,green_patch],bbox_to_anchor=(1.46,1))
     ax.hold(True)
     

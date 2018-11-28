@@ -21,7 +21,8 @@ public class decisionengine {
         numofangleforimaging = config.nAngles;
         current_angles = new ArrayList<Integer>(numofangleforimaging);
         for (int i = 0; i < numofangleforimaging; i++) {
-            current_angles.set(i, 360 / numofangleforimaging * i);
+            current_angles.add(0);
+            current_angles.set(i, i*360 / numofangleforimaging);
         }
         parameters = new double[numofangleforevaluation][3];
         histograms = new Integer[numofangleforevaluation][numofangleforevaluation];

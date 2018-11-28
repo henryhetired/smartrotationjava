@@ -78,7 +78,7 @@ public class SIFT_align {
         /**
          * Maximal allowed alignment error in px
          */
-        public float maxEpsilon = 10.0f;
+        public float maxEpsilon = 25.0f;
 
         /**
          * Inlier/candidates ratio
@@ -164,7 +164,7 @@ public class SIFT_align {
             modelFound = currentModel.filterRansac(
                     candidates,
                     inliers,
-                    2000,
+                    1000,
                     p.maxEpsilon,
                     p.minInlierRatio);
         } catch (final Exception e) {

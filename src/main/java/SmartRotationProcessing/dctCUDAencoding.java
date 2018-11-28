@@ -30,6 +30,9 @@ public class dctCUDAencoding {
     public ImagePlus entropyimg;
     public float[] dctcoefficients;
     private boolean initialized = false;
+    private CUfunction dctencodingfunction_h;
+    private CUfunction dctencodingfunction_v;
+    private CUfunction entropy_calculation;
 
     public void init_cuda(){
         cudaDeviceReset();
@@ -38,6 +41,23 @@ public class dctCUDAencoding {
         cuDeviceGet(device,0);
         context = new CUcontext();
         cuCtxCreate(context,0,device);
+        CUmodule moduledct = new CUmodule();
+        String ptxfile;
+        int result;
+        try {
+            ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.ptx");
+            result = cuModuleLoad(moduledct,ptxfile);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        //System.out.println(ptxfile);
+        dctencodingfunction_v = new CUfunction();
+        dctencodingfunction_h = new CUfunction();
+        entropy_calculation = new CUfunction();
+        result = cuModuleGetFunction(entropy_calculation,moduledct,"calc_entropy_atomic");
+        result = cuModuleGetFunction(dctencodingfunction_h,moduledct,"thread_dct_h");
+        result = cuModuleGetFunction(dctencodingfunction_v,moduledct,"thread_dct_v");
         initialized = true;
     }
     private void calculate_dct_coefficients(){
@@ -160,17 +180,7 @@ public class dctCUDAencoding {
     public void dct_encoding_run() throws IOException{
         JCuda.setExceptionsEnabled(true);
         if (initialized){
-            CUmodule moduledct = new CUmodule();
-            String ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.ptx");
-            //System.out.println(ptxfile);
-            int result;
-            result = cuModuleLoad(moduledct,ptxfile);
-            CUfunction dctencodingfunction_v = new CUfunction();
-            CUfunction dctencodingfunction_h = new CUfunction();
-            CUfunction entropy_calculation = new CUfunction();
-            result = cuModuleGetFunction(entropy_calculation,moduledct,"calc_entropy_atomic");
-            result = cuModuleGetFunction(dctencodingfunction_h,moduledct,"thread_dct_h");
-            result = cuModuleGetFunction(dctencodingfunction_v,moduledct,"thread_dct_v");
+
             float[][] pixels = new float[stack.getStackSize()][stack.getHeight()*stack.getWidth()];
 //            System.out.println(pixels[0].length);
             int dim1 = stack.getWidth();
@@ -183,9 +193,9 @@ public class dctCUDAencoding {
             calculate_dct_coefficients();
             System.out.println("Coefficients ready");
             CUdeviceptr dctcoefficientsdevice = new CUdeviceptr();
-            result = cuMemAlloc(dctcoefficientsdevice,blk_size*blk_size*Sizeof.FLOAT);
+            cuMemAlloc(dctcoefficientsdevice,blk_size*blk_size*Sizeof.FLOAT);
             //System.out.println(result);
-            result = cuMemcpyHtoD(dctcoefficientsdevice,Pointer.to(dctcoefficients),blk_size*blk_size*Sizeof.FLOAT);
+            cuMemcpyHtoD(dctcoefficientsdevice,Pointer.to(dctcoefficients),blk_size*blk_size*Sizeof.FLOAT);
             //System.out.println(result);
             System.out.println("Coefficients copied to device");
             //////Allocate device space for input and output
@@ -208,7 +218,7 @@ public class dctCUDAencoding {
                 cuMemcpyHtoD(float_image_in, next, plane_length * Sizeof.FLOAT);
                 Pointer kernelParameters1 = Pointer.to(Pointer.to(float_image_in), Pointer.to(dctcoefficientsdevice), Pointer.to(dct_image), Pointer.to(new int[]{blk_size}));
 
-                result = cuLaunchKernel(dctencodingfunction_h, num_blk_col, num_blk_row, 1, blk_size, blk_size, 1, 8, null, kernelParameters1, null);
+                cuLaunchKernel(dctencodingfunction_h, num_blk_col, num_blk_row, 1, blk_size, blk_size, 1, 8, null, kernelParameters1, null);
 
                 Pointer kernelParameters2 = Pointer.to(Pointer.to(dct_image), Pointer.to(dctcoefficientsdevice), Pointer.to(float_image_in), Pointer.to(new int[]{blk_size}));
                 cuLaunchKernel(dctencodingfunction_v, num_blk_col, num_blk_row, 1, blk_size, blk_size, 1, 0, null, kernelParameters2, null);
@@ -217,8 +227,8 @@ public class dctCUDAencoding {
                 cuMemcpyDtoH(Pointer.to(entropy[stack_number]),entropy_image_out,plane_length/blk_size/blk_size*Sizeof.FLOAT);
             }
             cuCtxSynchronize();
-            System.out.println("dct success");
-
+//            System.out.println("dct success");
+//
 //            ImageStack outputdctstack = new ImageStack(stack.getWidth(),stack.getHeight(),stack.getStackSize());
 //            for (int i=0;i<stack.getStackSize();i++){
 //                ImageProcessor ip =new FloatProcessor(stack.getWidth(),stack.getHeight());
@@ -227,9 +237,9 @@ public class dctCUDAencoding {
 //            }
 //            outputdct = new ImagePlus("dctstack",outputdctstack);
             ////Perform entropy encoding
-            System.out.println("Starting entropy encoding");
-
-            System.out.println("Entropy calculation success!");
+//            System.out.println("Starting entropy encoding");
+//
+//            System.out.println("Entropy calculation success!");
             ImageStack outputentropystack = new ImageStack(dim1/blk_size,dim2/blk_size,stack.getStackSize());
             for (int i=0;i<stack.getStackSize();i++){
                 ImageProcessor ip =new FloatProcessor(dim1/blk_size,dim2/blk_size);
@@ -240,7 +250,7 @@ public class dctCUDAencoding {
             
             cuMemFree(dct_image);
             cuMemFree(float_image_in);
-
+            cuMemFree(entropy_image_out);
             cuMemFree(dctcoefficientsdevice);
 //            new ImageJ();
             //outputdct.show();

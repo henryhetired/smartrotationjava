@@ -35,6 +35,7 @@ public class SmartRotationProcessing {
     public configwriter config;
     private static boolean evaluated;
     private static int reference_tp;
+    private String filenamebase;
     public decisionengine de;
 
     static void threshold_entropy(FloatProcessor ip, float max) {
@@ -55,6 +56,9 @@ public class SmartRotationProcessing {
     private static void get_angular_result(ImagePlus img) {
         //the function that calculates the angular foreground count
         angle_count = new Integer[360 / angle_reso];
+        for (int i=0;i<angle_count.length;i++){
+            angle_count[i] = 0;
+        }
         FloatProcessor ip = (FloatProcessor) img.getProcessor();
         int curr_angle;
         for (int i = 0; i < img.getHeight(); i++) {
@@ -77,6 +81,11 @@ public class SmartRotationProcessing {
                 }
             }
         }
+        Integer[] temp = new Integer[angle_count.length];
+        for (int i=0;i<angle_count.length;i++){
+            temp[i] = angle_count[angle_count.length-i-1];
+        }
+        angle_count = temp;
     }
 
     private static void save_angular_result(String filenamecount) {
@@ -135,11 +144,11 @@ public class SmartRotationProcessing {
         File lastmodifiedmaskFile = files[0];
         for (int i = 0; i < files.length; i++) {
             if (idx > 0) {
-                if (files[i].lastModified() >= lastmodifiedmaskFile.lastModified() && !files[i].getName().contains("dct.tif")) {
+                if (files[i].lastModified() >= lastmodifiedmaskFile.lastModified() && !files[i].getName().contains("dct.tif")&& !files[i].getName().contains("txt")) {
                     lastmodifiedmaskFile = files[i];
                 }
             } else {
-                if (!files[i].getName().contains("dct.tif")) {
+                if (!files[i].getName().contains("dct.tif") && !files[i].getName().contains("txt")) {
                     lastmodifiedmaskFile = files[i];
                 }
             }
@@ -154,10 +163,10 @@ public class SmartRotationProcessing {
         rawimageopenerwithsift rows = new rawimageopenerwithsift();
         rows.init(filepath, workspace, rawImg, dctImg, config);
         rows.run();
-        String latestmask = get_last_mask(workspace); //latest reference of the DCT mask
-        String latestraw = get_last_raw(workspace);//latest reference MIP
+        String latestmask = filenamebase+"_dct.tif"; //latest reference of the DCT mask
+        String latestraw = filenamebase+".tif";//latest reference MIP
         System.out.println("latestest image is " + latestraw);
-        System.out.println("latest mask is" + latestmask);
+        System.out.println("latest mask is " + latestmask);
         if (idx == 0) {
             System.out.println("This is the first stack");
             ImagePlus og = rows.rawImage;
@@ -178,7 +187,7 @@ public class SmartRotationProcessing {
             return;
         } else {
             ImagePlus new_mask = rows.dctImage;
-            ImagePlus old_raw = new ImagePlus(workspace + String.format(config.filepattern, current_timepoint, idx - 1));
+            ImagePlus old_raw = new ImagePlus(workspace+String.format(FilenameUtils.getBaseName(config.filepattern)+".tif", current_timepoint, idx - 1));
             ImagePlus new_raw = rows.rawImage;
             ImagePlus new_dct_transformed = new ImagePlus();
             if (useregistration) {
@@ -204,6 +213,7 @@ public class SmartRotationProcessing {
         //workspace is the location where all the mask/temp is located
         //Evaluate all the images at timepoint with num_angles number of angles
         System.out.println("Starting analysis:");
+        current_timepoint = timepoint;
         for (int i = 0; i < num_angles; i += gap) {
             idx = i;
             String filename = filepath + String.format(config.filepattern, timepoint, idx);
@@ -227,7 +237,7 @@ public class SmartRotationProcessing {
             rows.run();
             /*grab the latest projection images just generated*/
             ImagePlus new_mask = rows.dctImage;
-            ImagePlus old_raw = new ImagePlus(workspace + String.format(config.filepattern, reference_tp, idx));
+            ImagePlus old_raw = new ImagePlus(workspace + String.format(filenamebase+".tif", reference_tp, idx));
             ImagePlus new_raw = rows.rawImage;
             ImagePlus new_dct_transformed = new ImagePlus();
             if (useregistration) {
@@ -239,7 +249,7 @@ public class SmartRotationProcessing {
             } else {
                 new_dct_transformed.setProcessor(new_mask.getProcessor());
             }
-            IJ.saveAs(new_raw, "tif", workspace + String.format(config.filepattern, timepoint, angle_idx));
+            IJ.saveAs(new_raw, "tif", workspace+String.format(filenamebase+"tif", timepoint, angle_idx));
             get_angular_result(new_dct_transformed);
             de.update_histogram(angle_count, angle_idx);
             save_angular_result(String.format("angularcount%04d_%04d.txt", current_timepoint, idx));
@@ -254,8 +264,6 @@ public class SmartRotationProcessing {
     private void cudaEncode() {
         if (initialized) {
             long start_time = System.currentTimeMillis();
-            long tp1 = System.currentTimeMillis() - start_time;
-            System.out.println("File reading time is " + tp1 + " ms");
             if (rawImg.getStackSize() > 500) {
                 downsamplefactor = 1.6f;
             } else {
@@ -268,20 +276,21 @@ public class SmartRotationProcessing {
                 e.printStackTrace();
             }
             long tp2 = System.currentTimeMillis() - start_time;
-            System.out.println("Encoding time is " + (tp2 - tp1) + " ms");
+            System.out.println("Encoding time is " + tp2 + " ms");
             dctImg = cuda.entropyimg;
             evaluated = true;
         }
     }
 
-    private static void open_image(String filename) {
+    private void open_image(String filename) {
         if (filename.endsWith("tif")) {
             rawImg = new ImagePlus(filename);
         } else if (filename.endsWith("raw")) {
-            String filenamebase = FilenameUtils.removeExtension(filename);
+            String filenamein = FilenameUtils.removeExtension(filename);
+            filenamebase = FilenameUtils.getBaseName(filename);
             ImgMetadata meta = new ImgMetadata();
             try {
-                meta.read(filenamebase + "txt");
+                meta.read(filenamein + ".txt");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -292,6 +301,7 @@ public class SmartRotationProcessing {
             fi.height = meta.ImgHeight;
             fi.nImages = meta.nImage;
             fi.gapBetweenImages = meta.gapbetweenimages;
+            fi.intelByteOrder=true;
             rawImg = new FileOpener(fi).open(false);
         }
     }
@@ -304,7 +314,7 @@ public class SmartRotationProcessing {
         //default registration parameters
         useregistration = true;
         usesift = true;
-        String configname = workspace + "config.txt";
+        String configname = workspace;
         config = new configwriter();
         try {
             config.read(configname);
@@ -317,76 +327,8 @@ public class SmartRotationProcessing {
         idx = 0;
         current_timepoint = 0;
         reference_tp = 0;
+        de = new decisionengine();
         de.init(config);
         initialized = true;
-    }
-
-    public static void main(String[] args) {
-//        filepath is the location of the image file along with meta.xml
-//        String filepath = args[0];
-//        workspace = args[1];
-//        init();
-//        if (initialized){
-//            if (args[2] == "evaluation"){
-//                int gap = 1;
-//                int num_angles = Integer.parseInt(args[3]);
-//                int timepoint = Integer.parseInt(args[4]);
-//                entropybackground = 6.5f;
-//                evaluation_step(num_angles,filepath,gap);
-//            }
-//        }
-//        configwriter cw = new configwriter();
-//        try{cw.read("/mnt/fileserver/Henry-SPIM/");}
-//        catch (IOException e){
-//            e.printStackTrace();
-//        }
-//        System.out.println(String.format(cw.filepattern,4,4));
-//        TCPserver runserver = new TCPserver();
-//        runserver.init();
-//        runserver.run();
-        configwriter cg = new configwriter();
-        try{
-        cg.read("/mnt/fileserver/Henry-SPIM/smart_rotation/");
-        System.out.println(String.format(cg.filepattern,2,2));}
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-//        for (int i=0;i<angle_updated.length;i++){
-//            System.out.println(angle_updated[i]);
-//        }
-//        String filepath = args[0];
-//
-//        try{processingserver ps = new processingserver(53705);}
-//        catch (IOException i){
-//            i.printStackTrace();
-//        }
-//        long start_time = System.currentTimeMillis();
-//        pythonevaluation pt = new pythonevaluation();
-//        pt.pythonlocation = "/home/henryhe/anaconda3/bin/python";
-//        pt.scriptlocation = "/mnt/fileserver/Henry-SPIM/smart_rotation/python/evaluationstep.py";
-//        pt.pycalltest("/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace/angularcount/",24,10);
-//        System.out.println("Runtime is " + (System.currentTimeMillis() - start_time) + " ms");
-//
-//        workspace = "/mnt/isilon/Henry-SPIM/smart_rotation/06142018/sample1/merged/c00/";
-//        String workspaceorigin = workspace;
-//        entropybackground = 7.11f;
-//        analysiswithsift ir = new analysiswithsift();
-//        ir.generate_comparison(workspace);
-//        for (int i=4;i<5;i++){
-//            workspace = workspaceorigin;
-//            String workspacetemp = workspace+Integer.toString(i)+"angles/";
-//            workspace = workspacetemp;
-//            ImagePlus img = new ImagePlus(workspacetemp+"dct_resized.tif");
-//            for (int j=0;j<img.getStackSize();j++){
-//                ImageProcessor ip = img.getStack().getProcessor(j+1);
-//                ImagePlus temp = new ImagePlus();
-//                temp.setProcessor(ip);
-//                get_angular_result(temp);
-//                save_angular_result(String.format("angularcount%02d.txt",j));
-//            }
-//        }
-
-
     }
 }
