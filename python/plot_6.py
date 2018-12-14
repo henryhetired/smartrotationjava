@@ -12,8 +12,8 @@ fitted_distribution = np.zeros((2,1))
 distribution = np.zeros((2, 1))
 num_angles = 24
 angular_resolution = 15
-
-
+timepoint =31
+workspace = "/mnt/fileserver/Henry-SPIM/smart_rotation/11222018/e5/data/workspace/"
 def vonmises(x, amp, cen, kappa):
     # "1-d vonmises"
     top = (amp/(np.pi*2*np.i0(kappa)))
@@ -34,7 +34,7 @@ def get_cmap(n, name='brg'):
     return plt.cm.get_cmap(name, n)
 
 
-def evaluate_angles(filepath, num_angles_in, angular_resolution_in,timepoint):
+def evaluate_angles(filepath, num_angles_in, angular_resolution_in):
     global angular_resolution
     global num_angles
     global distribution    
@@ -42,6 +42,7 @@ def evaluate_angles(filepath, num_angles_in, angular_resolution_in,timepoint):
     global a
     global c
     global k
+    global timepoint
     num_angles = num_angles_in
     angular_resolution = angular_resolution_in
     num_angles_evaluated = 360//angular_resolution
@@ -53,6 +54,7 @@ def evaluate_angles(filepath, num_angles_in, angular_resolution_in,timepoint):
                 currentline = line.split(",")
                 for j in range(0, len(currentline)):
                     countdata[i, j] = currentline[j]
+    print(countdata[0])
     a.resize(num_angles_evaluated, 1)
     c.resize(num_angles_evaluated, 1)
     k.resize(num_angles_evaluated, 1)
@@ -69,6 +71,10 @@ def evaluate_angles(filepath, num_angles_in, angular_resolution_in,timepoint):
         k[i] = result.params['kappa'].value
         distribution[i] = vonmises(
             np.arange(0, 360, 360//num_angles), a[i], c[i], k[i])
+#    a = a.flatten()/(np.pi*2*np.i0(k))
+#    print(a.flatten())
+#    print(c.flatten())
+#    print(k.flatten())
     return
         
 def find_next_global():
@@ -108,15 +114,12 @@ def get_optimal_coverage(num_angles):
     from itertools import combinations
     comb = list(combinations(range(24),num_angles))
     coverage_percentage = 0
-    coverage_sum = np.sum(coverage,0)
     for i in range(len(comb)):
-        current_coverage = coverage
         new_coverage_percentage = estimate_coverage_average(comb[i])
         if (new_coverage_percentage>coverage_percentage):
             winner = comb[i]
             coverage_percentage = new_coverage_percentage
     print(winner)
-    return(winner)
 def get_optimal_global(num_angles): 
     from itertools import combinations
     comb = list(combinations(range(24),num_angles))
@@ -130,91 +133,44 @@ def get_optimal_global(num_angles):
         if (new_coverage_sum>coverage_sum):
             winner = comb[i]
             coverage_sum = new_coverage_sum
+    print(np.var(variation/np.linalg.norm(variation)))
     print(winner)
-    return(winner)
-def getrequirednumberofangles(percentage):
-    # get the number of angles needed to get the percentage cover
-    global angular_resolution
-    global num_angles
-    global distribution
-    global a
-    global c
-    global k
-    angles = np.array([])
-    anglestried = np.array([])
-    coverage = np.zeros(360//angular_resolution)
-    # The most information rich angle, start from here
-    maxinfoidx = int(
-        np.floor(np.argmax(a)*(360/angular_resolution/num_angles)))
-    currentangle = maxinfoidx
-    np.appen(anglestried, currentangle)
-    np.append(angles, currentangle)
-    print(currentangle)
-#    while (np.sum(coverage) != 360//angular_resolution):
-    for j in range(2):
-        for i in range(360//angular_resolution):
-            tempmax = a[i]/(np.pi*2*np.i0(k[i])) / \
-                np.exp(np.minimum(-k[i], k[i]))
-            print(tempmax)
-            print(a[i])
-            if (distribution[i][currentangle] >= tempmax*percentage):
-                coverage[i] = 1
-        currentangle = int((np.argmax(coverage > 0)-1)*10/15)
-        print(currentangle)
-        print(coverage)
-        np.append(angles, currentangle)
-
-    return angles
 
 def run_global(num_angles):   
 #    perform optimization based on overall number of foreground blocks
     global coverage
     global a
     global angles_used
+    global workspace
+    global angular_resolution
+    global timepoint
+    angles_used.clear()
     evaluate_angles(
-            "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_test/angularcount/", 24, 10)    
+            workspace, 24, angular_resolution)    
     first_angle = 0
     angles_used.add(first_angle)
     coverage = distribution[:,first_angle]
+    plt.close()
     plt.hold(True)
     plt.xlabel("Angle within sample")
     plt.ylabel("Number of foreground blocks")
     plt.xlim((0,360))
-    plt.ylim((0,14000))
-    plt.plot(range(0,360,10),np.max(distribution,1),'--', label = "Maximum")
-    plt.plot(range(0,360,10),coverage,label="View %02d"%0)
-    name = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_test/figures/"+"coverage_%02d.pdf"%0
+    plt.ylim((0,20000))
+    plt.plot(range(0,360,angular_resolution),np.max(distribution,1),'--', label = "Maximum")
+    plt.plot(range(0,360,angular_resolution),coverage,label="View %02d"%0)
+    name = workspace+"/figures/t"+str(timepoint).zfill(4)+"coverage_%02d.pdf"
     ax = plt.subplot(111)
     ax.legend(bbox_to_anchor=(1.2,1),labelspacing = 0.01,fontsize = 5,frameon=False)
-#    plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
+    plt.savefig(name%0,dpi = 500,format = "pdf",bbox_inches="tight")
     for i in range(1,num_angles-1):
         find_next_global()
-        plt.plot(range(0,360,10),coverage,label="View %02d"%i)
-        name = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_test/figures/"+"coverage_%02d.pdf"%i
+        plt.plot(range(0,360,angular_resolution),coverage,label="View %02d"%i)
         ax.legend(bbox_to_anchor=(1.2,1),labelspacing = 0.01,fontsize = 5,frameon=False)
         plt.title("Estimated coverage after fusion")
-#        plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
-        
-#run_global(4)
-#print(angles_used)
-pathtotext = "/mnt/fileserver/Henry-SPIM/smart_rotation/11222018/e5/data/workspace/"
-result = np.zeros((32,4))
-coverage_optimal = np.zeros(32)
-coverage_standard = np.zeros(32)
-for i in range(32):
-    timepoint = i
-    evaluate_angles(pathtotext, 24, 15,timepoint)
-    num_angle = 4
-    angles_get = get_optimal_coverage(num_angle)
-    result[i] = angles_get
-#run_global(num_angles)
-fig = plt.figure()
-plt.hold(True)
-plt.xlabel("Time /Hours")
-plt.ylabel(u"Imaging angle/$^\circ$")
-plt.title("Optimal angles over time")
-for i in range(num_angle):
-    plt.plot(np.arange(0,16,0.5),result[:,i]*15,'--',label="angle %02d"%i)
-plt.legend(bbox_to_anchor=(1,1))
-plt.savefig(pathtotext+"/figures/timelapse.pdf",format="pdf",bbox_inches="tight")
-plt.show()
+        plt.savefig(name%i,dpi = 500,format = "pdf",bbox_inches="tight")
+
+#evaluate_angles(workspace, 24, 15)
+num_angles = 4
+#get_optimal_coverage(num_angles)
+#get_optimal_global(num_angles)
+run_global(num_angles)

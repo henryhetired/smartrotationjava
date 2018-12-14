@@ -1,11 +1,10 @@
 package SmartRotationProcessing;
 
-import org.w3c.dom.Document;
 
 import java.io.*;
 
 public class configwriter {
-    //this is the xml file class for the stack meta file
+    //this is the smart rotation configuration file
     public int blk_size = 16;
     public int backgroundintensity = 700;
     public float entropybackground = 7.2f;

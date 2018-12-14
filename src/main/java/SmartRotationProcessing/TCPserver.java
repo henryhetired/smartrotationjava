@@ -24,9 +24,9 @@ public class TCPserver {
     private final Object lock = new Object(); //lock to ensure the processing engine isn't trying to access an update when
 
     //TCP/IP server class that listen to command for processing
-    public void init() {
+    public void init(int port) {
         try {
-            server = new ServerSocket(53705);
+            server = new ServerSocket(port);
             System.out.println("Server Started");
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,7 +53,6 @@ public class TCPserver {
                     synchronized (lock) {
                         angles = processing_engine.de.current_angles;
                     }
-
                 }
             }
             if (command.startsWith("processangle")) {

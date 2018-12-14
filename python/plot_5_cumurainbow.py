@@ -62,7 +62,7 @@ countdata = np.zeros((24,36))
 
 avgdata = np.zeros((24,36))
 
-filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_adjusted"
+filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/11222018/e5/data/workspace/"
 for i in range(0,24):
     countname = filepath+"/angularcountcumulative/angularcountcumulative"+str(i).zfill(4)+".txt"
     with open(countname,"r") as countstream:
@@ -71,7 +71,7 @@ for i in range(0,24):
             for j in range(0,len(currentline)):
                 countdata[i,j] = currentline[j]
 #savepath = "Z:\\Henry-SPIM\\11132017\\e2\\t0000\\analysis\\analysis5 angular_plot\\figures\\plot 3_1\\"
-savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/downsamplez/downsampled8x/workspace/figures/"
+savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/11222018/e5/data/workspace/figures/"
 savename = "information_content_full_cumu"                       
 def get_cmap(n, name='brg'):
     '''Returns a function that maps each index in 0, 1, ..., n-1 to a distinct 

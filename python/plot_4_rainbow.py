@@ -54,16 +54,16 @@ countdata = np.zeros((24,36))
 
 avgdata = np.zeros((24,36))
 
-filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_test"
+filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final3/"
 for i in range(0,24):
-    countname = filepath+"/angularcount/angularcount"+str(i).zfill(4)+".txt"
+    countname = filepath+"/angularcount_final/angularcount"+str(i).zfill(4)+".txt"
     with open(countname,"r") as countstream:
         for line in countstream:
             currentline = line.split(",")
             for j in range(0,len(currentline)):
                 countdata[i,j] = currentline[j]
 #savepath = "Z:\\Henry-SPIM\\11132017\\e2\\t0000\\analysis\\analysis5 angular_plot\\figures\\plot 3_1\\"
-savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_test/figures/"
+savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final/figures/"
 savename = "information_content_full"     
 name = savepath+savename+".pdf"                   
 def get_cmap(n, name='brg'):
@@ -88,7 +88,7 @@ for idx in range(0,24):
     ax.set_yticks(np.linspace(0,10000,4,endpoint=False))
     theta = np.linspace(0.0,2*np.pi,36,endpoint=False)
 
-    ax.bar(theta,normalized,width=2*np.pi/36,color=cmap(idx),alpha = 0.1)
+    ax.bar(theta,normalized,width=2*np.pi/36,color=cmap(idx),alpha = 0.05)
     
     newrange = np.linspace(0,360,360);
     ax.hold(True)
@@ -96,3 +96,4 @@ for idx in range(0,24):
     ax.set_rmax(14000)
 #ax.legend(handles = patches,bbox_to_anchor=(1.2,1),labelspacing = 0.01,fontsize = 5,frameon=False)
 plt.savefig(name,dpi = 500,format = "pdf",bbox_inches="tight")
+plt.show()
