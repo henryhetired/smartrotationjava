@@ -21,7 +21,6 @@ import static org.apache.commons.io.IOUtils.toByteArray;
 
 
 public class dctCUDAencoding {
-    public String ptxfilelocation;
     public int blk_size;
     private CUdevice device;
     private CUcontext context;
@@ -45,7 +44,7 @@ public class dctCUDAencoding {
         String ptxfile;
         int result;
         try {
-            ptxfile = preparePtxFile("/mnt/isilon/Henry-SPIM/smart_rotation/processingcodes/smartrotationjava/src/main/java/SmartRotationProcessing/encoding.ptx");
+            ptxfile = preparePtxFile(System.getProperty("user.dir")+"/smartrotationjave/encoding.ptx");
             result = cuModuleLoad(moduledct,ptxfile);
         }
         catch (IOException e){

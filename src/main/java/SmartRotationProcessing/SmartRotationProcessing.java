@@ -322,7 +322,6 @@ public class SmartRotationProcessing {
             e.printStackTrace();
         }
         cuda.blk_size = config.blk_size;
-        cuda.ptxfilelocation = workspace;
         angle_reso = config.ang_reso;
         idx = 0;
         current_timepoint = 0;
