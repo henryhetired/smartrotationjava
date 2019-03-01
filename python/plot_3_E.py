@@ -69,7 +69,7 @@ for i in range(0,num_angle_out):
     ax2.set_xlabel("Imaging angle")
     ax.set_ylabel("number of foreground blocks")
 #    plt.legend(fontsize = 7)
-plt.savefig(name,dpi = 500,format = "pdf")  
+#plt.savefig(name,dpi = 500,format = "pdf")  
 plt.cla();
 fig = plt.figure(figsize=(4.5,3))
 plt.subplots_adjust(left=0,right=1,top=1,bottom=0)
@@ -92,5 +92,16 @@ plt.plot(range(0,360,angular_resolution),range(0,360,angular_resolution),'b',lab
 plt.xlim((-10,360))
 plt.ylim((-100,430))
 plt.legend(fontsize=10,loc="upper left")
-plt.savefig(savepath+"optimal vs imaging angle"+".pdf",dpi = 500,format = "pdf")    
-
+#plt.savefig(savepath+"optimal vs imaging angle"+".pdf",dpi = 500,format = "pdf")    
+alpha = 0.2
+fig = plt.figure(figsize=(4.5,3))
+plt.subplots_adjust(left=0,right=1,top=1,bottom=0)
+plt.plot(np.arange(0,360,15),np.mean(countdata,1))
+for i in np.arange(45,360,90):
+    plt.axvline(x=i,linestyle='--',c='g',alpha=alpha)
+plt.grid(False)
+plt.xlim(0,360)
+plt.ylim(0,5000)
+plt.xlabel('imaging angle')
+plt.ylabel('Average Number of foreground block')
+plt.savefig(savepath+"Optical image coverage blind"+".pdf",dpi = 500,format = "pdf") 
