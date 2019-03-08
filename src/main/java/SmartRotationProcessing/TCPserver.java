@@ -14,7 +14,7 @@ public class TCPserver {
     private static Socket client = null;
     public String messagein = "start";
     public String messageout = "";
-    private ArrayList<Integer> angles;
+    private int[] angles;
     private static DataInputStream is;
     private static PrintStream os;
     private static Queue<String> commands;
@@ -43,15 +43,15 @@ public class TCPserver {
             if (command.startsWith("initialize")) {
                 String[] split_command = command.split("\\ ");
                 processing_engine.init(split_command[1]);
-                angles = new ArrayList<Integer>(processing_engine.config.nAngles);
+                angles = new int[processing_engine.config.nAngles];
             }
             if (command.startsWith("evaluation")) {
                 String[] split_command = command.split("\\ ");
                 if (processing_engine.initialized) {
                     processing_engine.evaluation_step(split_command[1], Integer.parseInt(split_command[2]), Integer.parseInt(split_command[3]));
-                    processing_engine.de.get_strategy();
+                    processing_engine.de.get_strategy(Integer.parseInt(split_command[2]));
                     synchronized (lock) {
-                        angles = processing_engine.de.current_angles;
+                        angles = processing_engine.de.angles;
                     }
                 }
             }
@@ -59,9 +59,9 @@ public class TCPserver {
                 String[] split_command = command.split("\\ ");
                 if (processing_engine.initialized) {
                     processing_engine.update_step(split_command[1], Integer.parseInt(split_command[2]), Integer.parseInt(split_command[3]));
-                    processing_engine.de.get_strategy();
+                    processing_engine.de.get_strategy(Integer.parseInt(split_command[3]));
                     synchronized (lock) {
-                        angles = processing_engine.de.current_angles;
+                        angles = processing_engine.de.angles;
                     }
                 }
             }
@@ -80,8 +80,8 @@ public class TCPserver {
             public void run() {
                 synchronized (lock) {
                     messageout = "angles=";
-                    for (int i = 0; i < angles.size(); i++) {
-                        messageout += Integer.toString(angles.get(i)*processing_engine.config.ang_reso) + ",";
+                    for (int i = 0; i < angles.length; i++) {
+                        messageout += Integer.toString(angles[i]*processing_engine.config.ang_reso) + ",";
                     }
                 }
                 try {

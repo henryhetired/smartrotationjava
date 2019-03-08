@@ -1,19 +1,11 @@
 package SmartRotationProcessing;
 
 import ij.IJ;
-import ij.ImageJ;
-import ij.ImageStack;
 import ij.io.FileInfo;
 import ij.io.FileOpener;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.stream.IntStream;
 
-import ij.plugin.CanvasResizer;
 import ij.process.*;
 import ij.ImagePlus;
 import org.apache.commons.io.FilenameUtils;
@@ -182,7 +174,6 @@ public class SmartRotationProcessing {
             }
             IJ.saveAs(og, "tif", workspace + latestraw);
             get_angular_result(new_dct_transformed);
-            de.update_histogram(angle_count, idx);
             save_angular_result(String.format("angularcount%04d_%04d.txt", current_timepoint, idx));
             IJ.saveAs(new_dct_transformed, "tif", workspace + latestmask);
             return;
@@ -202,7 +193,6 @@ public class SmartRotationProcessing {
             }
             IJ.saveAs(new_raw, "tif", workspace + latestraw);
             get_angular_result(new_dct_transformed);
-            de.update_histogram(angle_count, idx);
             save_angular_result(String.format("angularcount%04d_%04d.txt", current_timepoint, idx));
             IJ.saveAs(new_dct_transformed, "tif", workspace + latestmask);
         }
@@ -252,7 +242,6 @@ public class SmartRotationProcessing {
             }
             IJ.saveAs(new_raw, "tif", workspace+String.format(filenamebase+"tif", timepoint, angle_idx));
             get_angular_result(new_dct_transformed);
-            de.update_histogram(angle_count, angle_idx);
             save_angular_result(String.format("angularcount%04d_%04d.txt", current_timepoint, idx));
             IJ.saveAs(new_dct_transformed, "tif", workspace + FilenameUtils.getBaseName(filename) + "_dct.tif");
             System.out.println("Evaluation completed");
@@ -329,7 +318,7 @@ public class SmartRotationProcessing {
         current_timepoint = 0;
         reference_tp = 0;
         de = new decisionengine();
-        de.init(config);
+        de.init(config,workspacein);
         initialized = true;
     }
 }

@@ -5,7 +5,9 @@ Created on Thu Dec  6 12:07:05 2018
 
 @author: henryhe
 """
+
 import sys
+print(sys.version_info)
 import numpy as np
 from lmfit import Model
 import Utils as ut
@@ -67,18 +69,17 @@ class smart_rotation:
             if (new_coverage_percentage>coverage_percentage):
                 winner = comb[i]
                 coverage_percentage = new_coverage_percentage
-        print(winner)
         return(winner)
 
-config = ut.sr_configuration(sys.argv[1])
-sr = smart_rotation(360/config.angularresolution,config.angularresolution)
-if len(sys.argv)==3:
-    sr.evaluate_angles(sys.argv[2],usetimepoint=False)
+config = ut.sr_configuration(sys.argv[1]+"config.txt")
+sr = smart_rotation(int(360/config.angularresolution),config.angularresolution)
+if len(sys.argv)==2:
+    sr.evaluate_angles(sys.argv[1],usetimepoint=False)
 else:
-    sr.evaluate_angles(sys.argv[2],sys.argv[3],usetimepoint=True)
+    sr.evaluate_angles(sys.argv[1],sys.argv[2],usetimepoint=True)
 
 angles_get = sr.get_optimal_coverage(config.nangles)
-print(angles_get)
+print(','.join(map(str,angles_get)))
 #pathtotext = "/mnt/fileserver/Henry-SPIM/smart_rotation/11222018/e5/data/workspace/"
 #result = np.zeros((32,4))
 #coverage_optimal = np.zeros(32)
