@@ -36,9 +36,11 @@ public class decisionengine {
             for (int i=0;i<output.length;i++){
                 angles[i] = Integer.parseInt(output[i]);
             }
+            System.exit(0);
         }
         catch (IOException e){
             e.printStackTrace();
+            System.exit(-1);
         }
     }
 }
