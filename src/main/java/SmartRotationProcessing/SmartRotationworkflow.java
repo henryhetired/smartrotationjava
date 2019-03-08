@@ -8,6 +8,5 @@ public class SmartRotationworkflow {
         runserver.init(Integer.parseInt(args[0]));
         runserver.run();
 //        System.out.println(System.getProperty("user.dir"));
-
     }
 }

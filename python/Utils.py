@@ -5,9 +5,14 @@ Created on Fri Mar  1 14:27:50 2019
 
 @author: henryhe
 """
-import numpy as np
-import matplotlib.pyplot as plt
-import math
+try:    
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import math
+except ImportError:
+    import pip
+    pip.main(['install','--user','numpy'])
+    pip.main(['install','--user','numpy'])
 def get_cmap(n, name='brg'):
     return plt.cm.get_cmap(name, n)
 def vonmises(x, amp, cen, kappa):
@@ -32,4 +37,6 @@ class sr_configuration:
                 self.nangles = int(i[i.find('=')+1:])
             if "angular" in i:
                 self.angularresolution = int(i[i.find('=')+1:])
+            if "evaluation" in i:
+                self.evaluationresolution = int(i[i.find('=')+1:])
             

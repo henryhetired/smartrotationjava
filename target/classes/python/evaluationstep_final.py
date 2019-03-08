@@ -31,11 +31,20 @@ class smart_rotation:
                 countname = filepath+"angularcount"+str(timepoint).zfill(4)+"_"+str(i).zfill(4)+".txt"
             else:
                 countname = filepath+"angularcount"+str(i).zfill(4)+".txt"
-            with open(countname, "r") as countstream:
-                for line in countstream:
-                    currentline = line.split(",")
-                    for j in range(0, len(currentline)):
-                        self.countdata[i, j] = currentline[j]
+            #if file doesn't exist, use previous timepoints
+            try:
+                with open(countname, "r") as countstream:
+                    for line in countstream:
+                        currentline = line.split(",")
+                        for j in range(0, len(currentline)):
+                            self.countdata[i, j] = currentline[j]
+            except:
+                countname = filepath+"angularcount"+str(timepoint-1).zfill(4)+"_"+str(i).zfill(4)+".txt"
+                with open(countname, "r") as countstream:
+                    for line in countstream:
+                        currentline = line.split(",")
+                        for j in range(0, len(currentline)):
+                            self.countdata[i, j] = currentline[j]
         for i in range(0, self.num_angles_evaluated):
             r = self.countdata[:, i]
             gmodel = Model(ut.vonmises)
