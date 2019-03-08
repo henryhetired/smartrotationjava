@@ -21,7 +21,8 @@ import org.apache.commons.io.FilenameUtils;
 public class SmartRotationProcessing {
     private static String workspace;
     private static float entropybackground = 7.2f;
-    private static int angle_reso = 10;
+    private static int angle_reso = 15;
+    private static int angle_reso_eval = 10;
     private static Integer[] angle_count;
     public static ImagePlus rawImg;
     public static ImagePlus dctImg;
@@ -55,7 +56,7 @@ public class SmartRotationProcessing {
 
     private static void get_angular_result(ImagePlus img) {
         //the function that calculates the angular foreground count
-        angle_count = new Integer[360 / angle_reso];
+        angle_count = new Integer[360 / angle_reso_eval];
         for (int i=0;i<angle_count.length;i++){
             angle_count[i] = 0;
         }
@@ -77,7 +78,7 @@ public class SmartRotationProcessing {
                             curr_angle = 180 + curr_angle;
                         }
                     }
-                    angle_count[curr_angle / angle_reso % (360 / angle_reso)]++;
+                    angle_count[curr_angle / angle_reso_eval % (360 / angle_reso_eval)]++;
                 }
             }
         }
@@ -208,13 +209,13 @@ public class SmartRotationProcessing {
         return;
     }
 
-    public void evaluation_step(String filepath, int timepoint, int num_angles, int gap) {
+    public void evaluation_step(String filepath, int timepoint, int gap) {
 
         //workspace is the location where all the mask/temp is located
         //Evaluate all the images at timepoint with num_angles number of angles
         System.out.println("Starting analysis:");
         current_timepoint = timepoint;
-        for (int i = 0; i < num_angles; i += gap) {
+        for (int i = 0; i < 360/angle_reso; i += gap) {
             idx = i;
             String filename = filepath + String.format(config.filepattern, timepoint, idx);
             open_image(filename); //open either tif or raw files
@@ -322,6 +323,7 @@ public class SmartRotationProcessing {
             e.printStackTrace();
         }
         cuda.blk_size = config.blk_size;
+        angle_reso_eval = config.ang_reso_eval;
         angle_reso = config.ang_reso;
         idx = 0;
         current_timepoint = 0;

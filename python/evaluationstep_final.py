@@ -5,7 +5,7 @@ Created on Thu Dec  6 12:07:05 2018
 
 @author: henryhe
 """
-
+import sys
 import numpy as np
 from lmfit import Model
 import Utils as ut
@@ -22,7 +22,7 @@ class smart_rotation:
         self.distribution = np.zeros((self.num_angles_evaluated,self.num_angles))
         self.coverage = np.zeros((self.num_angles_evaluated))
         
-    def evaluate_angles(self,filepath, num_angles_in, angular_resolution_in,timepoint,usetimepoint=True):
+    def evaluate_angles(self,filepath,timepoint,usetimepoint=True):
     #    read data, evaluate and fit to model, generate distribution map
         for i in range(0, self.num_angles):
             if usetimepoint:
@@ -48,19 +48,19 @@ class smart_rotation:
         return
 
     def estimate_coverage_average(self,angle_array):
-        current_coverage = np.zeros(self.num_angles)
+        current_coverage = np.zeros(self.num_angles_evaluated)
         for i in range(len(angle_array)):
             current_coverage = np.maximum(current_coverage,self.distribution[:,angle_array[i]])                
         return(np.mean(current_coverage/np.max(self.distribution,1)))
-        def estimate_coverage_global(self,angle_array):
-            current_coverage = np.zeros(self.num_angles)
-            for i in range(len(angle_array)):
-                current_coverage = np.maximum(current_coverage,self.distribution[:,angle_array[i]])                
-            return(np.sum(current_coverage))
+    def estimate_coverage_global(self,angle_array):
+        current_coverage = np.zeros(self.num_angles)
+        for i in range(len(angle_array)):
+            current_coverage = np.maximum(current_coverage,self.distribution[:,angle_array[i]])                
+        return(np.sum(current_coverage))
     def get_optimal_coverage(self,num_angles_needed):
     #    given the number of angles used, what combination gives the highest average percentage of maximum
         from itertools import combinations
-        comb = list(combinations(range(24),num_angles_needed))
+        comb = list(combinations(range(self.num_angles),num_angles_needed))
         coverage_percentage = 0
         for i in range(len(comb)):
             new_coverage_percentage = self.estimate_coverage_average(comb[i])
@@ -70,6 +70,15 @@ class smart_rotation:
         print(winner)
         return(winner)
 
+config = ut.sr_configuration(sys.argv[1])
+sr = smart_rotation(360/config.angularresolution,config.angularresolution)
+if len(sys.argv)==3:
+    sr.evaluate_angles(sys.argv[2],usetimepoint=False)
+else:
+    sr.evaluate_angles(sys.argv[2],sys.argv[3],usetimepoint=True)
+
+angles_get = sr.get_optimal_coverage(config.nangles)
+print(angles_get)
 #pathtotext = "/mnt/fileserver/Henry-SPIM/smart_rotation/11222018/e5/data/workspace/"
 #result = np.zeros((32,4))
 #coverage_optimal = np.zeros(32)

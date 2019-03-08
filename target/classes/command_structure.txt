@@ -9,9 +9,9 @@
    evaluation $filepath $timepoint $numberofangles $gap
    EXAMPLE COMMAND:
    
-   evaluation /mnt/fileserver/data/ 0 24 2
+   evaluation /mnt/fileserver/data/ 0 2
    
-   evaluate data stored at /mnt/fileserver/data/ timepoint 0 and a total of 24 angles with 2 gap (12 angles)
+   evaluate data stored at /mnt/fileserver/data/ timepoint 0 with 2 gap (if 24 angles used, 12 angles evaluated)
 2) Process a single angular stack that comes in
    processangle $filepath $timepoint $angle
    EXAMPLE COMMAND:

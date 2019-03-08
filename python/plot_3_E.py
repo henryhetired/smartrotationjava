@@ -10,17 +10,11 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 from lmfit import Model,Parameters
-def vonmises(x, amp, cen, kappa):
-#    "1-d vonmises"
-    return (amp/(np.pi*2*np.i0(kappa))) * np.exp(kappa*np.cos(x/360.0*2.0*np.pi-cen/360*np.pi*2))
-def get_cmap(n, name='brg'):
-    '''Returns a function that maps each index in 0, 1, ..., n-1 to a distinct 
-    RGB color; the keyword argument name must be a standard mpl colormap name.'''
-    return plt.cm.get_cmap(name, n)
+import Utils as ut
 num_angle_in=24
 angular_resolution = 10
 num_angle_out = 360//angular_resolution
-cmap = get_cmap(num_angle_out,'brg');  
+cmap = ut.get_cmap(num_angle_out,'brg');  
 countdata = np.zeros((num_angle_in,num_angle_out))
 filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final3/angularcount_final/"
 for i in range(0,num_angle_in):
@@ -43,7 +37,7 @@ name = savepath+savename+"full.pdf"
 for i in range(0,num_angle_out):
     patches.append(mpatches.Patch(color=cmap(i),label='',alpha = 0.3))
     r = np.flip(countdata[:,i],0)
-    gmodel = Model(vonmises)
+    gmodel = Model(ut.vonmises)
     x = np.array(np.arange(0,360,360/num_angle_in))
     params = Parameters()
     params.add('amp',r.max(0))
@@ -53,8 +47,8 @@ for i in range(0,num_angle_out):
     a[i] = result.params['amp'].value
     c[i] = result.params['cen'].value
     k[i] = result.params['kappa'].value
-    plotdata = vonmises(np.arange(0,360,angular_resolution),a[i],c[i],k[i])
-    plotdata_theory = vonmises(np.arange(0,360,angular_resolution),23000,np.arange(0,360,10)[i]+45,np.pi/2)
+    plotdata = ut.vonmises(np.arange(0,360,angular_resolution),a[i],c[i],k[i])
+    plotdata_theory = ut.vonmises(np.arange(0,360,angular_resolution),23000,np.arange(0,360,10)[i]+45,np.pi/2)
     plt.hold(True)
     ax2.plot(np.arange(0,360,angular_resolution),plotdata,color = cmap(i),alpha = 0.5)
     ax.plot(np.arange(0,360,angular_resolution),plotdata_theory,color = cmap(i),alpha = 0.5)
@@ -80,7 +74,7 @@ errorbar = np.rad2deg((2*np.pi + errorbar) * (errorbar < 0) + errorbar*(errorbar
 for i in range(len(k)):
     if (k[i]<0):
         c[i] = c[i]+180
-    c[i] = c[i]%360-45
+    c[i] = c[i]%360-45 #45 degree between ill and detction
 c = np.deg2rad(c)
 c = np.rad2deg((2*np.pi + c) * (c < 0) + c*(c > 0))
 plt.plot(range(0,360,angular_resolution),c,'ro',label="Measured")
