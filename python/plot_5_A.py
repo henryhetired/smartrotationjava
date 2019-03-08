@@ -14,9 +14,6 @@ Created on Wed Aug  1 09:50:19 2018
 @author: henryhe
 """
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-from matplotlib import gridspec
-from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 countdata = np.zeros((24,36))
 savepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final3/figures/"

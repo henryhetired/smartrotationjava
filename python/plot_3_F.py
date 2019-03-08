@@ -9,7 +9,7 @@ Created on Fri Mar  1 13:34:27 2019
 #Script to evaluation the response of each angle relative to the imaging angle
 import matplotlib.pyplot as plt
 import numpy as np
-from evaluationstep_final import smart_rotation
+from smart_rotation import smart_rotation
 filepath = "/mnt/fileserver/Henry-SPIM/smart_rotation/06142018/sample1/merged/workspace_final3/angularcount_final/"
 sr = smart_rotation(24,10)
 sr.evaluate_angles(filepath,24,10,0,False)
