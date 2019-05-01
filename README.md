@@ -25,7 +25,19 @@ NVIDIA Quadro P5000 | Centos 7
 Installation:                                                                                                            
 -------------                                                                                                            
 * Download the content of the repository to the machine that is running the analysis server                              
-* Follow the instruction from the instruction.txt to configure the server and client                                     
+* Follow the instruction from the instruction.txt to configure the server and client  
+
+Demo:
+-------------
+* Download the demo file from [https://uwmadison.box.com/s/lswqqiok2t883kth5me8195ybxk43872]
+* The demo data includes a 24 view dataset of a zebrafish embryo with histone nucleus labelling
+* Start the analysis server by running `run "java -jar SmartRotationProcessing.jar $port_number"`
+* Run the full 24-angle evaluation on the dataset:
+  1. Initialize the analysis server by sending `initialize $LOCATION_OF_WORKSPACE` to the analysis machine
+  2. Run the full evaluation by sending `evaluation $LOCATION_OF_TESTDATA 0 1`
+  3. The 4 angles that are optimal for image coverage is received by client
+
+The full evaluation should take around 2 mins depends on the speed of the filestorage
                                                                                                                          
                                                                                                                          
                                                                                                                          
