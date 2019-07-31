@@ -20,9 +20,10 @@ public class decisionengine {
         angles = new int[num_angle_out];
         workspace = workspacein;
     }
-    public void get_strategy(int timepoint){
+    public void get_strategy(int timepoint,int gen_figure){
         try {
-            Process p = Runtime.getRuntime().exec("/home/henryhe/anaconda3/bin/python ./smartrotationjava/python/evaluationstep_final.py "+workspace+" "+Integer.toString(timepoint));
+            String workingpath = System.getProperty("user.dir");
+            Process p = Runtime.getRuntime().exec(workingpath + "/python/evaluationstep_final.py "+workspace+" "+Integer.toString(timepoint)+" "+Integer.toString(gen_figure));
             BufferedReader stdInput = new BufferedReader((new InputStreamReader(p.getInputStream())));
             String s;
             String[] output = new String[num_angle_out];

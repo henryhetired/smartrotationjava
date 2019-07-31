@@ -20,7 +20,7 @@ class smart_rotation:
         self.distribution = np.zeros((self.num_angles_evaluated,self.num_angles))
         self.coverage = np.zeros((self.num_angles_evaluated))
         
-    def evaluate_angles(self,filepath,timepoint,usetimepoint=True):
+    def evaluate_angles(self,filepath,timepoint="0",usetimepoint=True):
     #    read data, evaluate and fit to model, generate distribution map
         for i in range(0, self.num_angles):
             if usetimepoint:
@@ -75,3 +75,9 @@ class smart_rotation:
                 winner = comb[i]
                 coverage_percentage = new_coverage_percentage
         return(winner)
+    def gen_figure(self,max_num = 6):
+    #   generate a figure detailing the num of angles used vs coverage to show the convergence
+        coverage = np.empty((max_num,1))
+        for i in np.arange(max_num):
+            coverage[i] = self.estimate_coverage_average(get_optimal_coverage(i+1))
+        return(coverage)

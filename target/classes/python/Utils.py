@@ -37,4 +37,6 @@ class sr_configuration:
                 self.nangles = int(i[i.find('=')+1:])
             if "angular" in i:
                 self.angularresolution = int(i[i.find('=')+1:])
+            if "evaluation" in i:
+                self.evaluationresolution = int(i[i.find('=')+1:])
             

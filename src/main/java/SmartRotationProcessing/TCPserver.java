@@ -49,7 +49,7 @@ public class TCPserver {
                 String[] split_command = command.split("\\ ");
                 if (processing_engine.initialized) {
                     processing_engine.evaluation_step(split_command[1], Integer.parseInt(split_command[2]), Integer.parseInt(split_command[3]));
-                    processing_engine.de.get_strategy(Integer.parseInt(split_command[2]));
+                    processing_engine.de.get_strategy(Integer.parseInt(split_command[2]),Integer.parseInt(split_command[4]));
                     synchronized (lock) {
                         angles = processing_engine.de.angles;
                     }
@@ -59,7 +59,7 @@ public class TCPserver {
                 String[] split_command = command.split("\\ ");
                 if (processing_engine.initialized) {
                     processing_engine.update_step(split_command[1], Integer.parseInt(split_command[2]), Integer.parseInt(split_command[3]));
-                    processing_engine.de.get_strategy(Integer.parseInt(split_command[3]));
+                    processing_engine.de.get_strategy(Integer.parseInt(split_command[3]),Integer.parseInt(split_command[4]));
                     synchronized (lock) {
                         angles = processing_engine.de.angles;
                     }
