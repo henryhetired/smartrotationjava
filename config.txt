@@ -1,0 +1,13 @@
+This is the configuration file for the Smart Rotation Workflow, Please follow the instructions from the Readme.txt
+------------------------------
+***Image Parameters***
+file pattern string=t%04d_conf%04d_view0000_c00.tif
+------------------------------
+***Workflow Parameters***
+blk_size=16
+backgroundintensity=700
+entropybackground=7.2
+angular resolution=15
+evaluation resolution=15
+nAngles=4
+------------------------------
