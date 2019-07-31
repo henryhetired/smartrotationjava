@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="Maven: org.jcuda:jcudnn-natives:linux-x86_64:0.9.0d">
+  <library name="Maven: org.jcuda:jcudnn-natives:apple-x86_64:0.9.0d">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/jcuda/jcudnn-natives/0.9.0d/jcudnn-natives-0.9.0d-linux-x86_64.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jcuda/jcudnn-natives/0.9.0d/jcudnn-natives-0.9.0d-apple-x86_64.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/org/jcuda/jcudnn-natives/0.9.0d/jcudnn-natives-0.9.0d-javadoc.jar!/" />
