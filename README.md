@@ -7,7 +7,7 @@ ion that gives the optimal imaging response.
 Requirements:                                                                                                            
 ------------                                                                                                             
 * 64-bit operating System (Linux or Windows)                                                                             
-* CUDA 9.1 installed on an analysis computer                                                                             
+* CUDA 9.0.176 installed on an analysis computer                                                                             
 * Decent CUDA enabled graphics card with at least 4GB of VRAM                                                            
 * A TCP/IP connection from the microscope to the analysis computer                                                       
                                                                                                                          
