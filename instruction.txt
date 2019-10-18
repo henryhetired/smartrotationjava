@@ -1,8 +1,8 @@
 Instruction to configure the smart rotation server and client
 
-config file need to be in the workspace
+config files need to be in the workspace
 
-Make sure the port that the workflow need to work on is open
+Make sure the port that the server need to work on is open
 
 To start the program:
 
@@ -10,34 +10,39 @@ To start the program:
 from command line:
 
 
-run "java -jar SmartRotationProcessing.jar $port_number"
+run "java -jar SmartRotationProcessing.jar $server_config"
 
 
-After "Server started" printed, the server is ready to accept processing request using the following command structure:
+After "Server Started" printed, the server is ready to accept processing request using the following command structure:
 
 
 ----Command structure----
 0) Initialize the analysis server
-   initialize $workspace
+   runcommand initialize $workspace
    EXAMPLE COMMAND:
    
-   initialize /mnt/fileserver/workspace/
+   runcommand initialize /mnt/fileserver/workspace/
    
 1) Evaluate the fix spacing single timepoint data, with gen_fig option to generate a coverage vs num_angle figure:	
-   evaluation $filepath $timepoint $numberofangles $gap $gen_fig(0=Off, 1=On)
+   runcommand evaluation $filepath $timepoint $numberofangles $gap $gen_fig(0=Off, 1=On)
    EXAMPLE COMMAND:
    
-   evaluation /mnt/fileserver/data/ 0 2 1
+   runcommand evaluation /mnt/fileserver/data/ 0 2 1
    
    evaluate data stored at /mnt/fileserver/data/ timepoint 0 with 2 gap (if 24 angles used, 12 angles evaluated) and generate a coverage convergence curve and save to the workspace
 2) Process a single angular stack that comes in
-   processangle $filepath $timepoint $angle
+   runcommand processangle $filepath $timepoint $angle
    EXAMPLE COMMAND:
    
-   Processangle /mnt/fileserver/data/ 0 5
+   runcommand processangle /mnt/fileserver/data/ 0 5
 
    evaluate data at /mnt/fileserver/data/, specifically data at timepoint 0, angleidx 5
-3) Send the current estimation of optimal angle back to the client
+3) Query the current estimation of optimal angle and send back to the client
+   runcommand getupdate
+
+   The data received by the client is in the following format
    angles=$a0,$a1.....
+
+   It is then up to the microscope control software to parse the necessary information.
    
 

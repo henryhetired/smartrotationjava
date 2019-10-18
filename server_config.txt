@@ -1,0 +1,10 @@
+This is the configuration file for the Command server
+------------------------------
+Workspace is the location of the macro scripts
+workspace=/mnt/fileserver/Henry-SPIM/testworkspace/
+------------------------------
+***Network configurations***
+Port number is the port to listen to command for
+port=53705
+IP address=127.0.0.1
+------------------------------

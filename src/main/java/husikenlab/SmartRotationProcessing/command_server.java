@@ -12,6 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class command_server extends command_listener {
     private boolean initialized = false;
     private static SmartRotationProcessing processing_engine;
+    private int[] angles;
     protected ReentrantLock anglelock = new ReentrantLock();
     public command_server(command_processor.config configin){
         this.config = configin;
@@ -21,7 +22,6 @@ public class command_server extends command_listener {
         private String command;
         private String[] commandlist;
         private int port;
-        private int[] angles;
         public command_worker(int port,String commandin){
             this.command = commandin;
             this.commandlist = command.split(" ");
@@ -72,21 +72,21 @@ public class command_server extends command_listener {
             }
             //TODO:Implement other potential functions
         }
-        private void send_angles(int port) throws IOException{
-            //write the angles for optimal configuration to a socket
-            anglelock.lock();
-            String messageout = "angles=";
-            for (int i=0;i<angles.length;i++){
-                messageout+=Integer.toString(angles[i]*processing_engine.config.ang_reso)+",";
-            }
-            InetAddress add = InetAddress.getByName(config.ipadd);
-            ServerSocket socket = new ServerSocket(port,10,add);
-            Socket clientsocket;
-            clientsocket = socket.accept();
-            OutputStream os = clientsocket.getOutputStream();
-            os.write(messageout.getBytes());
-            os.close();
-
+    }
+    private void send_angles(int port) throws IOException{
+        //write the angles for optimal configuration to a socket
+        anglelock.lock();
+        String messageout = "angles=";
+        for (int i=0;i<angles.length;i++){
+            messageout+=Integer.toString(angles[i]*processing_engine.config.ang_reso)+",";
         }
+        InetAddress add = InetAddress.getByName(config.ipadd);
+        ServerSocket socket = new ServerSocket(port,10,add);
+        Socket clientsocket;
+        clientsocket = socket.accept();
+        OutputStream os = clientsocket.getOutputStream();
+        os.write(messageout.getBytes());
+        os.close();
+
     }
 }
