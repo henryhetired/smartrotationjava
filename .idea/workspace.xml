@@ -7,311 +7,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17d90cfd-4d7f-48a9-a040-7f3a22d028d0" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/command_server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/evaluationstep_final.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/evaluationstep_final.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/smart_rotation.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/smart_rotation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/TCPserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/TCPserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/SmartRotationProcessing.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SmartRotationworkflow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/SmartRotationworkflow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/decisionengine.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SmartRotationProcessing/decisionengine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/Utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/python/Utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/comparison.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/comparison_fused.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/evaluationstep_final.py" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/python/evaluationstep_final.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/filecorrect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_3_F.py" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/python/plot_3_F.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_3_polar.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_4.1_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_4_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_5_CD.py" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/python/plot_5_CD.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_5_compare.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_5_cumurainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_5a.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_6.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/plot_s1_vonmises.py" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/python/plot_s1_vonmises.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/untitled1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/python/xmlprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/artifacts/SmartRotationProcessing_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__colt_colt_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__commons_io_commons_io_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__concurrent_concurrent_1_3_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__fr_inra_ijpb_MorphoLibJ__1_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__gov_nist_math_jama_1_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__mpicbg_mpicbg_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__mpicbg_mpicbg__1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__net_imagej_ij1_patcher_0_12_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__net_imagej_ij_1_51h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcublas_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcublas_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcuda_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcuda_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcudnn_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcudnn_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcufft_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcufft_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcurand_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcurand_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusolver_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusolver_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusparse_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusparse_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jnvgraph_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jnvgraph_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__sc_fiji_Fiji_Plugins_3_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/libraries/Maven__sc_fiji_fiji_lib_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/R/plot.r" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/SmartRotationProcessing.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/command_structure.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/encoding.cu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/encoding.ptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/out/artifacts/SmartRotationProcessing_jar/SmartRotationProcessing.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/3-color-phase.lut" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/3-color-phase.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/comparison.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/comparison_fused.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/evaluationstep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/filecorrect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_3_E.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_3_F.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_3_polar.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_3_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_4.1_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_4_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_5_CD.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_5_compare.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_5_cumurainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_5a.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_6.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/plot_s1_vonmises.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/simulation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/untitled1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/python/xmlprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/src/main/main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/artifacts/SmartRotationProcessing_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__colt_colt_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__commons_io_commons_io_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__concurrent_concurrent_1_3_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__fr_inra_ijpb_MorphoLibJ__1_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__gov_nist_math_jama_1_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__mpicbg_mpicbg_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__mpicbg_mpicbg__1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__net_imagej_ij1_patcher_0_12_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__net_imagej_ij_1_51h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcublas_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcublas_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcuda_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcuda_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcudnn_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcudnn_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcufft_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcufft_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcurand_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcurand_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusolver_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusolver_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusparse_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusparse_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jnvgraph_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jnvgraph_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__sc_fiji_Fiji_Plugins_3_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/libraries/Maven__sc_fiji_fiji_lib_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/R/plot.r" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/SmartRotationProcessing.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/encoding.cu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/encoding.ptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/out/artifacts/SmartRotationProcessing_jar/SmartRotationProcessing.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/3-color-phase.lut" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/3-color-phase.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/comparison.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/comparison_fused.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/evaluationstep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/filecorrect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_3_polar.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_3_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_4.1_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_4_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_5_compare.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_5_cumurainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_5a.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_6.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/plot_s1_vonmises.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/simulation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/untitled1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/python/xmlprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/src/.idea/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/src/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/src/main/main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/artifacts/SmartRotationProcessing_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__colt_colt_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__commons_io_commons_io_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__concurrent_concurrent_1_3_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__fr_inra_ijpb_MorphoLibJ__1_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__gov_nist_math_jama_1_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__mpicbg_mpicbg_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__mpicbg_mpicbg__1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__net_imagej_ij1_patcher_0_12_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__net_imagej_ij_1_51h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcublas_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcublas_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcuda_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcuda_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcudnn_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcudnn_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcufft_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcufft_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcurand_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcurand_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusolver_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusolver_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusparse_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusparse_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jnvgraph_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jnvgraph_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__sc_fiji_Fiji_Plugins_3_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__sc_fiji_fiji_lib_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/R/plot.r" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/SmartRotationProcessing.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/encoding.cu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/encoding.ptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/out/artifacts/SmartRotationProcessing_jar/SmartRotationProcessing.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/3-color-phase.lut" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/3-color-phase.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/comparison.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/comparison_fused.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/evaluationstep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/filecorrect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_3_polar.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_3_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_4.1_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_4_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_5_compare.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_5_cumurainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_5a.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_6.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/plot_s1_vonmises.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/simulation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/untitled1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/python/xmlprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/src/.idea/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/src/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/src/main/main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/artifacts/SmartRotationProcessing_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__colt_colt_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__commons_io_commons_io_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__concurrent_concurrent_1_3_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__fr_inra_ijpb_MorphoLibJ__1_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__gov_nist_math_jama_1_0_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__mpicbg_mpicbg_1_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__mpicbg_mpicbg__1_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__net_imagej_ij1_patcher_0_12_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__net_imagej_ij_1_51h.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcublas_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcublas_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcuda_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcuda_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcudnn_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcudnn_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcufft_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcufft_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcurand_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcurand_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusolver_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusolver_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusparse_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jcusparse_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jnvgraph_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__org_jcuda_jnvgraph_natives_linux_x86_64_0_9_0d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__sc_fiji_Fiji_Plugins_3_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/libraries/Maven__sc_fiji_fiji_lib_2_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/R/plot.r" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/SmartRotationProcessing.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/encoding.cu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/encoding.ptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/out/artifacts/SmartRotationProcessing_jar/SmartRotationProcessing.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/3-color-phase.lut" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/3-color-phase.tif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/comparison.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/comparison_fused.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/evaluationstep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/filecorrect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_3_polar.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_3_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_4.1_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_4_rainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_5_compare.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_5_cumurainbow.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_5a.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_6.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/plot_s1_vonmises.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/simulation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/untitled1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/python/xmlprocessing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/src/.idea/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/src/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/target/classes/target/classes/target/classes/src/main/main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartRotationProcessing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SmartRotationProcessing.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/ImgMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/ImgMetadata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SIFT_align.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SmartRotationProcessing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationworkflow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SmartRotationworkflow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/TCPserver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/analysiswithsift.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/configwriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/dctCUDAencoding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/decisionengine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/image_registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/rawimageopenerwithsift.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/xmlMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/xmlMetadata.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -324,11 +39,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TCPserver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/TCPserver.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/command_server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="61" column="124" selection-start-line="61" selection-start-column="124" selection-end-line="61" selection-end-column="124" />
+            <state relative-caret-position="216">
+              <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="class#command_worker#0;class#command_server#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SmartRotationworkflow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -336,49 +64,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SmartRotationProcessing.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/decisionengine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1999">
-              <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="126">
+              <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SmartRotationworkflow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationworkflow.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/ImgMetadata.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="decisionengine.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="25" column="172" selection-start-line="25" selection-start-column="172" selection-end-line="25" selection-end-column="172" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImgMetadata.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/ImgMetadata.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="144">
               <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="configwriter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/configwriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
+            <state relative-caret-position="882">
               <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
               <folding>
                 <element signature="method#read#0;class#configwriter#0" />
@@ -421,6 +128,7 @@
       <find>current</find>
       <find>mall</find>
       <find>time</find>
+      <find>writefile</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -467,6 +175,9 @@
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationworkflow.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java" />
         <option value="$PROJECT_DIR$/src/main/java/SmartRotationProcessing/TCPserver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SmartRotationProcessing.java" />
+        <option value="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/command_server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SmartRotationworkflow.java" />
       </list>
     </option>
   </component>
@@ -478,7 +189,6 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
     <option name="y" value="-4" />
     <option name="width" value="1920" />
     <option name="height" value="1084" />
@@ -491,52 +201,55 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="smart_rotation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart_rotation" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="smart_rotation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart_rotation" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="smart_rotation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart_rotation" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="smart_rotation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart_rotation" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="smart_rotation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="smart_rotation" type="462c0819:PsiDirectoryNode" />
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="smartrotationjava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="SmartRotationProcessing" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="smartrotationjava" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544482744241" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../compressing_benchmark" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571417880785" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/command_processor.jar!/" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
@@ -554,70 +267,45 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet" factoryName="Applet">
+    <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="SmartRotationworkflow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="SmartRotationProcessing.SmartRotationworkflow" />
+      <option name="MAIN_CLASS_NAME" value="husikenlab.SmartRotationProcessing.SmartRotationworkflow" />
       <module name="SmartRotationProcessing" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="SmartRotationProcessing.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
+    <configuration default="true" type="TestNG">
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
@@ -656,85 +344,66 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49865228" weight="0.35955057" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49811321" visible="true" weight="0.32865733" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49701494" visible="true" weight="0.23035714" />
-      <window_info id="Structure" order="1" sideWeight="0.50298506" side_tool="true" visible="true" weight="0.23035714" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" weight="0.3727162" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Coverage" order="8" side_tool="true" visible="true" weight="5.952381E-4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="9" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13767342" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14087513" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32889345" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" weight="0.3727162" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.1213554" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.1213554" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32889345" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" weight="0.3727162" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49865228" weight="0.35955057" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" visible="true" weight="5.952381E-4" />
+      <window_info anchor="right" id="Maven" order="9" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info active="true" anchor="right" id="Coverage" order="8" side_tool="true" visible="true" weight="0.3296875" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32939324" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
       <window_info id="Image Layers" order="2" />
-      <window_info id="Capture Tool" order="6" />
+      <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" visible="true" weight="0.34751773" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49865228" weight="0.35955057" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.1213554" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" sideWeight="0.49973047" visible="true" weight="0.1213554" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49811321" weight="0.32939324" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49595687" visible="true" weight="0.34751773" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5040431" side_tool="true" weight="0.2694672" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49919137" weight="0.09118853" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49865228" weight="0.35955057" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info active="true" anchor="right" id="Coverage" order="8" side_tool="true" visible="true" weight="0.3296875" />
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
@@ -742,57 +411,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="cuda working!!!!" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-          <folding>
-            <element signature="method#read#0;class#configwriter#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/ImgMetadata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="118" column="37" lean-forward="true" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/TCPserver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1688">
-          <caret line="139" column="21" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationworkflow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-788">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/compareresult.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/getsamplesize/Stitching_2D.java" />
     <entry file="file:///local/data/download/java_testing/src/getsamplesize/rawimageopener.java" />
@@ -879,7 +497,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/xmlMetadata.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/xmlMetadata.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
@@ -889,7 +507,7 @@
     <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/javax/sound/sampled/Line.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/pythonevaluation.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/vonmisesfitter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SIFT_align.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SIFT_align.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2178">
           <caret line="139" column="33" selection-start-line="139" selection-start-column="33" selection-end-line="139" selection-end-column="33" />
@@ -897,7 +515,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/encoding.cu" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/analysiswithsift.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/analysiswithsift.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
@@ -908,24 +526,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/testClient.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/configwriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-          <folding>
-            <element signature="method#read#0;class#configwriter#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/ImgMetadata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/image_registration.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/image_registration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
@@ -935,7 +536,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/rawimageopenerwithsift.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/rawimageopenerwithsift.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
           <caret line="63" column="11" lean-forward="true" selection-start-line="63" selection-start-column="11" selection-end-line="63" selection-end-column="11" />
@@ -945,7 +546,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/dctCUDAencoding.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/dctCUDAencoding.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="287" column="33" selection-start-line="287" selection-start-column="29" selection-end-line="287" selection-end-column="33" />
@@ -964,37 +565,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationworkflow.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/decisionengine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="126">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/SmartRotationProcessing.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/ImgMetadata.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1999">
-          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+        <state relative-caret-position="144">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/configwriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
+          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+          <folding>
+            <element signature="method#read#0;class#configwriter#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SmartRotationProcessing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/TCPserver.java">
+    <entry file="jar://$PROJECT_DIR$/src/command_processor.jar!/command_processor/command_processor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="61" column="124" selection-start-line="61" selection-start-column="124" selection-end-line="61" selection-end-column="124" />
+        <state relative-caret-position="162">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/src/command_processor.jar!/command_processor/command_listener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="158" column="26" selection-start-line="158" selection-start-column="26" selection-end-line="158" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/TCPserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SmartRotationProcessing/decisionengine.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/SmartRotationworkflow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" column="172" selection-start-line="25" selection-start-column="172" selection-end-line="25" selection-end-column="172" />
+        <state relative-caret-position="342">
+          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/husikenlab/SmartRotationProcessing/command_server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#command_worker#0;class#command_server#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1057,7 +703,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
