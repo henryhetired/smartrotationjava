@@ -5,14 +5,9 @@ Created on Fri Mar  1 14:27:50 2019
 
 @author: henryhe
 """
-try:    
-    import numpy as np
-    import matplotlib.pyplot as plt
-    import math
-except ImportError:
-    import pip
-    pip.main(['install','--user','numpy'])
-    pip.main(['install','--user','numpy'])
+import numpy as np
+import matplotlib.pyplot as plt
+import math
 def get_cmap(n, name='brg'):
     return plt.cm.get_cmap(name, n)
 def vonmises(x, amp, cen, kappa):

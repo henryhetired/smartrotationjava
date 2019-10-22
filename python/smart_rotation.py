@@ -79,5 +79,5 @@ class smart_rotation:
     #   generate a figure detailing the num of angles used vs coverage to show the convergence
         coverage = np.empty((max_num,1))
         for i in np.arange(max_num):
-            coverage[i] = self.estimate_coverage_average(get_optimal_coverage(i+1))
+            coverage[i] = self.estimate_coverage_average(self.get_optimal_coverage(i+1))
         return(coverage)
