@@ -7,7 +7,7 @@ Requirements:
 ------------                                                                                                             
 * 64-bit operating System (Linux or Windows)                                                                             
 * `CUDA` 9.0.176 driver installed on an analysis computer            
-    * The version of `CUDA` driver required is determined by the `jcuda` [jcuda.org] version being used.                                                                  
+    * The version of `CUDA` driver required is determined by the [`jcuda`](jcuda.org)  version being used.                                                                  
 * `CUDA` enabled graphics card with at least **4GB** of VRAM
     * VRAM size dictates the size of Z-STACK that can be analysed.                                                            
 * A TCP/IP connection from the microscope to the analysis computer                                                       
